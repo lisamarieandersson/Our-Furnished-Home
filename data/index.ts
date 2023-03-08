@@ -29,7 +29,7 @@ export const products: Product[] = [
     designer: "Knut Bendik Humlevik",
     title: "Tea Shelf",
     description:
-      "Stool with comfortable, shaped seat. Made of solid wood, in the Toon Wood type. Height 61 cm. Seat 40x32 cm. Seat height: 61 cm Width at the bottom 47 cm. Mounted.",
+      "The New Works Tea Shelf can be used anywhere in the home for storage and display of small items. The shelves are neatly assembled with flat knurled screws in stainless steel, adding an honest yet refined detail to the design. ",
     price: 2300,
     id: "e1",
   },
@@ -54,14 +54,13 @@ export const products: Product[] = [
     id: "c1",
   },
   {
-    image:
-      "https://assets.ellosgroup.com/i/ellos/b?$eg$&$em$&$ep$&$ed$&n=ell_1615855-02_Fm_M0044073&mw=1500&fmt=webp",
+    image: "/assets/new-works-coffee-table",
     brand: "New Works",
-    designer: "",
-    title: "Magnolia",
+    designer: "New Works Studio",
+    title: "Florence Coffee Table",
     description:
-      "Rattan bedside table with shelf underneath. The top is reinforced with a plywood board under the rattan. Dimensions: Width 41 cm, height 71 cm, depth 31 cm. Leg height 22 cm. Height to the upper edge of the lower shelf 25 cm. Dimensions between the shelves 42.5 cm.",
-    price: 1299,
+      "The Florence Coffee Table is a stylish coffee table from New Works, designed by New Works Studio and is part of the Florence collection. The table top measures 90 cm in diameter, where its round shape together with the angular base creates an appealing aesthetic.",
+    price: 11995,
     id: "f4",
   },
   {
