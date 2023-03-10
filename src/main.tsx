@@ -12,14 +12,43 @@ import StartPage from './pages/StartPage';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route index element={<StartPage />} />
-      <Route path="product" element={<ProductPage />} />
-      <Route path="checkout" element={<CheckoutPage />} />
-      <Route path="orderconfirmation" element={<OrderConfirmationPage />} />
-      <Route path="emptybag" element={<EmptyBagPage />} />
+      {/* <Route element={<AppLayout />}> */}
+        <Route index element={<StartPage />} />
+        <Route path="products/:id" element={<ProductPage />} />
+        <Route path="orderconfirmation" element={<OrderConfirmationPage />} />
+        <Route path="*" element={<h3>404 Not Found</h3>}/>
+      {/* </Route> */}
+      {/* <Route element={<CheckoutLayout />}> */}
+        <Route path="checkout" element={<CheckoutPage />} />
+        <Route path="emptybag" element={<EmptyBagPage />} />
+      {/* </Route> */}
     </Route>
   )
 )
+
+// function AppLayout() {
+//   return (
+//     <>
+//       <AppHeader />
+//       <main>
+//         <Outlet />
+//       </main>
+//       <Footer />
+//     </>
+//   )
+// }
+
+// function CheckoutLayout() {
+//   return (
+//     <>
+//       <CheckoutHeader />
+//       <main>
+//         <Outlet />
+//       </main>
+//       <Footer />
+//     </>
+//   )
+// }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

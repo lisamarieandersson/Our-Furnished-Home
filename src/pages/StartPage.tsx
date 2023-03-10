@@ -1,9 +1,13 @@
 function StartPage() {
     return(
         <div>
-            <h1>Startpage</h1>
+            {/* <AppHeader />
+            <main>
+                <Gallery>
+            </main>
+            <Footer /> */}
         </div>
     )
 }
 
-export default StartPage;
+export default StartPage
