@@ -6,7 +6,9 @@ function StartPage() {
                 <Gallery>
             </main>
             <Footer /> */}
-            <h1>Startpage</h1>
+            <h1
+            
+            >Startpage</h1>
         </div>
     )
 }
