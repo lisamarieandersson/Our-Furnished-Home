@@ -47,6 +47,7 @@ function HeaderMain() {
               display: "flex",
               justifyContent: "flex-end",
               marginRight: "1rem",
+              gap: "0.7rem",
             }}
           >
             <span
