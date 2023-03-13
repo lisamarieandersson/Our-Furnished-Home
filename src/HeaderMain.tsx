@@ -21,8 +21,8 @@ function HeaderMain() {
               listStyle: "none",
               justifyContent: "space-around",
               alignItems: "center",
-              fontFamily: "Prata",
-              fontSize: "1.7rem",
+              fontFamily: 'Prata',
+              fontSize: "1.3rem",
             }}
           >
             <li style={{ cursor: "pointer" }}>Products</li>
