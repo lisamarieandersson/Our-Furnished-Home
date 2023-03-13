@@ -36,7 +36,7 @@ function HeaderMain() {
               src="LoggaFH.png"
               alt="logga"
               style={{
-                height: "10rem",
+                height: "8rem",
               }}
             />
           </Box>
