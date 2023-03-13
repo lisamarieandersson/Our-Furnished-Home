@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
+import NavLinks from "./NavLinks";
 
 function HeaderMain() {
   return (
@@ -15,19 +16,8 @@ function HeaderMain() {
         }}
       >
         <Grid item xs={4}>
-          <Box
-            sx={{
-              display: "flex",
-              listStyle: "none",
-              justifyContent: "space-around",
-              alignItems: "center",
-              fontFamily: 'Prata',
-              fontSize: "1.3rem",
-            }}
-          >
-            <li style={{ cursor: "pointer" }}>Products</li>
-            <li style={{ cursor: "pointer" }}>Brands</li>
-            <li style={{ cursor: "pointer" }}>Campaigns</li>
+          <Box>
+            <NavLinks />
           </Box>
         </Grid>
         <Grid item xs={4}>
