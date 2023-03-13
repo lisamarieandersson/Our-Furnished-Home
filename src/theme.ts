@@ -1,6 +1,6 @@
-import { ThemeOptions } from "@mui/material/styles";
+import { createTheme } from "@mui/material/styles";
 
-export const theme: ThemeOptions = {
+export const theme = createTheme({
   palette: {
     mode: "light",
     primary: {
@@ -52,4 +52,4 @@ export const theme: ThemeOptions = {
       fontFamily: "Josefin Sans",
     },
   },
-};
+});
