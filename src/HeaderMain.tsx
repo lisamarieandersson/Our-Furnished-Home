@@ -1,6 +1,3 @@
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
-import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import { Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
@@ -52,21 +49,24 @@ function HeaderMain() {
               marginRight: "1rem",
             }}
           >
-            <PersonOutlinedIcon
-              sx={{
-                fontSize: "3rem",
-              }}
-            />
-            <FavoriteBorderOutlinedIcon
-              sx={{
-                fontSize: "3rem",
-              }}
-            />
-            <ShoppingBagOutlinedIcon
-              sx={{
-                fontSize: "3rem",
-              }}
-            />
+            <span
+              className="material-symbols-outlined"
+              style={{ fontSize: "3.5rem", cursor: "pointer" }}
+            >
+              admin_panel_settings
+            </span>
+            <span
+              className="material-symbols-outlined"
+              style={{ fontSize: "3.5rem", cursor: "pointer" }}
+            >
+              favorite
+            </span>
+            <span
+              className="material-symbols-outlined"
+              style={{ fontSize: "3.5rem", cursor: "pointer" }}
+            >
+              shopping_bag
+            </span>
           </Box>
         </Grid>
       </Grid>
