@@ -4,14 +4,6 @@ import { styled } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Product, products } from "../data/index";
 
-// interface Props {
-//   image: string;
-//   title: string;
-//   brand: string;
-//   price: number;
-//   onClick?: () => void;
-// }
-
 const Item = styled(Paper)(({ theme }) => ({
   // backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body1,
