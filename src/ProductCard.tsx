@@ -26,8 +26,6 @@ const Item = styled(Paper)(({ theme }) => ({
   },
 }));
 
-// { image, title, brand, price, onClick }: Props
-
 function ProductCard() {
   return (
     <Box sx={{ width: "100%" }}>
