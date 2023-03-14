@@ -11,9 +11,15 @@ const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.subtitle2,
   textAlign: "left",
   color: theme.palette.text.primary,
+  cursor: "pointer",
+  boxShadow: "none",
+  transition: "box-shadow 0.3s ease-in-out", // add transition to box-shadow property
+  "&:hover": {
+    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.2)", // add box shadow on hover
+  },
   "& img": {
     width: "100%",
-    height: "500px",
+    height: "auto",
     objectFit: "cover", // Ensures that the image fills the available space while preserving its aspect ratio
   },
 }));
@@ -39,17 +45,15 @@ function ProductGallery() {
                   }}
                 >
                   <Box>
-                    <Typography gutterBottom variant="body2">
-                      {product.brand}
-                    </Typography>
-                    <Typography
-                      gutterBottom
-                      variant="body1"
-                      data-cy="product-title"
-                    >
+                    <Typography variant="overline">{product.brand}</Typography>
+                    <Typography variant="subtitle2" data-cy="product-title">
                       {product.title}
                     </Typography>
-                    <Typography variant="subtitle2" data-cy="product-price">
+                    <Typography
+                      variant="subtitle2"
+                      sx={{ marginTop: "1rem" }}
+                      data-cy="product-price"
+                    >
                       {product.price} SEK
                     </Typography>
                   </Box>
