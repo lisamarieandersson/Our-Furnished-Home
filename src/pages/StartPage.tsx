@@ -1,4 +1,4 @@
-import HeaderMain from "../HeaderMain";
+import HeaderMain from "../components/HeaderMain";
 
 function StartPage() {
   return (
