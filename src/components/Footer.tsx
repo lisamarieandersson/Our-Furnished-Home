@@ -1,13 +1,14 @@
-import { Box, Divider, Grid, List, ListItem, ListItemButton } from "@mui/material";
+import { Box, Divider, Grid, List, ListItem } from "@mui/material";
 import ListItemText from "@mui/material/ListItemText";
-import { Container } from "@mui/system";
+import { Container, useTheme } from "@mui/system";
 
 function Footer() {
+    const theme = useTheme();
     return (
         <Container sx={{
             maxWidth: '80%',
             height: 'auto',
-            background: 'lightpink',
+            marginTop: '6rem',
         }}>
             <Divider sx={{
                 backgroundcolor: 'black',
@@ -26,24 +27,16 @@ function Footer() {
                             <ListItemText>ABOUT US</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText>Our Story</ListItemText>
-                            </ListItemButton>
+                            <ListItemText>Our Story</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText>Sustainability</ListItemText>
-                            </ListItemButton>
+                            <ListItemText>Sustainability</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText>Work with us</ListItemText>
-                            </ListItemButton>
+                            <ListItemText>Work with us</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText>Press</ListItemText>
-                            </ListItemButton>
+                            <ListItemText>Press</ListItemText>
                         </ListItem>
                     </List>                    
                 </Grid>
@@ -57,29 +50,19 @@ function Footer() {
                             <ListItemText sx={{textAlign: 'center',}}>CUSTOMER SERVICE</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText sx={{textAlign: 'center',}}>Delivery info</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Delivery info</ListItemText>
                         </ListItem> 
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText sx={{textAlign: 'center',}}>Returns & Refunds</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Returns & Refunds</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
                                 <ListItemText sx={{textAlign: 'center',}}>Terms & Conditions</ListItemText>
-                            </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
                                 <ListItemText sx={{textAlign: 'center',}}>FAQs</ListItemText>
-                            </ListItemButton>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters sx={{height: 'auto',}}>
-                                <ListItemText sx={{textAlign: 'center',}}>Cookie Settings</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Cookie Settings</ListItemText>
                         </ListItem> 
                     </List>
                 </Grid>
@@ -93,19 +76,13 @@ function Footer() {
                             <ListItemText sx={{textAlign: 'center',}}>CONTACT</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText sx={{textAlign: 'center',}}>Contact us</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Contact us</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText sx={{textAlign: 'center',}}>Our stores</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Our stores</ListItemText>
                         </ListItem>
                         <ListItem disablePadding>
-                            <ListItemButton disableGutters>
-                                <ListItemText sx={{textAlign: 'center',}}>Affiliates</ListItemText>
-                            </ListItemButton>
+                            <ListItemText sx={{textAlign: 'center',}}>Affiliates</ListItemText>
                         </ListItem>
                     </List>
                 </Grid>
@@ -119,7 +96,7 @@ function Footer() {
                         borderRadius: '100rem',
                         width: '4rem',
                         height: '4rem',
-                        background: 'green',
+                        background: (theme) => theme.palette.primary.main,
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -133,7 +110,7 @@ function Footer() {
                         borderRadius: '100rem',
                         width: '4rem',
                         height: '4rem',
-                        background: 'green',
+                        background: (theme) => theme.palette.primary.main,
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -147,7 +124,7 @@ function Footer() {
                         borderRadius: '100rem',
                         width: '4rem',
                         height: '4rem',
-                        background: 'green',
+                        background: (theme) => theme.palette.primary.main,
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
