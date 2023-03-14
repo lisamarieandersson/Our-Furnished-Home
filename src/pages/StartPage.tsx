@@ -1,4 +1,4 @@
-import ProductCard from "../ProductCard";
+import ProductGallery from "../ProductGallery";
 import { theme } from "../theme";
 
 function StartPage() {
@@ -10,7 +10,7 @@ function StartPage() {
             </main>
             <Footer /> */}
       <h1 style={{ fontFamily: theme.typography.h1.fontFamily }}>Startpage</h1>
-      <ProductCard />
+      <ProductGallery />
     </div>
   );
 }
