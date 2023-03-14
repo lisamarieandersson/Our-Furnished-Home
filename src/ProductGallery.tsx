@@ -27,7 +27,7 @@ function ProductGallery() {
   return (
     <Container maxWidth="xl" sx={rootStyle}>
       <Box sx={{ width: "100%" }}>
-        <Grid container rowSpacing={1} columnSpacing={1}>
+        <Grid container rowSpacing={2} columnSpacing={2}>
           {products.map((product) => (
             <Grid key={product.id} xs={12} sm={6} md={4} data-cy="product">
               <Item>
