@@ -66,7 +66,7 @@ export const products: Product[] = [
     description:
       "Composed of two bold sculptural forms, the Kizu Table Lamp displays a weightless balancing act. The illusion of gravity creates a tension within the piece, while its curved forms initiate a calming effect.",
     price: 4495,
-    id: "a3",
+    id: "a5",
   },
   {
     image: "/assets/alessi-set-of-spoons.png",
@@ -74,8 +74,8 @@ export const products: Product[] = [
     title: "Set of Spoons Il caffè/tè",
     description:
       "An exceptional set of 8 tea spoons, where each piece is designed by a different, brilliant contemporary artist and together they work as a symbolic selection of modern architecture. The set is an ideal treasure both for design enthusiasts, as well as anyone who desires to include a piece of art in their daily rituals.",
-    price: 845,
-    id: "a3",
+    price: 850,
+    id: "b3",
   },
   {
     image: "/assets/menu-scented-candle.png",
@@ -84,7 +84,7 @@ export const products: Product[] = [
     description:
       "En Passant” simply means “in passing.” A moment in time, like a stroll through the garden after spring rain. This purifying, floral scent invites you to stop and take in the scents of hyacinth, jasmine petals and geranium. The fragrance concludes with grounding arboreal notes of wild moss and cedarwood. 235 g.",
     price: 699,
-    id: "a3",
+    id: "e4",
   },
   {
     image: "/assets/vase-vako.png",
@@ -93,6 +93,6 @@ export const products: Product[] = [
     description:
       "Vako glass vase is designed by Lotta Petterson for Smaelta and is mouth-blown at Bergdalahyttan in Småland. The name Vako is taken from the beautiful marsh Vakö outside Älmhult. The lines in the glass symbolize the movement of water and ice.",
     price: 1750,
-    id: "a3",
+    id: "c7",
   },
 ];
