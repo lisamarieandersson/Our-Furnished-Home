@@ -1,3 +1,5 @@
+import Footer from "../components/Footer"
+
 function StartPage() {
     return(
         <div>
@@ -7,6 +9,7 @@ function StartPage() {
             </main>
             <Footer /> */}
             <h1>Startpage</h1>
+            <Footer />
         </div>
     )
 }
