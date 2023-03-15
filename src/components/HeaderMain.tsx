@@ -1,3 +1,5 @@
+import { Theme } from "@emotion/react";
+import { SxProps } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -8,10 +10,24 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import HeaderIcons from "./HeaderIcons";
 
 const pages = ["Products", "Brands", "Campaigns"];
 
-function ResponsiveAppBar() {
+const headerButtonsStyling: SxProps<Theme> = {
+  color: "black",
+  display: "block",
+  fontSize: "1.1rem",
+  textTransform: "none",
+  marginRight: "1.5rem",
+  "&:hover": {
+    textDecoration: "underline",
+    textDecorationThickness: "0.01rem",
+    textUnderlineOffset: "0.5rem",
+  },
+};
+
+function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -25,10 +41,9 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
+    <AppBar elevation={0} position="static" sx={{ background: (theme) => theme.palette.background.default }}>
       <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
-          {/* Här är hamburgermenyn */}
           <Box
             sx={{
               flexGrow: 1,
@@ -36,14 +51,14 @@ function ResponsiveAppBar() {
             }}
           >
             <IconButton
-              aria-label="account of current user"
+              aria-label="show"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{ color: "black" }}
             >
               <Box
-                style={{ fontSize: "2.5rem" }}
+                sx={{ fontSize: { xs: "2.1rem", sm: "2.5rem" } }}
                 className="material-symbols-outlined"
               >
                 menu
@@ -69,13 +84,7 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    padding="0.5rem"
-                    fontFamily="Prata"
-                    textAlign="center"
-                  >
-                    {page}
-                  </Typography>
+                  <Typography padding="0.5rem">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -90,19 +99,13 @@ function ResponsiveAppBar() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  fontFamily: "Prata",
-                  fontSize: "1rem",
-                }}
+                sx={headerButtonsStyling}
               >
                 {page}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: { xs: 0, md: 0.5 } }}>
+          <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
             <Box
               component="img"
               src="logohome.png"
@@ -116,35 +119,17 @@ function ResponsiveAppBar() {
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
+              flexGrow: { xs: 0.7 },
               display: "flex",
               justifyContent: "flex-end",
-              color: "black",
-              gap: { xs: 0, sm: "0.5rem" },
             }}
           >
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              admin_panel_settings
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              favorite
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              shopping_bag
-            </Box>
+            <HeaderIcons />
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+export default HeaderMain;
