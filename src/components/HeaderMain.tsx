@@ -8,10 +8,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import HeaderIcons from "./HeaderIcons";
 
 const pages = ["Products", "Brands", "Campaigns"];
 
-function ResponsiveAppBar() {
+function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -43,7 +44,7 @@ function ResponsiveAppBar() {
               sx={{ color: "black" }}
             >
               <Box
-                style={{ fontSize: "2.5rem" }}
+                sx={{ fontSize: { xs: "2rem", sm: "2.5rem" } }}
                 className="material-symbols-outlined"
               >
                 menu
@@ -116,35 +117,17 @@ function ResponsiveAppBar() {
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
+              flexGrow: { xs: 0.7, md: 1 },
               display: "flex",
               justifyContent: "flex-end",
-              color: "black",
-              gap: { xs: 0, sm: "0.5rem" },
             }}
           >
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              admin_panel_settings
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              favorite
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              shopping_bag
-            </Box>
+            <HeaderIcons />
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+export default HeaderMain;
