@@ -1,9 +1,12 @@
+import HeaderMain from "../components/HeaderMain";
 import ProductCard from "../ProductCard";
 import { theme } from "../theme";
 
 function StartPage() {
   return (
     <div>
+
+      <HeaderMain />
       {/* <AppHeader />
             <main>
                 <Gallery>
