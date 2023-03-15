@@ -108,7 +108,7 @@ function HeaderMain() {
           <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
             <Box
               component="img"
-              src="logo.png"
+              src="/logo.png"
               alt="logga"
               sx={{
                 height: { xs: "6rem", sm: "7rem" },
