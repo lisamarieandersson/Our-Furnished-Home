@@ -1,16 +1,17 @@
 import ProductGallery from "../ProductGallery";
+import HeaderMain from "../components/HeaderMain";
 import { theme } from "../theme";
 
 function StartPage() {
   return (
     <div>
+
+      <HeaderMain />
       {/* <AppHeader />
             <main>
-                <Gallery>
+               <ProductGallery />
             </main>
             <Footer /> */}
-      <h1 style={{ fontFamily: theme.typography.h1.fontFamily }}>Startpage</h1>
-      <ProductGallery />
     </div>
   );
 }
