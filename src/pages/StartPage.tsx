@@ -1,9 +1,9 @@
-import TestHeader from "../components/TestHeader";
+import HeaderMain from "../components/HeaderMain";
 
 function StartPage() {
   return (
     <div>
-      <TestHeader />
+      <HeaderMain />
     </div>
   );
 }
