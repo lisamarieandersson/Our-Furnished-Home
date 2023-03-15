@@ -16,7 +16,7 @@ function Footer() {
             <Grid container spacing={2} justifyContent="center" sx={{
                 justifyContent: 'center',
             }}>
-                <Grid xs={12} sm={4} md={4} sx={{
+                <Grid item xs={12} sm={4} md={4} sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -39,7 +39,7 @@ function Footer() {
                         </ListItem>
                     </List>                    
                 </Grid>
-                <Grid xs={12} sm ={4} md={4} sx={{
+                <Grid item xs={12} sm ={4} md={4} sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
@@ -65,7 +65,7 @@ function Footer() {
                         </ListItem> 
                     </List>
                 </Grid>
-                <Grid xs={12} sm ={4} md={4} sx={{
+                <Grid item xs={12} sm ={4} md={4} sx={{
                     display: 'flex',
                     alignItems: 'center',
                     flexDirection: 'column',
