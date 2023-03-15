@@ -71,9 +71,9 @@ export const products: Product[] = [
   {
     image: "/assets/alessi-set-of-spoons.png",
     brand: "Alessi",
-    title: "Set of Spoons Il caffè/tè",
+    title: "Set of Spoons",
     description:
-      "An exceptional set of 8 tea spoons, where each piece is designed by a different, brilliant contemporary artist and together they work as a symbolic selection of modern architecture. The set is an ideal treasure both for design enthusiasts, as well as anyone who desires to include a piece of art in their daily rituals.",
+      "Alessi's Il caffè/tè - is an exceptional set of 8 tea spoons. Each piece is designed by a different, brilliant contemporary artist and together they work as a symbolic selection of modern architecture. The set is an ideal treasure both for design enthusiasts, as well as anyone who desires to include a piece of art in their daily rituals.",
     price: 850,
     id: "b3",
   },
