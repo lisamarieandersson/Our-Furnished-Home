@@ -1,15 +1,13 @@
-import ProductGallery from "../ProductGallery";
 import HeaderMain from "../components/HeaderMain";
-import { theme } from "../theme";
+import ProductGallery from "../ProductGallery";
 
 function StartPage() {
   return (
     <div>
-
       <HeaderMain />
+      <ProductGallery />
       {/* <AppHeader />
             <main>
-               <ProductGallery />
             </main>
             <Footer /> */}
     </div>
