@@ -7,6 +7,8 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import { products } from "../data/index";
 
+/*  Styling*/
+
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.subtitle2,
   textAlign: "left",
@@ -15,7 +17,8 @@ const Item = styled(Paper)(({ theme }) => ({
   boxShadow: "none",
   transition: "box-shadow 0.3s ease-in-out", // add transition to box-shadow property
   "&:hover": {
-    boxShadow: "0px 2px 10px rgba(0, 0, 0, 0.2)", // add box shadow on hover
+    boxShadow: "0 .125rem .625rem rgba(0, 0, 0, 0.2)", // add box shadow on hover
+    backgroundColor: "#FFFFFF",
   },
   "& img": {
     width: "100%",
@@ -29,6 +32,10 @@ const rootStyle: SxProps<Theme> = {
   justifyContent: "center",
 };
 
+/**
+ *
+ * @returns a product gallery consisting of cards for all the products with image, brand, title and price
+ */
 function ProductGallery() {
   return (
     <Container maxWidth="xl" sx={rootStyle}>
@@ -42,6 +49,8 @@ function ProductGallery() {
                   sx={{
                     display: "flex",
                     justifyContent: "space-between",
+                    alignItems: "center",
+                    paddingTop: "0.4rem",
                   }}
                 >
                   <Box>
