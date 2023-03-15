@@ -19,6 +19,7 @@ const headerButtonsStyling: SxProps<Theme> = {
   display: "block",
   fontSize: "1.1rem",
   textTransform: "none",
+  marginRight: "1.5rem",
   "&:hover": {
     textDecoration: "underline",
     textDecorationThickness: "0.01rem",
@@ -90,7 +91,7 @@ function HeaderMain() {
           </Box>
           <Box
             sx={{
-              flexGrow: 1.1,
+              flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
@@ -104,7 +105,7 @@ function HeaderMain() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: { xs: 0, md: 0.5 } }}>
+          <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
             <Box
               component="img"
               src="logo.png"
@@ -118,7 +119,7 @@ function HeaderMain() {
           </Box>
           <Box
             sx={{
-              flexGrow: { xs: 0.7, md: 1 },
+              flexGrow: { xs: 0.7 },
               display: "flex",
               justifyContent: "flex-end",
             }}
