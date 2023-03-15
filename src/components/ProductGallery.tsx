@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper";
 import { styled, SxProps, Theme } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
-import { products } from "../data/index";
+import { products } from "../../data/index";
 
 /*  Styling*/
 
@@ -30,6 +30,7 @@ const Item = styled(Paper)(({ theme }) => ({
 const rootStyle: SxProps<Theme> = {
   display: "flex",
   justifyContent: "center",
+  marginTop: "1.5rem",
 };
 
 /**

@@ -26,7 +26,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
-      <Container maxWidth="xl" sx={{ borderBottom: '0.01rem solid black' }}>
+      <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
           {/* Här är hamburgermenyn */}
           <Box
@@ -95,7 +95,7 @@ function ResponsiveAppBar() {
                   color: "black",
                   display: "block",
                   fontFamily: "Prata",
-                  fontSize: '1rem',
+                  fontSize: "1rem",
                 }}
               >
                 {page}
@@ -108,7 +108,7 @@ function ResponsiveAppBar() {
               src="LoggaFH.png"
               alt="logga"
               sx={{
-                height: { xs: '6rem', sm: '7rem' },
+                height: { xs: "6rem", sm: "7rem" },
                 marginTop: "0.5rem",
                 marginBottom: "1rem",
               }}
@@ -118,26 +118,26 @@ function ResponsiveAppBar() {
             sx={{
               flexGrow: 1,
               display: "flex",
-              justifyContent: 'flex-end',
+              justifyContent: "flex-end",
               color: "black",
-              gap: { xs: 0, sm: '0.5rem' }
+              gap: { xs: 0, sm: "0.5rem" },
             }}
           >
             <Box
               className="material-symbols-outlined"
-              sx={{ fontSize: { xs: '2.5rem', md: '3rem'} , cursor: "pointer" }}
+              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
             >
               admin_panel_settings
             </Box>
             <Box
               className="material-symbols-outlined"
-              sx={{ fontSize: { xs: '2.5rem', md: '3rem'}, cursor: "pointer" }}
+              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
             >
               favorite
             </Box>
             <Box
               className="material-symbols-outlined"
-              sx={{ fontSize: { xs: '2.5rem', md: '3rem'}, cursor: "pointer" }}
+              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
             >
               shopping_bag
             </Box>
