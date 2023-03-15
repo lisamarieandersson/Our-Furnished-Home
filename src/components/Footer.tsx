@@ -5,15 +5,14 @@ import { Container, useTheme } from "@mui/system";
 function Footer() {
     const theme = useTheme();
     return (
-        <Container sx={{
-            maxWidth: '80%',
+        <Container maxWidth='xl' sx={{
             height: 'auto',
             marginTop: '6rem',
         }}>
             <Divider sx={{
-                backgroundcolor: 'black',
-                width: '1px',
-            }}/>
+                marginBottom: '1.5rem',
+                backgroundColor: theme.palette.text.primary,
+            }}></Divider>
             <Grid container spacing={2} justifyContent="center" sx={{
                 justifyContent: 'center',
             }}>
@@ -87,53 +86,54 @@ function Footer() {
                     </List>
                 </Grid>
             </Grid>
-            <Grid sx={{
+            <Container sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                marginTop: '2rem',
+            }}>
+                <Box sx={{
+                    borderRadius: '100rem',
+                    width: '4rem',
+                    height: '4rem',
+                    background: (theme) => theme.palette.primary.main,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    margin: '0.5rem',
+                }}>
+                    <img src="/public/assets/facebook.png" alt="" />
+                </Box>
+                <Box sx={{
+                    borderRadius: '100rem',
+                    width: '4rem',
+                    height: '4rem',
+                    background: (theme) => theme.palette.primary.main,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    margin: '0.5rem',
+                }}>
+                    <img src="/public/assets/contact.png" alt="" />
+                </Box>
+                <Box sx={{
+                    borderRadius: '100rem',
+                    width: '4rem',
+                    height: '4rem',
+                    background: (theme) => theme.palette.primary.main,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    margin: '0.5rem',
+                }}>
+                    <img src="/public/assets/instagram.png" alt="" />
+                </Box>
+            </Container>
+            <Container sx={{
                 display: 'flex',
                 justifyContent: 'center',
             }}>
-                <Grid item>
-                    <Box sx={{
-                        borderRadius: '100rem',
-                        width: '4rem',
-                        height: '4rem',
-                        background: (theme) => theme.palette.primary.main,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '0.5rem',
-                    }}>
-                        <img src="/public/vite.svg" alt="" />
-                    </Box>
-                </Grid>
-                <Grid item>
-                    <Box sx={{
-                        borderRadius: '100rem',
-                        width: '4rem',
-                        height: '4rem',
-                        background: (theme) => theme.palette.primary.main,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '0.5rem',
-                    }}>
-                        <img src="/public/vite.svg" alt="" />
-                    </Box>
-                </Grid>
-                <Grid item>
-                    <Box sx={{
-                        borderRadius: '100rem',
-                        width: '4rem',
-                        height: '4rem',
-                        background: (theme) => theme.palette.primary.main,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        margin: '0.5rem',
-                    }}>
-                        <img src="/public/vite.svg" alt="" />
-                    </Box>
-                </Grid>
-            </Grid>
+                <p>© 2023 The Furnished Home</p>
+            </Container>
         </Container>
     );
 }
