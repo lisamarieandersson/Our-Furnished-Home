@@ -40,7 +40,7 @@ function HeaderMain() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
+    <AppBar elevation={0} position="static" sx={{ background: (theme) => theme.palette.background.default }}>
       <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
           <Box
@@ -50,14 +50,14 @@ function HeaderMain() {
             }}
           >
             <IconButton
-              aria-label="show menu"
+              aria-label="show"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{ color: "black" }}
             >
               <Box
-                sx={{ fontSize: { xs: "2rem", sm: "2.5rem" } }}
+                sx={{ fontSize: { xs: "2.1rem", sm: "2.5rem" } }}
                 className="material-symbols-outlined"
               >
                 menu
