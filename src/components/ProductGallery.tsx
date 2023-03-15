@@ -74,6 +74,7 @@ function ProductGallery() {
                         fontSize: "2.4rem",
                         cursor: "pointer",
                       }}
+                      data-cy="product-buy-button"
                     >
                       shopping_bag
                     </Box>
