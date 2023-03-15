@@ -3,10 +3,9 @@ import { products } from "../../data";
 
 function ShoppingBagCard() {
     return (
-        <Container >
+        <Container maxWidth= 'md'>
             {products.map((product) => (
                 <Card sx={{
-                    maxWidth: 'xl',
                     display: 'flex',
                     margin: '1rem',
                     boxShadow: 'none',
