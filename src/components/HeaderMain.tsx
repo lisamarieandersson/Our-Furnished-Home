@@ -50,7 +50,7 @@ function HeaderMain() {
             }}
           >
             <IconButton
-              aria-label="account of current user"
+              aria-label="show menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
