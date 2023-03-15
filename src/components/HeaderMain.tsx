@@ -105,7 +105,7 @@ function ResponsiveAppBar() {
           <Box sx={{ flexGrow: { xs: 0, md: 0.5 } }}>
             <Box
               component="img"
-              src="LoggaFH.png"
+              src="logo.png"
               alt="logga"
               sx={{
                 height: { xs: '6rem', sm: '7rem' },

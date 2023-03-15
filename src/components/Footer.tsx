@@ -100,8 +100,11 @@ function Footer() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     margin: '0.5rem',
+                    '& img': {
+                        width: '2rem'
+                    }
                 }}>
-                    <img src="/public/assets/facebook.png" alt="" />
+                    <img src="/public/facebook.png" alt="" />
                 </Box>
                 <Box sx={{
                     borderRadius: '100rem',
@@ -112,8 +115,11 @@ function Footer() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     margin: '0.5rem',
+                    '& img': {
+                        width: '2rem'
+                    }
                 }}>
-                    <img src="/public/assets/contact.png" alt="" />
+                    <img src="/public/contact.png" alt="" />
                 </Box>
                 <Box sx={{
                     borderRadius: '100rem',
@@ -124,8 +130,11 @@ function Footer() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     margin: '0.5rem',
+                    '& img': {
+                        width: '2rem'
+                    }
                 }}>
-                    <img src="/public/assets/instagram.png" alt="" />
+                    <img src="/public/instagram.png" alt="" />
                 </Box>
             </Container>
             <Container sx={{
