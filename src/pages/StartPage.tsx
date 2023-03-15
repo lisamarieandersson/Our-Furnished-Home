@@ -1,5 +1,5 @@
+import ProductGallery from "../ProductGallery";
 import HeaderMain from "../components/HeaderMain";
-import ProductCard from "../ProductCard";
 import { theme } from "../theme";
 
 function StartPage() {
@@ -9,11 +9,9 @@ function StartPage() {
       <HeaderMain />
       {/* <AppHeader />
             <main>
-                <Gallery>
+               <ProductGallery />
             </main>
             <Footer /> */}
-      <h1 style={{ fontFamily: theme.typography.h1.fontFamily }}>Startpage</h1>
-      <ProductCard />
     </div>
   );
 }

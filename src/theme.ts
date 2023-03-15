@@ -5,7 +5,7 @@ export const theme = createTheme({
     mode: "light",
     primary: {
       main: "#e8dbce",
-      dark: "#fbfbf3",
+      dark: "#e8e7e5",
     },
     background: {
       default: "#f1f0ef",
@@ -52,5 +52,8 @@ export const theme = createTheme({
     overline: {
       fontFamily: "Josefin Sans",
     },
+  },
+  shape: {
+    borderRadius: 0,
   },
 });
