@@ -140,6 +140,7 @@ function Footer() {
             <Container sx={{
                 display: 'flex',
                 justifyContent: 'center',
+                fontFamily: 'Josefin Sans'
             }}>
                 <p>© 2023 The Furnished Home</p>
             </Container>
