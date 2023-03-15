@@ -25,8 +25,8 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ borderBottom: '0.01rem solid black' }}>
-      <Container maxWidth="xl" sx={{ bgcolor: "#F1F0EF" }}>
+    <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
+      <Container maxWidth="xl" sx={{ borderBottom: '0.01rem solid black' }}>
         <Toolbar disableGutters>
           {/* Här är hamburgermenyn */}
           <Box
