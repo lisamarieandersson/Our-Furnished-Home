@@ -1,3 +1,5 @@
+import { Theme } from "@emotion/react";
+import { SxProps } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -11,6 +13,18 @@ import * as React from "react";
 import HeaderIcons from "./HeaderIcons";
 
 const pages = ["Products", "Brands", "Campaigns"];
+
+const headerButtonsStyling: SxProps<Theme> = {
+  color: "black",
+  display: "block",
+  fontSize: "1.1rem",
+  textTransform: "none",
+  "&:hover": {
+    textDecoration: "underline",
+    textDecorationThickness: "0.01rem",
+    textUnderlineOffset: "0.5rem",
+  },
+};
 
 function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -29,7 +43,6 @@ function HeaderMain() {
     <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
       <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
-          {/* Här är hamburgermenyn */}
           <Box
             sx={{
               flexGrow: 1,
@@ -70,20 +83,14 @@ function HeaderMain() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    padding="0.5rem"
-                    fontFamily="Prata"
-                    textAlign="center"
-                  >
-                    {page}
-                  </Typography>
+                  <Typography padding="0.5rem">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
+              flexGrow: 1.1,
               display: { xs: "none", md: "flex" },
             }}
           >
@@ -91,13 +98,7 @@ function HeaderMain() {
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  fontFamily: "Prata",
-                  fontSize: "1rem",
-                }}
+                sx={headerButtonsStyling}
               >
                 {page}
               </Button>
