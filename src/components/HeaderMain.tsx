@@ -1,14 +1,16 @@
 import { Theme } from "@emotion/react";
-import { SxProps } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import { Button } from "@mui/material"; // föredra import så här istället, alla på samma rad.
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  SxProps,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import HeaderIcons from "./HeaderIcons";
 
