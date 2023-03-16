@@ -1,6 +1,7 @@
-import { Badge, Box, SxProps, Link, Theme } from "@mui/material";
+import { Badge, Box, Link, SxProps, Theme } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import { theme } from "../theme";
-import { Link as RouterLink} from "react-router-dom";
 
 const iconStyle: SxProps<Theme> = {
   fontSize: { xs: "2rem", sm: "2.5rem" },
@@ -13,6 +14,8 @@ const StyledLink = (props: any) => (
 );
 
 function HeaderIcons() {
+  const { items } = useShoppingCart();
+
   return (
     <div style={{ display: "flex" }}>
       <Box className="material-symbols-outlined" sx={iconStyle}>
@@ -21,24 +24,24 @@ function HeaderIcons() {
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
-        <StyledLink to="/checkout">
-          <Badge
-            badgeContent={4}
-            color="primary"
-            sx={{
-              "& .MuiBadge-badge": {
-                fontFamily: theme.typography.subtitle1.fontFamily,
-              },
-            }}
+      <StyledLink to="/checkout">
+        <Badge
+          badgeContent={items.length}
+          color="primary"
+          sx={{
+            "& .MuiBadge-badge": {
+              fontFamily: theme.typography.subtitle1.fontFamily,
+            },
+          }}
+        >
+          <Box
+            className="material-symbols-outlined"
+            sx={{ fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" } }}
           >
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" } }}
-            >
-              shopping_bag
-            </Box>
-          </Badge>
-        </StyledLink>
+            shopping_bag
+          </Box>
+        </Badge>
+      </StyledLink>
     </div>
   );
 }

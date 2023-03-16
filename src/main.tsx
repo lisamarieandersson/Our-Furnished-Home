@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createRoutesFromElements, Route } from "react-router";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
 import CheckoutPage from "./pages/CheckoutPage";
 import EmptyBagPage from "./pages/EmptyBagPage";
@@ -28,6 +29,16 @@ const router = createBrowserRouter(
   )
 );
 
+ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <ShoppingCartProvider>
+        <RouterProvider router={router} />
+      </ShoppingCartProvider>
+    </ThemeProvider>
+  </React.StrictMode>
+);
+
 // function AppLayout() {
 //   return (
 //     <>
@@ -51,11 +62,3 @@ const router = createBrowserRouter(
 //     </>
 //   )
 // }
-
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </React.StrictMode>
-);
