@@ -14,12 +14,11 @@ function HeaderContinueShopping() {
             >
             <Container maxWidth="xl" sx={{
                 padding: '0px !important',
-                margin: '0 2rem',
                 background: (theme) => theme.palette.primary.main,
             }}>
                 <StyledLink 
                 to={`/`}>
-                    <Typography variant="h6" margin={'1rem 0'}>Continue shopping</Typography>
+                    <Typography variant="h6" margin={'1rem 2rem'}>Continue shopping</Typography>
                 </StyledLink>
             </Container>
         </AppBar>
