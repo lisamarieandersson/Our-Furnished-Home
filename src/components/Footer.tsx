@@ -1,5 +1,4 @@
-import { Box, Divider, Grid, List, ListItem } from "@mui/material";
-import ListItemText from "@mui/material/ListItemText";
+import { Box, Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { Container, useTheme } from "@mui/system";
 
 function Footer() {

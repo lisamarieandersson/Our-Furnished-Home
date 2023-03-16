@@ -1,4 +1,4 @@
-import { Container, TextField } from "@mui/material";
+import { Container, TextField, useTheme } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import * as Yup from 'yup';
@@ -9,67 +9,119 @@ const DeliverySchema = Yup.object({
     email: Yup.string().email("Please enter an valid email address").required("Please enter an email address"),
     name: Yup.string().required("Please enter a name"),
     address: Yup.string().required("Please enter your address"),
-    postalCode: Yup.string().min(5, "The postal code should be 5 numbers").max(5, "The postal code should be only 5 numbers"),
+    postalcode: Yup.string().min(5, "The postal code should be 5 numbers").max(5, "The postal code should be only 5 numbers"),
     city: Yup.string().required("Please enter your city"),
-    phoneNumber: Yup.string().required().matches(phoneRegExp, "Invalid phone number"),
+    phonenumber: Yup.string().required().matches(phoneRegExp, "Invalid phone number"),
 })
 
 type DeliveryValues = Yup.InferType<typeof DeliverySchema>;
 
 function DeliveryForm() {
+    const theme = useTheme();
     const formik = useFormik<DeliveryValues>({
         initialValues: {
             email: '',
             name: '',
             address: '',
-            postalCode: '',
+            postalcode: '',
             city: '',
-            phoneNumber: '',
+            phonenumber: '',
         },
         validationSchema: DeliverySchema,
         onSubmit: (values) => {
-
+            console.log(values);
         }
     });
 
     return (
         <Container sx={{
+            width: '50%',
             marginTop: '4rem',
             display: 'flex',
             flexDirection: 'column',
         }}>
-        <form onSubmit={formik.handleSubmit} style={rootStyle}>
-            <TextField 
-                id="email"
-                type="email"
-                name="email"
-                label="Email"
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={formik.touched.email && Boolean(formik.errors.email)}
-                helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField 
-                id="name"
-                type="name"
-                name="name"
-                label="Name"
-                value={formik.values.name}
-                onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}
-            />
-            <TextField 
-                id="address"
-                type="address"
-                name="address"
-                label="Address"
-                value={formik.values.address}
-                onChange={formik.handleChange}
-                error={formik.touched.address && Boolean(formik.errors.address)}
-                helperText={formik.touched.address && formik.errors.address}
-            />
-        </form>
+            <form onSubmit={formik.handleSubmit} style={rootStyle} data-cy="customer-form">
+                <TextField 
+                    id="email"
+                    type="email"
+                    name="email"
+                    label="Email"
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={Boolean(formik.touched.email && formik.errors.email)}
+                    helperText={formik.touched.email && formik.errors.email}
+                    data-cy="customer-email"
+                />
+                <TextField 
+                    id="name"
+                    type="name"
+                    name="name"
+                    label="Name"
+                    value={formik.values.name}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={Boolean(formik.touched.name && formik.errors.name)}
+                    helperText={formik.touched.name && formik.errors.name}
+                    data-cy="customer-name"
+                />
+                <TextField 
+                    id="address"
+                    type="address"
+                    name="address"
+                    label="Address"
+                    value={formik.values.address}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={Boolean(formik.touched.address && formik.errors.address)}
+                    helperText={formik.touched.address && formik.errors.address}
+                    data-cy="customer-address"
+                />
+                <Container sx={{
+                    padding: '0 !important',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                    gap: '1rem'
+                    }}>
+                    <TextField 
+                        id="postalcode"
+                        type="postalcode"
+                        name="postalcode"
+                        label="Postal code"
+                        value={formik.values.postalcode}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={Boolean(formik.touched.postalcode && formik.errors.postalcode)}
+                        helperText={formik.touched.postalcode && formik.errors.postalcode}
+                        data-cy="customer-zipcode"
+                    />
+                    <TextField 
+                        id="city"
+                        type="city"
+                        name="city"
+                        label="City"
+                        value={formik.values.city}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={Boolean(formik.touched.city && formik.errors.city)}
+                        helperText={formik.touched.city && formik.errors.city}
+                        data-cy="customer-city"
+                    />
+                </Container>
+                <TextField 
+                    id="phonenumber"
+                    type="phonenumber"
+                    name="phonenumber"
+                    label="Phone number"
+                    value={formik.values.phonenumber}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    error={Boolean(formik.touched.phonenumber && formik.errors.phonenumber)}
+                    helperText={formik.touched.phonenumber && formik.errors.phonenumber}
+                    data-cy="customer-phone"
+                />
+            </form>
         </Container>
     )
 }
