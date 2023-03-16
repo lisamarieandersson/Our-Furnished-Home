@@ -1,7 +1,9 @@
+import EmptyCart from "../components/EmptyCart";
+
 function EmptyBagPage() {
     return(
         <div>
-            <h1>EmptyBagPage</h1>
+            <EmptyCart></EmptyCart>
         </div>
     )
 }
