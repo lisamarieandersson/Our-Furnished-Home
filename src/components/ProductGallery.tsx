@@ -50,7 +50,11 @@ function ProductGallery() {
         <Grid container rowSpacing={2} columnSpacing={2}>
           {products.map((product) => (
             <Grid key={product.id} xs={12} sm={6} md={4} data-cy="product">
-              <StyledLink to={`/products/${product.id}/${product.title}`}>
+              <StyledLink
+                to={`/products/${product.id}/${product.title
+                  .toLowerCase()
+                  .replace(/\s+/g, "-")}`}
+              >
                 <Item>
                   <img src={product.image} alt={product.title} />
                   <CardContent
