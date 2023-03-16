@@ -1,25 +1,10 @@
-import { Box, SxProps, Theme } from "@mui/material";
+import { Badge, Box, SxProps, Theme } from "@mui/material";
+import { theme } from "../theme";
 
 const iconStyle: SxProps<Theme> = {
   fontSize: { xs: "2rem", sm: "2.5rem" },
   cursor: "pointer",
   padding: { xs: "0rem", md: "0.3rem" },
-};
-
-const shoppingBagNumber: SxProps<Theme> = {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontFamily: "Prata",
-  fontSize: {xs: "0.7rem", sm: "0.9rem"},
-  bgcolor: "#e8dbce",
-  borderRadius: "50%",
-  position: "relative",
-  py: {xs: "0.25rem", sm: "0.4rem"},
-  px: {xs: "0.3rem", sm: "0.5rem"},
-  height: "100%",
-  right: "0.5rem",
-  bottom: "0.5rem",
 };
 
 function HeaderIcons() {
@@ -31,18 +16,14 @@ function HeaderIcons() {
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
-      <Box sx={iconStyle}>
-        <Box
-          className="material-symbols-outlined"
-          sx={{
-            fontSize: { xs: "2rem", sm: "2.5rem" },
-            display: "flex",
-          }}
-        >
-          shopping_bag
-          <Box sx={shoppingBagNumber}>2</Box>
-        </Box>
-      </Box>
+        <Badge badgeContent={4} color="primary" sx={{ "& .MuiBadge-badge": { fontFamily: theme.typography.subtitle1.fontFamily } }}>
+          <Box
+            className="material-symbols-outlined"
+            sx={{ fontSize: { xs: "2rem", sm: "2.5rem" } }}
+          >
+            shopping_bag
+          </Box>
+        </Badge>
     </div>
   );
 }
