@@ -41,7 +41,11 @@ function HeaderMain() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ background: (theme) => theme.palette.background.default }}>
+    <AppBar
+      elevation={0}
+      position="static"
+      sx={{ background: (theme) => theme.palette.background.default }}
+    >
       <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
           <Box
@@ -108,7 +112,7 @@ function HeaderMain() {
           <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
             <Box
               component="img"
-              src="logohome.png"
+              src="/logohome.png"
               alt="logga"
               sx={{
                 height: { xs: "6rem", sm: "7rem" },
