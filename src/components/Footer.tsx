@@ -142,7 +142,7 @@ function Footer() {
                 justifyContent: 'center',
                 fontFamily: 'Josefin Sans'
             }}>
-                <p>© 2023 The Furnished Home</p>
+                <p>© 2023 Our Furnished Home</p>
             </Container>
         </Container>
     );

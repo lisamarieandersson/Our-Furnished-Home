@@ -1,12 +1,15 @@
-import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
+import HeaderMain from "../components/HeaderMain";
+import ProductCard from "../components/ProductCard";
 
 function ProductPage() {
-    return(
-        <div>
-            <Link to="/">StartPage</Link>
-            <h1>Productpage</h1>
-        </div>
-    )
+  return (
+    <div>
+      <HeaderMain />
+      <ProductCard />
+      <Footer />
+    </div>
+  );
 }
 
 export default ProductPage;
