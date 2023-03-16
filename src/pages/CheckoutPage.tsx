@@ -1,7 +1,10 @@
+import ShoppingBagCard from "../components/ShoppingBagCard";
+
+
 function CheckoutPage() {
     return(
         <div>
-            <h1>CheckoutPage</h1>
+            <ShoppingBagCard></ShoppingBagCard>
         </div>
     )
 }
