@@ -1,13 +1,13 @@
 import {
+  Box,
   Button,
   CardContent,
   CardMedia,
   Container,
   Paper,
+  Typography,
 } from "@mui/material";
-import Box from "@mui/material/Box";
 import { styled, SxProps, Theme } from "@mui/material/styles";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
@@ -92,8 +92,8 @@ function ProductCard() {
                 </Typography>
                 <Typography
                   variant="h5"
-                  data-cy="product-title"
                   sx={{ marginBottom: "1rem" }}
+                  data-cy="product-title"
                 >
                   {product.title}
                 </Typography>
@@ -109,6 +109,7 @@ function ProductCard() {
                   sx={{
                     marginBottom: "2rem",
                   }}
+                  data-cy="product-description"
                 >
                   {product.description}
                 </Typography>
@@ -138,6 +139,7 @@ function ProductCard() {
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
                     }}
+                    data-cy="product-buy-button"
                   >
                     +
                   </Button>

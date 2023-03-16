@@ -6,7 +6,9 @@ function StartPage() {
   return (
     <div>
       <HeaderMain />
-      <ProductGallery />
+      <main>
+        <ProductGallery />
+      </main>
       <Footer />
     </div>
   );

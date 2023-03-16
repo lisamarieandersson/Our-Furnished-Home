@@ -80,7 +80,7 @@ export const products: Product[] = [
   {
     image: "/assets/menu-scented-candle.png",
     brand: "Menu",
-    title: "Scented Candle, En Passant",
+    title: "Scented Candle",
     description:
       "En Passant” simply means “in passing.” A moment in time, like a stroll through the garden after spring rain. This purifying, floral scent invites you to stop and take in the scents of hyacinth, jasmine petals and geranium. The fragrance concludes with grounding arboreal notes of wild moss and cedarwood. 235 g.",
     price: 699,
