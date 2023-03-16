@@ -40,8 +40,8 @@ const cardContentStyle: SxProps<Theme> = {
   textAlign: "left",
   "@media (min-width: 960px)": {
     // Media query for desktop view
-    width: "100%", // Set width to auto to allow content to fill available space
-    height: "auto", // Set height to 50% to take up more vertical space
+    width: "100%",
+    height: "auto",
     paddingLeft: "2rem",
   },
 };
