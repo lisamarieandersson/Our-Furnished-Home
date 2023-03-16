@@ -1,4 +1,4 @@
-import { Container, TextField, useTheme } from "@mui/material";
+import { Container, TextField, useMediaQuery, useTheme } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import * as Yup from 'yup';
@@ -9,7 +9,7 @@ const DeliverySchema = Yup.object({
     email: Yup.string().email("Please enter an valid email address").required("Please enter an email address"),
     name: Yup.string().required("Please enter a name"),
     address: Yup.string().required("Please enter your address"),
-    postalcode: Yup.string().min(5, "The postal code should be 5 numbers").max(5, "The postal code should be only 5 numbers"),
+    postalcode: Yup.string().min(5, "The postal code should be 5 numbers").max(5, "The postal code should be only 5 numbers").required("Please enter the postal code"),
     city: Yup.string().required("Please enter your city"),
     phonenumber: Yup.string().required().matches(phoneRegExp, "Invalid phone number"),
 })
@@ -18,6 +18,7 @@ type DeliveryValues = Yup.InferType<typeof DeliverySchema>;
 
 function DeliveryForm() {
     const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
     const formik = useFormik<DeliveryValues>({
         initialValues: {
             email: '',
@@ -35,7 +36,7 @@ function DeliveryForm() {
 
     return (
         <Container sx={{
-            width: '50%',
+            width: isSmallScreen ? '80%' : '50%',
             marginTop: '4rem',
             display: 'flex',
             flexDirection: 'column',
@@ -46,6 +47,7 @@ function DeliveryForm() {
                     type="email"
                     name="email"
                     label="Email"
+                    autoComplete="email"
                     value={formik.values.email}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -58,6 +60,7 @@ function DeliveryForm() {
                     type="name"
                     name="name"
                     label="Name"
+                    autoComplete="name"
                     value={formik.values.name}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -70,6 +73,7 @@ function DeliveryForm() {
                     type="address"
                     name="address"
                     label="Address"
+                    autoComplete="street-address"
                     value={formik.values.address}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -89,24 +93,28 @@ function DeliveryForm() {
                         type="postalcode"
                         name="postalcode"
                         label="Postal code"
+                        autoComplete="postal-code"
                         value={formik.values.postalcode}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         error={Boolean(formik.touched.postalcode && formik.errors.postalcode)}
                         helperText={formik.touched.postalcode && formik.errors.postalcode}
                         data-cy="customer-zipcode"
+                        sx={{ flex: 1 }}
                     />
                     <TextField 
                         id="city"
                         type="city"
                         name="city"
                         label="City"
+                        autoComplete="home city"
                         value={formik.values.city}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         error={Boolean(formik.touched.city && formik.errors.city)}
                         helperText={formik.touched.city && formik.errors.city}
                         data-cy="customer-city"
+                        sx={{ flex: 1 }}
                     />
                 </Container>
                 <TextField 
@@ -114,6 +122,7 @@ function DeliveryForm() {
                     type="phonenumber"
                     name="phonenumber"
                     label="Phone number"
+                    autoComplete="tel"
                     value={formik.values.phonenumber}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
