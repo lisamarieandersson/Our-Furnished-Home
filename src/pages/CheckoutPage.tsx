@@ -1,10 +1,11 @@
-import ShoppingBagCard from "../components/ShoppingBagCard";
+import DeliveryForm from "../components/DeliveryForm";
 
 
 function CheckoutPage() {
     return(
         <div>
-            <ShoppingBagCard></ShoppingBagCard>
+            {/* <ShoppingBagCard></ShoppingBagCard> */}
+            <DeliveryForm></DeliveryForm>
         </div>
     )
 }
