@@ -6,8 +6,12 @@ function ProductPage() {
   return (
     <div>
       <HeaderMain />
-      <ProductCard />
-      <Footer />
+      <main>
+        <ProductCard />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
