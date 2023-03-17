@@ -12,6 +12,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { products } from "../../data/index";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 /*  Styling */
 
@@ -53,7 +54,7 @@ const cardContentStyle: SxProps<Theme> = {
 function ProductCard() {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-
+  const { addItem } = useShoppingCart();
   const [quantity, setQuantity] = useState(1);
 
   const handleAddQuantity = () => {
@@ -129,7 +130,7 @@ function ProductCard() {
                       color: (theme) => theme.palette.text.primary,
                     }}
                   >
-                    –
+                    -
                   </Button>
                   <Typography variant="subtitle1">{quantity}</Typography>
                   <Button
@@ -144,7 +145,12 @@ function ProductCard() {
                     +
                   </Button>
                 </Box>
-                <Button variant="contained">ADD TO BAG</Button>
+                <Button
+                  onClick={() => addItem({ ...product, quantity })}
+                  variant="contained"
+                >
+                  ADD TO BAG
+                </Button>
               </CardContent>
             </Item>
           </Grid>
