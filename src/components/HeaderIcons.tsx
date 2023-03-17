@@ -1,5 +1,5 @@
-import { Badge, Box, Link, SxProps, Theme } from "@mui/material";
-import { Link as RouterLink } from "react-router-dom";
+import { Badge, Box, styled, SxProps, Theme } from "@mui/material";
+import { Link, LinkProps } from "react-router-dom";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import { theme } from "../theme";
 
@@ -9,9 +9,10 @@ const iconStyle: SxProps<Theme> = {
   padding: { xs: "0rem", md: "0.3rem" },
 };
 
-const StyledLink = (props: any) => (
-  <Link component={RouterLink} underline="none" color="inherit" {...props} />
-);
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 function HeaderIcons() {
   const { items } = useShoppingCart();
@@ -24,7 +25,7 @@ function HeaderIcons() {
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
-      <StyledLink to="/checkout" data-cy="cart-link" >
+      <StyledLink to="/checkout" data-cy="cart-link">
         <Badge
           data-cy="cart-items-count-badge"
           badgeContent={items.length}
