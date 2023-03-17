@@ -7,14 +7,26 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  styled,
   SxProps,
   Toolbar,
   Typography,
 } from "@mui/material";
 import * as React from "react";
+import { Link, LinkProps } from "react-router-dom";
 import HeaderIcons from "./HeaderIcons";
 
-const pages = ["Products", "Brands", "Campaigns"];
+const pages = [
+  {
+    name: "Products",
+    link: "/",
+  },
+  { name: "Brands", link: "/" },
+  {
+    name: "Campaigns",
+    link: "/",
+  },
+];
 
 const headerButtonsStyling: SxProps<Theme> = {
   color: "black",
@@ -28,6 +40,11 @@ const headerButtonsStyling: SxProps<Theme> = {
     textUnderlineOffset: "0.5rem",
   },
 };
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -89,8 +106,10 @@ function HeaderMain() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography padding="0.5rem">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <StyledLink to={page.link}>
+                    <Typography padding="0.5rem">{page.name}</Typography>
+                  </StyledLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -103,25 +122,29 @@ function HeaderMain() {
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
+                component={Link}
+                to={page.link}
                 onClick={handleCloseNavMenu}
                 sx={headerButtonsStyling}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
           <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
-            <Box
-              component="img"
-              src="/logohome.png"
-              alt="logga"
-              sx={{
-                height: { xs: "6rem", sm: "7rem" },
-                marginTop: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            />
+            <StyledLink to="/">
+              <Box
+                component="img"
+                src="/logohome.png"
+                alt="logga"
+                sx={{
+                  height: { xs: "6rem", sm: "7rem" },
+                  marginTop: "0.5rem",
+                  marginBottom: "1rem",
+                }}
+              />
+            </StyledLink>
           </Box>
           <Box
             sx={{
