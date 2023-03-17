@@ -9,7 +9,9 @@ function StartPage() {
       <main>
         <ProductGallery />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

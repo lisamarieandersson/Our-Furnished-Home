@@ -9,7 +9,9 @@ function ProductPage() {
       <main>
         <ProductCard />
       </main>
-      <Footer />
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
