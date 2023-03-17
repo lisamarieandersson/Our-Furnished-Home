@@ -24,8 +24,9 @@ function HeaderIcons() {
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
-      <StyledLink to="/checkout">
+      <StyledLink to="/checkout" data-cy="cart-link" >
         <Badge
+          data-cy="cart-items-count-badge"
           badgeContent={items.length}
           color="primary"
           sx={{

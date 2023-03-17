@@ -9,7 +9,7 @@ interface Props {
 type ShoppingCart = {
   items: CartItem[];
   addItem: (item: CartItem) => void;
-  removeItem: (id: number) => void;
+  removeItem: (id: string) => void;
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
@@ -34,16 +34,29 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useState<CartItem[]>([]);
 
   const addItem = (itemToAdd: CartItem) => {
-    // const item = items.find()
-    // 1. kolla om produkten redan finns i kundvagnen, om den finns:
-    //  1a. öka antalet, annars
-    //  1b. lägg till ett nytt item
-    
+    const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
+
+    if (existingItem) {
+      // If the item already exists in the cart, increase the quantity of that item
+      const updatedItems = items.map((item) => {
+        // Create a new array of items by iterating over the existing items in the cart
+        if (item.id === existingItem.id) {
+          // If the id of the current item matches the id of the existing item, update the quantity
+          return { ...item, quantity: item.quantity + itemToAdd.quantity };
+        } else {
+          return item; // Otherwise, return the current item as-is
+        }
+      });
+      setItems(updatedItems); // Update the items in the cart with the updatedItems array
+    } else {
+      // If the item does not exist in the cart, add it as a new item
+      setItems([...items, itemToAdd]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
+    }
+
     console.log("adding product");
-    // TODO: implement addItem function
   };
 
-  const removeItem = (id: number) => {
+  const removeItem = (id: string) => {
     // TODO: implement removeItem function
   };
 
@@ -52,7 +65,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
-
+  console.log(totalItems);
   const totalPrice = items.reduce(
     (total, item) => total + item.price * item.quantity,
     0
