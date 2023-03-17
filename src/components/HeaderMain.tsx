@@ -1,14 +1,16 @@
 import { Theme } from "@emotion/react";
-import { SxProps } from "@mui/material";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  SxProps,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import * as React from "react";
 import HeaderIcons from "./HeaderIcons";
 
@@ -41,7 +43,11 @@ function HeaderMain() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ background: (theme) => theme.palette.background.default }}>
+    <AppBar
+      elevation={0}
+      position="static"
+      sx={{ background: (theme) => theme.palette.background.default }}
+    >
       <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
         <Toolbar disableGutters>
           <Box
@@ -108,7 +114,7 @@ function HeaderMain() {
           <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
             <Box
               component="img"
-              src="logohome.png"
+              src="/logohome.png"
               alt="logga"
               sx={{
                 height: { xs: "6rem", sm: "7rem" },
