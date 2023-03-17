@@ -1,4 +1,4 @@
-import { AppBar, Container, Link, Typography, useTheme } from "@mui/material";
+import { AppBar, Container, Link, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 const StyledLink = (props: any) => (
@@ -7,6 +7,8 @@ const StyledLink = (props: any) => (
 
 function HeaderContinueShopping() {
     const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
     return(
         <AppBar
             elevation={0}
@@ -18,7 +20,7 @@ function HeaderContinueShopping() {
             }}>
                 <StyledLink 
                 to={`/`}>
-                    <Typography variant="h6" margin={'1rem 2rem'}>Continue shopping</Typography>
+                    <Typography variant={isSmallScreen ? 'body1' : 'h6'} margin={'1rem 2rem'}>Continue shopping</Typography>
                 </StyledLink>
             </Container>
         </AppBar>
