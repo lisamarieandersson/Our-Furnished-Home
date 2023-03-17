@@ -2,13 +2,15 @@ import {
   Box,
   CardContent,
   Container,
-  Link,
+  LinkProps,
   Paper,
+  styled,
+  SxProps,
+  Theme,
   Typography,
 } from "@mui/material";
-import { styled, SxProps, Theme } from "@mui/material/styles";
 import Grid from "@mui/material/Unstable_Grid2";
-import { Link as RouterLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { products } from "../../data/index";
 
 /*  Styling */
@@ -37,9 +39,10 @@ const rootStyle: SxProps<Theme> = {
   marginTop: "1.5rem",
 };
 
-const StyledLink = (props: any) => (
-  <Link component={RouterLink} underline="none" color="inherit" {...props} />
-);
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 /**
  *
