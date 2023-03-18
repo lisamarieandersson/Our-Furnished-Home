@@ -52,7 +52,8 @@ function Toast() {
           severity="success"
         >
           <Box>
-
+          <img style={ { width: "10%" }} src={products[0].image} alt={products[0].title} />
+          <h1>{products[0].title}</h1>
           </Box>
         </Alert>
       </Snackbar>
