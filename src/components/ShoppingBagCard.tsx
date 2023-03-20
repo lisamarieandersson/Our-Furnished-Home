@@ -1,4 +1,4 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Container, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
@@ -114,9 +114,12 @@ function ShoppingBagCard() {
                             </Button>
                         </CardActions>
                     </Container>
-                    
                 </Card>
             ))}
+            <Divider sx={{
+                backgroundColor: theme.palette.primary.main,
+                marginBottom: '1rem',
+            }}></Divider>
         </Container>
     )
 }
