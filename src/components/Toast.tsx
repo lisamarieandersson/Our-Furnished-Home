@@ -9,12 +9,13 @@ import { products } from "../../data/index";
 import { theme } from "../theme";
 
 const toastStyling: SxProps<Theme> = {
-  width: "20%",
   background: theme.palette.primary.main,
   color: theme.palette.text.primary,
   textAlign: "center",
   fontSize: "1rem",
-  justifyContent: "center",
+  "& .MuiAlert-action": {
+    padding: 0,
+  },
 };
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -47,7 +48,12 @@ function Toast() {
       <Button variant="outlined" onClick={handleClick}>
         Open success snackbar
       </Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+      <Snackbar
+        open={open}
+        autoHideDuration={100000}
+        onClose={handleClose}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Alert
           icon={false}
           sx={toastStyling}
@@ -55,19 +61,30 @@ function Toast() {
           severity="success"
         >
           {"Product added to bag"}
-          <Box sx={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.5rem" }}>
-            <img
-              style={{ width: "40%", border: "1px solid #00000047", }}
-              src={products[0].image}
-              alt={products[0].title}
-            />
+          <Box
+            sx={{
+              display: { xs: "none", sm: "flex"},
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "0.5rem",
+              marginTop: "0.5rem",
+            }}
+          >
+              <img
+                style={{
+                  width: "5rem",
+                  border: "1px solid #00000047",
+                }}
+                src={products[0].image}
+                alt={products[0].title}
+              />
             <h4>{products[0].title}</h4>
             <h4>{products[0].price}SEK</h4>
           </Box>
           <Button
             variant="outlined"
             color="secondary"
-            sx={{ marginTop: "0.7rem", width: "70%", fontSize: "0.8rem" }}
+            sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
           >
             Go to bag
           </Button>
