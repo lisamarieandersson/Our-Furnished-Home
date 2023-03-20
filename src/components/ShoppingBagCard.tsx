@@ -1,4 +1,5 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box } from "@mui/system";
 import { useState } from "react";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
@@ -18,6 +19,27 @@ function ShoppingBagCard() {
 
     return (
         <Container maxWidth= {isSmallScreen ? 'sm' : 'md'}>
+            <Container sx={{
+                display: 'flex',
+                margin: '1rem',
+                padding: '0px !important'
+            }}>
+                <Box sx={{
+                    height: '2rem',
+                    width: '2rem',
+                    borderRadius: '5rem',
+                    display: 'flex',
+                    background: theme.palette.primary.main,
+                    textAlign: 'center',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}><Typography variant="h6">1</Typography></Box>
+                <Typography variant="h6" marginLeft={'0.5rem'}>Shopping bag</Typography>
+            </Container>
+            <Divider sx={{
+                backgroundColor: theme.palette.primary.main,
+                marginBottom: '1rem',
+            }}></Divider>
             {items.map((CartItem) => (
                 <Card 
                     key = {CartItem.id}
