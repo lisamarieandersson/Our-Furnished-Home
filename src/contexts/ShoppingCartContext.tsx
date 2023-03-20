@@ -1,5 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { CartItem } from "../../data";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 // Define Props interface to enforce the type of the `children` prop
 interface Props {
@@ -31,10 +32,13 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 // Create a new component that provides the shopping cart context to its child components
 export const ShoppingCartProvider = ({ children }: Props) => {
   // Initialize a state variable for the items in the shopping cart
-  const [items, setItems] = useState<CartItem[]>([]);
+  // const [items, setItems] = useState<CartItem[]>([]);
+  const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
+  console.log("cart");
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
+    console.log("Adding product:", itemToAdd);
 
     if (existingItem) {
       // If the item already exists in the cart, increase the quantity of that item

@@ -52,8 +52,8 @@ const cardContentStyle: SxProps<Theme> = {
  * @returns a Product card with image, brand, title, price, description and add to bag button
  */
 function ProductCard() {
-  const { id } = useParams<{ id: string }>();
-  const product = products.find((p) => p.id === id);
+  const { id, title } = useParams<{ id: string; title: string }>();
+  const product = products.find((p) => p.id === id || p.title === title);
   const { addItem } = useShoppingCart();
   const [quantity, setQuantity] = useState(1);
 
@@ -77,7 +77,13 @@ function ProductCard() {
     <Container maxWidth="xl" sx={rootStyle}>
       <Box sx={{ width: "90%" }}>
         <Grid container rowSpacing={2} columnSpacing={2}>
-          <Grid key={product.id} xs={12} sm={12} md={12} data-cy="product">
+          <Grid
+            key={product.id || product.title}
+            xs={12}
+            sm={12}
+            md={12}
+            data-cy="product"
+          >
             <Item
               sx={{
                 display: "flex",
