@@ -2,6 +2,7 @@ import {
   Box,
   CardContent,
   Container,
+  IconButton,
   LinkProps,
   Paper,
   styled,
@@ -86,16 +87,17 @@ function ProductGallery() {
                       </Typography>
                     </Box>
                     <Box>
-                      <Box
+                      <IconButton
                         className="material-symbols-outlined"
                         sx={{
                           fontSize: "2.4rem",
                           cursor: "pointer",
+                          color: (theme) => theme.palette.text.primary,
                         }}
                         data-cy="product-buy-button"
                       >
                         shopping_bag
-                      </Box>
+                      </IconButton>
                     </Box>
                   </CardContent>
                 </Item>
