@@ -1,7 +1,8 @@
 import { Container, TextField, useMediaQuery, useTheme } from "@mui/material";
 import { useFormik } from "formik";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import * as Yup from 'yup';
+import { useOrder } from '../contexts/OrderContext';
 
 const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 
@@ -19,6 +20,16 @@ type DeliveryValues = Yup.InferType<typeof DeliverySchema>;
 function DeliveryForm() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+    const { createOrder } = useOrder();
+    const [address, setaddress] = useState('');
+    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [city, setCity] = useState('');
+    const [postalcode, setPostalcode] = useState('');
+    const [phonenumber, setPhonenumber] = useState('');
+
+
+
     const formik = useFormik<DeliveryValues>({
         initialValues: {
             email: '',
@@ -33,6 +44,11 @@ function DeliveryForm() {
             console.log(values);
         }
     });
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        createOrder(address, email, name, city, postalcode, phonenumber);
+    };
 
     return (
         <Container sx={{
