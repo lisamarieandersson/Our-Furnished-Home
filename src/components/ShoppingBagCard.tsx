@@ -13,9 +13,9 @@ function ShoppingBagCard() {
         setQuantity((prevQuantity) => prevQuantity + 1);
       };
     
-      const handleRemoveQuantity = () => {
+    const handleRemoveQuantity = () => {
         setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-      };
+        };
 
     return (
         <Container maxWidth= {isSmallScreen ? 'sm' : 'md'}>
