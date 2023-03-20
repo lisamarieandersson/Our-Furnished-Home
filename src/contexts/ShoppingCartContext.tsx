@@ -34,6 +34,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   // Initialize a state variable for the items in the shopping cart
   // const [items, setItems] = useState<CartItem[]>([]);
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
+  console.log("cart");
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
