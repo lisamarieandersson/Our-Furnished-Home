@@ -21,6 +21,7 @@ function HeaderIcons() {
     <Box
       style={{
         display: "flex",
+        alignItems: "center",
       }}
     >
       <Box className="material-symbols-outlined" sx={iconStyle}>
@@ -36,7 +37,8 @@ function HeaderIcons() {
           color="primary"
           sx={{
             "& .MuiBadge-badge": {
-              fontFamily: theme.typography.subtitle1.fontFamily,
+              fontFamily: theme.typography.subtitle2.fontFamily,
+              textAlign: "center",
             },
           }}
         >
