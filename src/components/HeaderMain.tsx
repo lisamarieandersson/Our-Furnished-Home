@@ -19,7 +19,7 @@ import HeaderIcons from "./HeaderIcons";
 const pages = [
   {
     name: "Products",
-    link: "/underconstruction",
+    link: "/",
   },
   { name: "Brands", 
     link: "/underconstruction" },
