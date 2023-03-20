@@ -7,7 +7,7 @@ import {
   styled,
   SxProps,
   Theme,
-  Typography,
+  Typography
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
@@ -59,6 +59,9 @@ function ProductGallery() {
                 to={`/product/${product.id}/${product.title
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
+                onClick={() => {
+                  window.scroll(0, 0);
+                }}
               >
                 <Item>
                   <img src={product.image} alt={product.title} />
