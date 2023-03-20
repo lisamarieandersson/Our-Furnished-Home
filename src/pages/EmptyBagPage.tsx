@@ -1,7 +1,11 @@
+import EmptyCart from "../components/EmptyCart";
+import HeaderContinueShopping from "../components/HeaderContinueShopping";
+
 function EmptyBagPage() {
     return(
         <div>
-            <h1>EmptyBagPage</h1>
+            <HeaderContinueShopping />
+            <EmptyCart />
         </div>
     )
 }

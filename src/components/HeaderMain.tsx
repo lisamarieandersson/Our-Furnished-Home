@@ -10,7 +10,7 @@ import {
   styled,
   SxProps,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
 import * as React from "react";
 import { Link, LinkProps } from "react-router-dom";
@@ -21,10 +21,11 @@ const pages = [
     name: "Products",
     link: "/",
   },
-  { name: "Brands", link: "/" },
+  { name: "Brands", 
+    link: "/underconstruction" },
   {
     name: "Campaigns",
-    link: "/",
+    link: "/underconstruction",
   },
 ];
 
