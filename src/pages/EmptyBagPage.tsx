@@ -8,7 +8,7 @@ function EmptyBagPage() {
       <HeaderContinueShopping />
       <EmptyCart />
       <footer>
-        <Footer />S
+        <Footer />
       </footer>
     </div>
   );
