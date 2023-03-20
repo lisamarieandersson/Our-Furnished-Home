@@ -22,7 +22,7 @@ function ShoppingCartSummary() {
         margin: '0 1rem'
       }}>
         <Typography>Total price: </Typography>
-        <Typography>{totalPrice} SEK</Typography>
+        <Typography data-cy="total-price">{totalPrice} SEK</Typography>
       </Box>
       <Divider sx={{
                 backgroundColor: theme.palette.primary.main,

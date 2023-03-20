@@ -95,10 +95,11 @@ function ShoppingBagCard() {
                                         fontSize: "1.3rem",
                                         color: (theme) => theme.palette.text.primary,
                                         }}
+                                        data-cy="decrease-quantity-button"
                                     >
                                         -
                                     </Button>
-                                    <Typography variant="subtitle1">{quantity}</Typography>
+                                    <Typography variant="subtitle1" data-cy="product-quantity">{quantity}</Typography>
                                     <Button
                                         variant="text"
                                         onClick={handleAddQuantity}
@@ -106,7 +107,7 @@ function ShoppingBagCard() {
                                         fontSize: "1.3rem",
                                         color: (theme) => theme.palette.text.primary,
                                         }}
-                                        data-cy="product-buy-button"
+                                        data-cy="increase-quantity-button"
                                     >
                                         +
                                     </Button>
@@ -117,7 +118,7 @@ function ShoppingBagCard() {
                                 width: '8rem',
                                 textAlign: 'right',
                             }}>
-                                <Typography sx={{fontSize: isSmallScreen ? '0.8rem' : '1rem',}}>{CartItem.price} SEK</Typography>
+                                <Typography sx={{fontSize: isSmallScreen ? '0.8rem' : '1rem',}} data-cy="product-price">{CartItem.price} SEK</Typography>
                             </CardContent>
                         </Container>
                         <CardActions sx={{

@@ -1,4 +1,4 @@
-import { Box, Container, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Container, Divider, TextField, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import * as Yup from 'yup';
@@ -150,6 +150,11 @@ function DeliveryForm() {
                     />
                 </form>
             </Container>
+            <Divider sx={{
+                backgroundColor: theme.palette.primary.main,
+                marginBottom: '2rem',
+                marginTop :'1rem',
+            }}></Divider>
         </Container>
     )
 }
