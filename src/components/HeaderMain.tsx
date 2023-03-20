@@ -63,13 +63,22 @@ function HeaderMain() {
     <AppBar
       elevation={0}
       position="static"
-      sx={{ background: (theme) => theme.palette.background.default }}
+      sx={{
+        background: (theme) => theme.palette.background.default,
+      }}
     >
-      <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
-        <Toolbar disableGutters>
+      <Container
+        maxWidth="xl"
+        sx={{
+          borderBottom: "0.01rem solid black",
+        }}
+      >
+        <Toolbar
+          disableGutters
+          sx={{ display: "grid", gridTemplateColumns: "1fr auto 1fr" }}
+        >
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "flex", md: "none" },
             }}
           >
@@ -116,7 +125,6 @@ function HeaderMain() {
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
@@ -132,7 +140,13 @@ function HeaderMain() {
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
+          <Box
+            sx={{
+              flexGrow: { xs: 0, md: 1 },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
             <StyledLink to="/">
               <Box
                 component="img"
@@ -140,7 +154,7 @@ function HeaderMain() {
                 alt="logga"
                 sx={{
                   height: { xs: "6rem", sm: "7rem" },
-                  marginTop: "0.5rem",
+                  marginTop: "1rem",
                   marginBottom: "1rem",
                 }}
               />
@@ -148,7 +162,6 @@ function HeaderMain() {
           </Box>
           <Box
             sx={{
-              flexGrow: { xs: 0.7 },
               display: "flex",
               justifyContent: "flex-end",
             }}
