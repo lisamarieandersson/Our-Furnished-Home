@@ -1,6 +1,10 @@
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Link } from 'react-router-dom';
 
 function EmptyCart() { 
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
     return( 
         <Container sx={{ 
             display: 'flex',
@@ -14,10 +18,10 @@ function EmptyCart() {
                 flexDirection: 'column', 
                 alignItems: 'center', 
             }}> 
-                <Typography variant="h5">OOPS...</Typography> 
+                <Typography variant={isSmallScreen ? 'h6' : 'h5'}>OOPS...</Typography> 
                 <Typography>Your shopping bag is empty!</Typography> 
-                <Button variant="contained" sx={{ boxShadow: 'none', marginTop: '1rem', }}>
-                    GO BACK
+                <Button component={Link} to="/" variant="contained" sx={{ boxShadow: 'none', marginTop: '1rem', }}>
+                    Continue shopping
                 </Button> 
             </Container> 
         </Container> 
