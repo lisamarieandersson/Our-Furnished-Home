@@ -25,12 +25,8 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Toast() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
+function Toast({ open }: { open: boolean }) {
+  const [showToast, setShowToast] = React.useState(true);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -40,17 +36,14 @@ function Toast() {
       return;
     }
 
-    setOpen(false);
+    setShowToast(false);
   };
 
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
-      <Button variant="outlined" onClick={handleClick}>
-        Open success snackbar
-      </Button>
       <Snackbar
         open={open}
-        autoHideDuration={100000}
+        autoHideDuration={1000000}
         onClose={handleClose}
         sx={{ display: "flex", justifyContent: "center" }}
       >
@@ -63,21 +56,21 @@ function Toast() {
           {"Product added to bag"}
           <Box
             sx={{
-              display: { xs: "none", sm: "flex"},
+              display: { xs: "none", sm: "flex" },
               justifyContent: "center",
               alignItems: "center",
               gap: "0.5rem",
               marginTop: "0.5rem",
             }}
           >
-              <img
-                style={{
-                  width: "5rem",
-                  border: "1px solid #00000047",
-                }}
-                src={products[0].image}
-                alt={products[0].title}
-              />
+            <img
+              style={{
+                width: "5rem",
+                border: "1px solid #00000047",
+              }}
+              src={products[0].image}
+              alt={products[0].title}
+            />
             <h4>{products[0].title}</h4>
             <h4>{products[0].price}SEK</h4>
           </Box>

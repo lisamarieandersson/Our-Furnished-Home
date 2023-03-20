@@ -7,7 +7,6 @@ function StartPage() {
   return (
     <div>
       <HeaderMain />
-      <Toast />
       <main>
         <ProductGallery />
       </main>

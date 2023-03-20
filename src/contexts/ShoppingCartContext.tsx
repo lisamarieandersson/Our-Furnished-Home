@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "../../data";
+import Toast from "../components/Toast";
 
 // Define Props interface to enforce the type of the `children` prop
 interface Props {
@@ -28,31 +29,27 @@ const ShoppingCartContext = createContext<ShoppingCart>({
 // Create a custom hook to easier use the shopping cart
 export const useShoppingCart = () => useContext(ShoppingCartContext);
 
-// Create a new component that provides the shopping cart context to its child components
 export const ShoppingCartProvider = ({ children }: Props) => {
-  // Initialize a state variable for the items in the shopping cart
   const [items, setItems] = useState<CartItem[]>([]);
+  const [showToast, setShowToast] = useState<boolean>(false);
 
   const addItem = (itemToAdd: CartItem) => {
-    const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
+    const existingItem = items.find((item) => item.id === itemToAdd.id);
 
     if (existingItem) {
-      // If the item already exists in the cart, increase the quantity of that item
       const updatedItems = items.map((item) => {
-        // Create a new array of items by iterating over the existing items in the cart
         if (item.id === existingItem.id) {
-          // If the id of the current item matches the id of the existing item, update the quantity
           return { ...item, quantity: item.quantity + itemToAdd.quantity };
         } else {
-          return item; // Otherwise, return the current item as-is
+          return item; 
         }
       });
-      setItems(updatedItems); // Update the items in the cart with the updatedItems array
+      setItems(updatedItems); 
     } else {
-      // If the item does not exist in the cart, add it as a new item
-      setItems([...items, itemToAdd]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
+      setItems([...items, itemToAdd]); 
     }
-
+    setShowToast(true);
+    
     console.log("adding product");
   };
 
@@ -85,6 +82,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
+      <Toast open={showToast} />
     </ShoppingCartContext.Provider>
   );
 };
