@@ -1,4 +1,4 @@
-import { Badge, Box, styled, SxProps, Theme } from "@mui/material";
+import { Badge, Box, IconButton, styled, SxProps, Theme } from "@mui/material";
 import { Link, LinkProps } from "react-router-dom";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import { theme } from "../theme";
@@ -18,7 +18,11 @@ function HeaderIcons() {
   const { items } = useShoppingCart();
 
   return (
-    <div style={{ display: "flex" }}>
+    <Box
+      style={{
+        display: "flex",
+      }}
+    >
       <Box className="material-symbols-outlined" sx={iconStyle}>
         admin_panel_settings
       </Box>
@@ -36,15 +40,19 @@ function HeaderIcons() {
             },
           }}
         >
-          <Box
+          <IconButton
             className="material-symbols-outlined"
-            sx={{ fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" } }}
+            sx={{
+              fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" },
+              color: (theme) => theme.palette.text.primary,
+              padding: "0",
+            }}
           >
             shopping_bag
-          </Box>
+          </IconButton>
         </Badge>
       </StyledLink>
-    </div>
+    </Box>
   );
 }
 
