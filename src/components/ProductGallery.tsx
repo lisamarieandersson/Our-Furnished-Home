@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../../data/index";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
@@ -53,7 +52,6 @@ const StyledLink = styled(Link)<LinkProps>(() => ({
  */
 function ProductGallery() {
   const { addItem } = useShoppingCart();
-  const [quantity, setQuantity] = useState(1);
 
   return (
     <Container maxWidth="xl" sx={rootStyle}>
@@ -95,7 +93,7 @@ function ProductGallery() {
                       <IconButton
                         onClick={(event) => {
                           event.stopPropagation(); // prevents the click event from propagating to the parent link element
-                          addItem({ ...product, quantity });
+                          addItem({ ...product, quantity: 1 });
                           event.preventDefault();
                         }}
                         className="material-symbols-outlined"
