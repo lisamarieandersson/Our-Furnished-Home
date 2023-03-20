@@ -78,11 +78,21 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     totalPrice,
   };
 
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setShowToast(false);
+  };
+
   // Render the child components wrapped inside the ShoppingCartContext.Provider
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
-      <Toast open={showToast} />
+      <Toast open={showToast} onClose={handleClose}/>
     </ShoppingCartContext.Provider>
   );
 };

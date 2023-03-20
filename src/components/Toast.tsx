@@ -25,32 +25,19 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Toast({ open }: { open: boolean }) {
-  const [showToast, setShowToast] = React.useState(true);
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setShowToast(false);
-  };
-
+function Toast({ open, onClose }: { open: boolean, onClose: () => void }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
       <Snackbar
         open={open}
-        autoHideDuration={1000000}
-        onClose={handleClose}
+        autoHideDuration={6000}
+        onClose={onClose}
         sx={{ display: "flex", justifyContent: "center" }}
       >
         <Alert
           icon={false}
           sx={toastStyling}
-          onClose={handleClose}
+          onClose={onClose}
           severity="success"
         >
           {"Product added to bag"}
