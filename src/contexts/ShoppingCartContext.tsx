@@ -38,6 +38,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
+    console.log("Adding product:", itemToAdd);
 
     if (existingItem) {
       // If the item already exists in the cart, increase the quantity of that item
