@@ -1,4 +1,4 @@
-import { Box, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Container, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function ShoppingCartSummary() {
@@ -24,7 +24,11 @@ function ShoppingCartSummary() {
         <Typography>Total price: </Typography>
         <Typography>{totalPrice} SEK</Typography>
       </Box>
-      
+      <Divider sx={{
+                backgroundColor: theme.palette.primary.main,
+                marginBottom: '2rem',
+                marginTop :'1rem',
+            }}></Divider>
     </Container>
   );
 }
