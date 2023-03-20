@@ -2,6 +2,7 @@ import {
   Box,
   CardContent,
   Container,
+  IconButton,
   LinkProps,
   Paper,
   styled,
@@ -12,6 +13,7 @@ import {
 import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
 import { products } from "../../data/index";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 /*  Styling */
 
@@ -49,6 +51,8 @@ const StyledLink = styled(Link)<LinkProps>(() => ({
  * @returns a product gallery consisting of cards for all the products with image, brand, title and price
  */
 function ProductGallery() {
+  const { addItem } = useShoppingCart();
+
   return (
     <Container maxWidth="xl" sx={rootStyle}>
       <Box sx={{ width: "100%" }}>
@@ -86,16 +90,22 @@ function ProductGallery() {
                       </Typography>
                     </Box>
                     <Box>
-                      <Box
+                      <IconButton
+                        onClick={(event) => {
+                          event.stopPropagation(); // prevents the click event from propagating to the parent link element
+                          addItem({ ...product, quantity: 1 });
+                          event.preventDefault();
+                        }}
                         className="material-symbols-outlined"
                         sx={{
                           fontSize: "2.4rem",
                           cursor: "pointer",
+                          color: (theme) => theme.palette.text.primary,
                         }}
                         data-cy="product-buy-button"
                       >
                         shopping_bag
-                      </Box>
+                      </IconButton>
                     </Box>
                   </CardContent>
                 </Item>
