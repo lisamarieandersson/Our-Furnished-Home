@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
 import CheckoutPage from "./pages/CheckoutPage";
+import ConstructionPage from "./pages/ConstructionPage";
 import EmptyBagPage from "./pages/EmptyBagPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import ProductPage from "./pages/ProductPage";
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route path="/product/:id/:title" element={<ProductPage />} />
       <Route path="orderconfirmation" element={<OrderConfirmationPage />} />
       <Route path="*" element={<h3>404 Not Found</h3>} />
+      <Route path="underconstruction" element={<ConstructionPage />} />
       {/* </Route> */}
       {/* <Route element={<CheckoutLayout />}> */}
       <Route path="checkout" element={<CheckoutPage />} />
