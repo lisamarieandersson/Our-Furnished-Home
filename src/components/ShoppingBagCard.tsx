@@ -1,22 +1,33 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { products } from "../../data";
+import { useState } from "react";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function ShoppingBagCard() {
     const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+    const { items } = useShoppingCart();
+    const [quantity, setQuantity] = useState(1);
+
+    const handleAddQuantity = () => {
+        setQuantity((prevQuantity) => prevQuantity + 1);
+      };
+    
+      const handleRemoveQuantity = () => {
+        setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+      };
 
     return (
         <Container maxWidth= {isSmallScreen ? 'sm' : 'md'}>
-            {products.map((product) => (
+            {items.map((CartItem) => (
                 <Card 
-                    key = {product.id}
+                    key = {CartItem.id}
                     sx={{
                         display: 'flex',
                         margin: '1rem',
                         boxShadow: 'none',
                         position: 'relative',
                     }}>
-                    <CardMedia component='img' image={product.image} sx={{
+                    <CardMedia component='img' image={CartItem.image} sx={{
                         width: isSmallScreen ? '6rem' : '10rem',
                     }}/>
                     <Container sx={{
@@ -30,7 +41,7 @@ function ShoppingBagCard() {
                             <Typography variant="h6" data-cy="product-title" sx={{
                                 p: '0px !important',
                                 fontSize: isSmallScreen ? '1rem' : '1.25rem',
-                            }}>{product.title}</Typography>
+                            }}>{CartItem.title}</Typography>
                         </CardContent>                            
                         
                         <Container sx={{
@@ -55,16 +66,27 @@ function ShoppingBagCard() {
                                     marginLeft: '1rem',
                                     textAlign: 'center'
                                 }}>
-                                    <Button variant='text' color="secondary" size="small" onClick={() => (product)} sx={{
-                                        minWidth: '0.5rem',
-                                    }}>
-                                        <span className="material-symbols-outlined">remove</span> 
+                                     <Button
+                                        variant="text"
+                                        onClick={handleRemoveQuantity}
+                                        sx={{
+                                        fontSize: "1.3rem",
+                                        color: (theme) => theme.palette.text.primary,
+                                        }}
+                                    >
+                                        -
                                     </Button>
-                                        <Typography textAlign={'center'} >{/*item.quantity*/}{'1'}</Typography>
-                                    <Button variant='text' color="secondary" size="small" onClick={() => (product)} sx={{
-                                        minWidth: '0.5rem',
-                                    }}>
-                                        <span className="material-symbols-outlined">add</span>
+                                    <Typography variant="subtitle1">{quantity}</Typography>
+                                    <Button
+                                        variant="text"
+                                        onClick={handleAddQuantity}
+                                        sx={{
+                                        fontSize: "1.3rem",
+                                        color: (theme) => theme.palette.text.primary,
+                                        }}
+                                        data-cy="product-buy-button"
+                                    >
+                                        +
                                     </Button>
                                 </CardActions>
                             </Container>
@@ -73,7 +95,7 @@ function ShoppingBagCard() {
                                 width: '8rem',
                                 textAlign: 'right',
                             }}>
-                                <Typography sx={{fontSize: isSmallScreen ? '0.8rem' : '1rem',}}>{product.price} SEK</Typography>
+                                <Typography sx={{fontSize: isSmallScreen ? '0.8rem' : '1rem',}}>{CartItem.price} SEK</Typography>
                             </CardContent>
                         </Container>
                         <CardActions sx={{
