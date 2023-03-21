@@ -25,7 +25,7 @@ function PurchaseConfirmation() {
       <Typography variant={isSmallScreen ? "body1" : "h6"}>
         TOTAL: {totalPrice} SEK
       </Typography>
-      <Button variant="contained">
+      <Button variant="contained" type="submit">
         <Typography variant={isSmallScreen ? "body2" : "body1"}>
           Confirm purchase
         </Typography>

@@ -14,6 +14,7 @@ type ShoppingCart = {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  updateItemQuantity: (id: string, quantity: number) => void;
 };
 
 // Create a new context object with an empty shopping cart object as its initial value
@@ -24,6 +25,7 @@ const ShoppingCartContext = createContext<ShoppingCart>({
   clearCart: () => {},
   totalItems: 0,
   totalPrice: 0,
+  updateItemQuantity: () => {},
 });
 
 // Create a custom hook to easier use the shopping cart
@@ -36,7 +38,20 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
   console.log("cart");
 
-  const addItem = (itemToAdd: CartItem) => {
+  const updateItemQuantity = (id: string, newQuantity: number) => {
+    if (newQuantity >= 1) {
+      setItems((prevItems) =>
+        prevItems.map((item) => {
+          if (item.id === id) {
+            return { ...item, quantity: newQuantity };
+          }
+          return item;
+        })
+      );
+    }
+  };
+
+  const addItem = (itemToAdd: CartItem, quantity: number = 1) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
     console.log("Adding product:", itemToAdd);
 
@@ -46,7 +61,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
         // Create a new array of items by iterating over the existing items in the cart
         if (item.id === existingItem.id) {
           // If the id of the current item matches the id of the existing item, update the quantity
-          return { ...item, quantity: item.quantity + itemToAdd.quantity };
+          return { ...item, quantity: item.quantity + quantity };
         } else {
           return item; // Otherwise, return the current item as-is
         }
@@ -54,7 +69,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       setItems(updatedItems); // Update the items in the cart with the updatedItems array
     } else {
       // If the item does not exist in the cart, add it as a new item
-      setItems([...items, itemToAdd]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
+      setItems([...items, { ...itemToAdd, quantity }]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
     }
 
     console.log("adding product");
@@ -83,6 +98,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     clearCart,
     totalItems,
     totalPrice,
+    updateItemQuantity,
   };
 
   // Render the child components wrapped inside the ShoppingCartContext.Provider

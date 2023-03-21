@@ -20,14 +20,17 @@ function CheckoutPage() {
     return (
       <div>
       <HeaderContinueShopping />
-      <ShoppingBagCard />
-      <ShoppingCartSummary />
-      <DeliveryForm />
-      <PurchaseConfirmation />
-      <Footer />
-      </div>
-    )
-  }
+      <main>
+        <ShoppingBagCard />
+        <ShoppingCartSummary />
+        <DeliveryForm />
+        <PurchaseConfirmation />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
 }
 
 export default CheckoutPage;
