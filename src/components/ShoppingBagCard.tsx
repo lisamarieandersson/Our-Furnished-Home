@@ -6,6 +6,7 @@ import {
   CardMedia,
   Container,
   Divider,
+  TextField,
   Typography,
   useMediaQuery,
   useTheme,
@@ -136,9 +137,30 @@ function ShoppingBagCard() {
                   >
                     -
                   </Button>
-                  <Typography variant="subtitle1" data-cy="product-quantity">
+                  <TextField
+                    variant="standard"
+                    sx={{
+                      width: "2rem",
+                      "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
+                        {
+                          "-webkit-appearance": "none",
+                          margin: 0,
+                        },
+                      '& input[type="number"]': {
+                        "-moz-appearance": "textfield",
+                      },
+                      "& .MuiInput-underline:before, & .MuiInput-underline:after":
+                        {
+                          display: "none",
+                        },
+                    }}
+                    inputProps={{ min: 1, style: { textAlign: "center" } }}
+                    data-cy="product-quantity"
+                    type="number"
+                    value={CartItem.quantity}
+                  >
                     {CartItem.quantity}
-                  </Typography>
+                  </TextField>
                   <Button
                     variant="text"
                     onClick={() =>
