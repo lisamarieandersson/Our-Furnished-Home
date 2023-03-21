@@ -20,14 +20,13 @@ interface Order {
 }
 
 type OrderContextType = {
-  order: Order | null;
+  order?: Order;
   setOrder: (order: Order) => void;
   createOrder: (deliveryValues: DeliveryValues) => void;
 };
 
 // Create a new context object with an initial value of null for the order
 const OrderContext = createContext<OrderContextType>({
-  order: null,
   setOrder: () => {},
   createOrder: () => {},
 });
@@ -37,7 +36,7 @@ export const useOrder = () => useContext(OrderContext);
 
 // Create a new component that provides the order context to its child components
 export const OrderProvider = ({ children }: Props) => {
-  const [order, setOrder] = useState<Order | null>(null);
+  const [order, setOrder] = useState<Order>();
   const { items, totalPrice } = useShoppingCart();
 
   // Define a function to create the order object based on the current shopping cart state and delivery address
@@ -54,6 +53,7 @@ export const OrderProvider = ({ children }: Props) => {
   };
 
   // Create an object with all necessary properties and methods for the OrderContext
+  // console.log(order);
   const orderContext: OrderContextType = {
     order,
     setOrder,

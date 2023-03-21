@@ -9,8 +9,10 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
+import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { useOrder } from "../contexts/OrderContext";
+import PurchaseConfirmation from "./PurchaseConfirmation";
 
 const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 
@@ -34,6 +36,7 @@ export type DeliveryValues = Yup.InferType<typeof DeliverySchema>;
 
 function DeliveryForm() {
   const theme = useTheme();
+  const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { createOrder } = useOrder();
 
@@ -49,6 +52,7 @@ function DeliveryForm() {
     validationSchema: DeliverySchema,
     onSubmit: (deliveryValues) => {
       createOrder(deliveryValues);
+      navigate("/orderconfirmation");
     },
   });
 
@@ -181,14 +185,15 @@ function DeliveryForm() {
             helperText={formik.touched.phonenumber && formik.errors.phonenumber}
             data-cy="customer-phone"
           />
+          <Divider
+            sx={{
+              backgroundColor: theme.palette.primary.main,
+              marginBottom: "2rem",
+              marginTop: "1rem",
+            }}></Divider>
+          <PurchaseConfirmation />
         </form>
       </Container>
-      <Divider
-        sx={{
-          backgroundColor: theme.palette.primary.main,
-          marginBottom: "2rem",
-          marginTop: "1rem",
-        }}></Divider>
     </Container>
   );
 }
