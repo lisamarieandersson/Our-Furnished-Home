@@ -187,7 +187,7 @@ function ShoppingBagCard() {
                   sx={{ fontSize: isSmallScreen ? "0.8rem" : "1rem" }}
                   data-cy="product-price"
                 >
-                  {CartItem.price} SEK
+                  {CartItem.price * CartItem.quantity} SEK
                 </Typography>
               </CardContent>
             </Container>
