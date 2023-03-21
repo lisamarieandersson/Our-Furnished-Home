@@ -25,7 +25,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Toast({ open, onClose, lastAddedItem }: { open: boolean; onClose: () => void; lastAddedItem: CartItem }) {
+function Toast({ open, onClose, lastAddedItem }: { open: boolean; onClose: () => void; lastAddedItem: CartItem | null }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
         <Snackbar
@@ -51,16 +51,16 @@ function Toast({ open, onClose, lastAddedItem }: { open: boolean; onClose: () =>
               }}
             >
               <img 
-                src={lastAddedItem.image}
-                alt={lastAddedItem.title}
+                src={lastAddedItem?.image}
+                alt={lastAddedItem?.title}
                 style={{
                   width: "5rem",
                   border: "1px solid #00000047",
                 }}
                 
               />
-              <h4>{lastAddedItem.title}</h4>
-              <h4>{lastAddedItem.price} SEK</h4>
+              <h4>{lastAddedItem?.title}</h4>
+              <h4>{lastAddedItem?.price} SEK</h4>
             </Box>
             <Button
               // component={Link} to="/checkout"
