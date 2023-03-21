@@ -21,7 +21,7 @@ const router = createBrowserRouter(
       {/* <Route element={<AppLayout />}> */}
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title/:id" element={<ProductPage />} />
-      <Route path="orderconfirmation" element={<OrderConfirmationPage />} />
+      <Route path="confirmation" element={<OrderConfirmationPage />} />
       <Route path="*" element={<h3>404 Not Found</h3>} />
       <Route path="underconstruction" element={<ConstructionPage />} />
       {/* </Route> */}

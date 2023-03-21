@@ -19,6 +19,10 @@ const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 const DeliverySchema = Yup.object({
   email: Yup.string()
     .email("Please enter an valid email address")
+    .matches(
+      /^[^@\s]+@[^\s]+\.[^\s]{2,}$/,
+      "Please enter a valid email address"
+    )
     .required("Please enter an email address"),
   name: Yup.string().required("Please enter a name"),
   address: Yup.string().required("Please enter your address"),
@@ -52,7 +56,7 @@ function DeliveryForm() {
     validationSchema: DeliverySchema,
     onSubmit: (deliveryValues) => {
       createOrder(deliveryValues);
-      navigate("/orderconfirmation");
+      navigate("/confirmation");
     },
   });
 
@@ -103,7 +107,8 @@ function DeliveryForm() {
             onBlur={formik.handleBlur}
             error={Boolean(formik.touched.email && formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
-            data-cy="customer-email"
+            inputProps={{ "data-cy": "customer-email" }}
+            FormHelperTextProps={{ "data-cy": "customer-email-error" } as any}
           />
           <TextField
             id="name"
@@ -116,7 +121,8 @@ function DeliveryForm() {
             onBlur={formik.handleBlur}
             error={Boolean(formik.touched.name && formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
-            data-cy="customer-name"
+            inputProps={{ "data-cy": "customer-name" }}
+            FormHelperTextProps={{ "data-cy": "customer-name-error" } as any}
           />
           <TextField
             id="address"
@@ -129,7 +135,8 @@ function DeliveryForm() {
             onBlur={formik.handleBlur}
             error={Boolean(formik.touched.address && formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
-            data-cy="customer-address"
+            inputProps={{ "data-cy": "customer-address" }}
+            FormHelperTextProps={{ "data-cy": "customer-address-error" } as any}
           />
           <Container
             sx={{
@@ -152,7 +159,10 @@ function DeliveryForm() {
                 formik.touched.postalcode && formik.errors.postalcode
               )}
               helperText={formik.touched.postalcode && formik.errors.postalcode}
-              data-cy="customer-zipcode"
+              inputProps={{ "data-cy": "customer-zipcode" }}
+              FormHelperTextProps={
+                { "data-cy": "customer-zipcode-error" } as any
+              }
               sx={{ flex: 1 }}
             />
             <TextField
@@ -166,7 +176,8 @@ function DeliveryForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.city && formik.errors.city)}
               helperText={formik.touched.city && formik.errors.city}
-              data-cy="customer-city"
+              inputProps={{ "data-cy": "customer-city" }}
+              FormHelperTextProps={{ "data-cy": "customer-city-error" } as any}
               sx={{ flex: 1 }}
             />
           </Container>
@@ -183,7 +194,8 @@ function DeliveryForm() {
               formik.touched.phonenumber && formik.errors.phonenumber
             )}
             helperText={formik.touched.phonenumber && formik.errors.phonenumber}
-            data-cy="customer-phone"
+            inputProps={{ "data-cy": "customer-phone" }}
+            FormHelperTextProps={{ "data-cy": "customer-phone-error" } as any}
           />
           <Divider
             sx={{
