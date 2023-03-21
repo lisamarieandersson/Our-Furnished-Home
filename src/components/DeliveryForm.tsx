@@ -12,6 +12,7 @@ import { CSSProperties } from "react";
 import { useNavigate } from "react-router";
 import * as Yup from "yup";
 import { useOrder } from "../contexts/OrderContext";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import PurchaseConfirmation from "./PurchaseConfirmation";
 
 const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
@@ -39,6 +40,7 @@ function DeliveryForm() {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { createOrder } = useOrder();
+  const { clearCart } = useShoppingCart();
 
   const formik = useFormik<DeliveryValues>({
     initialValues: {
@@ -53,6 +55,8 @@ function DeliveryForm() {
     onSubmit: (deliveryValues) => {
       createOrder(deliveryValues);
       navigate("/orderconfirmation");
+      // localStorage.clear();
+      clearCart();
     },
   });
 

@@ -80,7 +80,10 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const clearCart = () => {
-    // TODO: implement clearCart function
+    // Clear the cart items from local storage
+    // Set the items state to an empty array
+    setItems([]);
+    console.log("cart cleared");
   };
 
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
