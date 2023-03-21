@@ -6,7 +6,9 @@ function EmptyBagPage() {
   return (
     <div>
       <HeaderContinueShopping />
-      <EmptyCart />
+      <main>
+        <EmptyCart />
+      </main>
       <footer>
         <Footer />
       </footer>
