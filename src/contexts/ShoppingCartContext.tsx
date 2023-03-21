@@ -76,7 +76,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const removeItem = (id: string) => {
-    // TODO: implement removeItem function
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const clearCart = () => {
