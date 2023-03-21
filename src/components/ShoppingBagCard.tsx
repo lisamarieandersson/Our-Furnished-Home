@@ -16,7 +16,7 @@ import { useShoppingCart } from "../contexts/ShoppingCartContext";
 function ShoppingBagCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { items, updateItemQuantity } = useShoppingCart();
+  const { items, updateItemQuantity, removeItem } = useShoppingCart();
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -181,6 +181,7 @@ function ShoppingBagCard() {
               }}
             >
               <Button
+                onClick={() => removeItem(CartItem.id)}
                 sx={{
                   minWidth: "auto",
                   color: (theme) => theme.palette.text.primary,
