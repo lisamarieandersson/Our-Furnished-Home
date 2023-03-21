@@ -143,12 +143,13 @@ function ShoppingBagCard() {
                       width: "2rem",
                       "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
                         {
-                          "-webkit-appearance": "none",
+                          WebkitAppearance: "none",
                           margin: 0,
                         },
                       '& input[type="number"]': {
-                        "-moz-appearance": "textfield",
+                        MozAppearance: "textfield",
                       },
+
                       "& .MuiInput-underline:before, & .MuiInput-underline:after":
                         {
                           display: "none",
