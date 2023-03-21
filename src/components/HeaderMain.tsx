@@ -7,14 +7,27 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  styled,
   SxProps,
   Toolbar,
-  Typography,
+  Typography
 } from "@mui/material";
 import * as React from "react";
+import { Link, LinkProps } from "react-router-dom";
 import HeaderIcons from "./HeaderIcons";
 
-const pages = ["Products", "Brands", "Campaigns"];
+const pages = [
+  {
+    name: "Products",
+    link: "/",
+  },
+  { name: "Brands", 
+    link: "/underconstruction" },
+  {
+    name: "Campaigns",
+    link: "/underconstruction",
+  },
+];
 
 const headerButtonsStyling: SxProps<Theme> = {
   color: "black",
@@ -28,6 +41,11 @@ const headerButtonsStyling: SxProps<Theme> = {
     textUnderlineOffset: "0.5rem",
   },
 };
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -46,13 +64,22 @@ function HeaderMain() {
     <AppBar
       elevation={0}
       position="static"
-      sx={{ background: (theme) => theme.palette.background.default }}
+      sx={{
+        background: (theme) => theme.palette.background.default,
+      }}
     >
-      <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
-        <Toolbar disableGutters>
+      <Container
+        maxWidth="xl"
+        sx={{
+          borderBottom: "0.01rem solid black",
+        }}
+      >
+        <Toolbar
+          disableGutters
+          sx={{ display: "grid", gridTemplateColumns: "1fr auto 1fr" }}
+        >
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "flex", md: "none" },
             }}
           >
@@ -89,43 +116,53 @@ function HeaderMain() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography padding="0.5rem">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <StyledLink to={page.link}>
+                    <Typography padding="0.5rem">{page.name}</Typography>
+                  </StyledLink>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
+                component={Link}
+                to={page.link}
                 onClick={handleCloseNavMenu}
                 sx={headerButtonsStyling}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: { xs: 0, md: 1 } }}>
-            <Box
-              component="img"
-              src="/logohome.png"
-              alt="logga"
-              sx={{
-                height: { xs: "6rem", sm: "7rem" },
-                marginTop: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            />
+          <Box
+            sx={{
+              flexGrow: { xs: 0, md: 1 },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <StyledLink to="/">
+              <Box
+                component="img"
+                src="/logohome.png"
+                alt="logga"
+                sx={{
+                  height: { xs: "6rem", sm: "7rem" },
+                  marginTop: "1rem",
+                  marginBottom: "1rem",
+                }}
+              />
+            </StyledLink>
           </Box>
           <Box
             sx={{
-              flexGrow: { xs: 0.7 },
               display: "flex",
               justifyContent: "flex-end",
             }}

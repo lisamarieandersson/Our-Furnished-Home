@@ -49,26 +49,32 @@ const cardContentStyle: SxProps<Theme> = {
 
 /**
  *
- * @returns a Product card with image, brand, title, price, description and add to bag button
+ * Returns a product card with image, brand, title, price, description and add to bag button
  */
 function ProductCard() {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-  const { addItem } = useShoppingCart();
+  const { addItem, updateItemQuantity } = useShoppingCart();
   const [quantity, setQuantity] = useState(1);
 
   const handleAddQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
+    if (product) {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+      updateItemQuantity(product.id, quantity + 1);
+    }
   };
 
   const handleRemoveQuantity = () => {
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+    if (product) {
+      setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
+      updateItemQuantity(product.id, Math.max(quantity - 1, 1));
+    }
   };
 
   if (!product) {
     return (
       <div>
-        <Typography>Sorry! The product was not found.</Typography>
+        <Typography>We're sorry! The product was not found.</Typography>
       </div>
     );
   }
@@ -140,7 +146,6 @@ function ProductCard() {
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
                     }}
-                    data-cy="product-buy-button"
                   >
                     +
                   </Button>
@@ -148,6 +153,7 @@ function ProductCard() {
                 <Button
                   onClick={() => addItem({ ...product, quantity })}
                   variant="contained"
+                  data-cy="product-buy-button"
                 >
                   ADD TO BAG
                 </Button>
