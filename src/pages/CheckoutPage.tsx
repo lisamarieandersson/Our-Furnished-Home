@@ -8,10 +8,15 @@ function CheckoutPage() {
   return (
     <div>
       <HeaderContinueShopping />
-      <ShoppingBagCard />
-      <ShoppingCartSummary />
-      <DeliveryForm />
-      <Footer />
+      <main>
+        <ShoppingBagCard />
+        <ShoppingCartSummary />
+        <DeliveryForm />
+        <PurchaseConfirmation />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }

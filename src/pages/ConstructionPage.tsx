@@ -6,7 +6,9 @@ function ConstructionPage() {
   return (
     <div>
       <HeaderMain />
-      <UnderConstruction />
+      <main>
+        <UnderConstruction />
+      </main>
       <footer>
         <Footer />
       </footer>
