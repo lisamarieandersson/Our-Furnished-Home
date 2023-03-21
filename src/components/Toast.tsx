@@ -66,8 +66,10 @@ function Toast({
                 border: "1px solid #00000047",
               }}
             />
-            <h4>{lastAddedItem?.title}</h4>
-            <h4>{lastAddedItem?.price} SEK</h4>
+            <Box>
+              <h4>{lastAddedItem?.title}</h4>
+              <h4>{lastAddedItem?.price} SEK</h4>
+            </Box>
           </Box>
           <Button
             // component={Link} to="/checkout"
