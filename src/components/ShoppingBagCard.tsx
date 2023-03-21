@@ -11,22 +11,12 @@ import {
   useTheme,
 } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function ShoppingBagCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { items } = useShoppingCart();
-  const [quantity, setQuantity] = useState(1);
-
-  const handleAddQuantity = () => {
-    setQuantity((prevQuantity) => prevQuantity + 1);
-  };
-
-  const handleRemoveQuantity = () => {
-    setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-  };
+  const { items, updateItemQuantity } = useShoppingCart();
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -135,7 +125,9 @@ function ShoppingBagCard() {
                 >
                   <Button
                     variant="text"
-                    onClick={handleRemoveQuantity}
+                    onClick={() =>
+                      updateItemQuantity(CartItem.id, CartItem.quantity - 1)
+                    }
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
@@ -145,11 +137,13 @@ function ShoppingBagCard() {
                     -
                   </Button>
                   <Typography variant="subtitle1" data-cy="product-quantity">
-                    {quantity}
+                    {CartItem.quantity}
                   </Typography>
                   <Button
                     variant="text"
-                    onClick={handleAddQuantity}
+                    onClick={() =>
+                      updateItemQuantity(CartItem.id, CartItem.quantity + 1)
+                    }
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
@@ -187,9 +181,9 @@ function ShoppingBagCard() {
               }}
             >
               <Button
-                color="secondary"
                 sx={{
                   minWidth: "auto",
+                  color: (theme) => theme.palette.text.primary,
                 }}
               >
                 <span className="material-symbols-outlined">close</span>
