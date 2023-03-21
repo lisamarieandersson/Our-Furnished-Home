@@ -1,12 +1,14 @@
 import { Button, Typography, useMediaQuery } from "@mui/material";
 import { Container, useTheme } from "@mui/system";
 import { Link } from "react-router-dom";
+import { useOrder } from "../contexts/OrderContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function UserInfoOrder() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { items } = useShoppingCart();
+  const { order } = useOrder();
 
   return (
     <Container
@@ -29,9 +31,7 @@ function UserInfoOrder() {
         <Typography textAlign={"center"}>
           An order confirmation has been sent to:
         </Typography>
-        <Typography>
-          {/*order.email typ eller nått*/}johan.johansson@medieinstitutet.se
-        </Typography>
+        <Typography>{order?.email}</Typography>
       </Container>
       <Typography variant={isSmallScreen ? "h6" : "h5"} marginTop={"2rem"}>
         Your order details:
@@ -44,12 +44,12 @@ function UserInfoOrder() {
           marginTop: isSmallScreen ? "0.2rem" : "1rem",
           marginBottom: isSmallScreen ? "1rem" : "3rem",
         }}>
-        <Typography>{/*order.namn*/}Johan Johansson</Typography>
-        <Typography>{/*order.address*/}VägenVägen 12</Typography>
+        <Typography>{order?.name}</Typography>
+        <Typography>{order?.address}</Typography>
         <Typography>
-          {/*order.postalcode*/}12345 {/*order.city*/} Göteborg
+          {order?.postalcode} {order?.city}
         </Typography>
-        <Typography>{/*order.phonenumber*/}072 1234567</Typography>
+        <Typography>{order?.phonenumber}</Typography>
       </Container>
       <Button component={Link} to={"/"} variant="contained">
         Continue to shop
