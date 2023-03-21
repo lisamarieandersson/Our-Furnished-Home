@@ -30,18 +30,18 @@ function HeaderIcons() {
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
-      <StyledLink to="/checkout" data-cy="cart-link">
-        <Badge
-          data-cy="cart-items-count-badge"
-          badgeContent={items.length}
-          color="primary"
-          sx={{
-            "& .MuiBadge-badge": {
-              fontFamily: theme.typography.subtitle2.fontFamily,
-              textAlign: "center",
-            },
-          }}
-        >
+      <Badge
+        data-cy="cart-items-count-badge"
+        badgeContent={items.length}
+        color="primary"
+        sx={{
+          "& .MuiBadge-badge": {
+            fontFamily: theme.typography.subtitle2.fontFamily,
+            textAlign: "center",
+          },
+        }}
+      >
+        <StyledLink to="/checkout" data-cy="cart-link">
           <IconButton
             className="material-symbols-outlined"
             sx={{
@@ -52,8 +52,8 @@ function HeaderIcons() {
           >
             shopping_bag
           </IconButton>
-        </Badge>
-      </StyledLink>
+        </StyledLink>
+      </Badge>
     </Box>
   );
 }
