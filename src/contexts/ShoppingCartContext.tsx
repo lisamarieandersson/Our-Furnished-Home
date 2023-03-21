@@ -33,8 +33,6 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 
 // Create a new component that provides the shopping cart context to its child components
 export const ShoppingCartProvider = ({ children }: Props) => {
-  // Initialize a state variable for the items in the shopping cart
-  // const [items, setItems] = useState<CartItem[]>([]);
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
   console.log("cart");
 
@@ -48,6 +46,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
           return item;
         })
       );
+    } else if (newQuantity === 0) {
+      removeItem(id);
     }
   };
 
