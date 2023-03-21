@@ -42,16 +42,16 @@ export const ShoppingCartProvider = ({ children }: Props) => {
         if (item.id === existingItem.id) {
           return { ...item, quantity: item.quantity + itemToAdd.quantity };
         } else {
-          return item; 
+          return item;
         }
       });
-      setItems(updatedItems); 
+      setItems(updatedItems);
     } else {
-      setItems([...items, itemToAdd]); 
+      setItems([...items, itemToAdd]);
     }
     setLastAddedItem(itemToAdd);
     setShowToast(true);
-    
+
     console.log("adding product");
   };
 
@@ -94,7 +94,13 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
-      {lastAddedItem && <Toast open={showToast} onClose={handleClose} lastAddedItem={lastAddedItem}/>}
+      {lastAddedItem && (
+        <Toast
+          open={showToast}
+          onClose={handleClose}
+          lastAddedItem={lastAddedItem}
+        />
+      )}
     </ShoppingCartContext.Provider>
   );
 };
