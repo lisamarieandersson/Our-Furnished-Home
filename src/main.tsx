@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createRoutesFromElements, Route } from "react-router";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { OrderProvider } from "./contexts/OrderContext";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -35,7 +36,9 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <ShoppingCartProvider>
-        <RouterProvider router={router} />
+        <OrderProvider>
+          <RouterProvider router={router} />
+        </OrderProvider>
       </ShoppingCartProvider>
     </ThemeProvider>
   </React.StrictMode>
