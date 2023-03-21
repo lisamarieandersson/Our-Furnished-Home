@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
@@ -27,15 +27,8 @@ const ShoppingCartContext = createContext<ShoppingCart>(null as any);
 export const useShoppingCart = () => useContext(ShoppingCartContext);
 
 export const ShoppingCartProvider = ({ children }: Props) => {
-  const [showToast, setShowToast] = useState<boolean>(false);
-  const [lastAddedItem, setLastAddedItem] = useState<CartItem>();
-
-  const addItem = (itemToAdd: CartItem) => {
-    const existingItem = items.find((item) => item.id === itemToAdd.id);
-
-  // Initialize a state variable for the items in the shopping cart
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
-  console.log("cart");
+  const [lastAddedItem, setLastAddedItem] = useState<CartItem>();
 
   const updateItemQuantity = (id: string, newQuantity: number) => {
     if (newQuantity >= 1) {
