@@ -14,23 +14,23 @@ function UserInfoOrder() {
             alignItems: 'center',
             flexDirection: 'column',
         }}>
-            <Typography variant="h5">Thank you for your order!</Typography>
+            <Typography variant={isSmallScreen ? 'h6' : 'h5'}>Thank you for your order!</Typography>
             <Container sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 marginTop: '1rem',
             }}>
-                <Typography>An order confirmation has been sent to:</Typography>
+                <Typography textAlign={'center'}>An order confirmation has been sent to:</Typography>
                 <Typography>{/*ordercontext.email typ eller nått*/}johan.johansson@medieinstitutet.se</Typography>
             </Container>
-            <Typography variant="h5" marginTop={'2rem'}>Your order details:</Typography>
+            <Typography variant={isSmallScreen ? 'h6' : 'h5'} marginTop={'2rem'}>Your order details:</Typography>
             <Container sx={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                marginTop: '1rem',
-                marginBottom: '3rem',
+                marginTop: isSmallScreen ? '0.2rem' : '1rem',
+                marginBottom: isSmallScreen ? '1rem' : '3rem',
             }}>
                 <Typography>{/*Ordercontext.namn*/}Johan Johansson</Typography>
                 <Typography>{/*Ordercontext.address*/}VägenVägen 12</Typography>

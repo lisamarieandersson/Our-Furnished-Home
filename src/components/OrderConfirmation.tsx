@@ -38,16 +38,15 @@ function OrderConfirmation() {
             }}>
               <Container sx={{
                 padding: '0px !important',
-                marginTop: '1rem',
+                marginTop: isSmallScreen ? '0.8rem': '1rem',
               }}>
                 <CardContent sx={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  textAlign: 'center',
                   padding: '0px !important',
                   marginLeft: '1rem',
-                  marginTop: '2rem',
+                  marginTop: isSmallScreen ? '0.2rem': '2rem',
                 }}>
                   <Typography variant= {isSmallScreen ? 'body1': 'h6'}>
                     {CartItem.title}
