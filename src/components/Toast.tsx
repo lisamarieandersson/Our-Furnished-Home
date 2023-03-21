@@ -74,7 +74,6 @@ function Toast({
               <h4>{lastAddedItem?.price} SEK</h4>
             </Box>
           </Box>
-          {/* <Link to="/checkout"> */}
             <Button
               component={Link} to="/checkout"
               onClick={clearLastAddedItem}
@@ -84,7 +83,6 @@ function Toast({
             >
               Go to bag
             </Button>
-          {/* </Link> */}
         </Alert>
       </Snackbar>
     </Stack>
