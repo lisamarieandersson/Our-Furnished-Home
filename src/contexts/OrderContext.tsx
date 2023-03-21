@@ -41,7 +41,7 @@ export const OrderProvider = ({ children }: Props) => {
 
   // Define a function to create the order object based on the current shopping cart state and delivery address
   const createOrder = (deliveryValues: DeliveryValues) => {
-    const orderNumber = `ORD-${Math.floor(Math.random() * 100000)}`; // Generate a random order number
+    const orderNumber = `#${Math.floor(Math.random() * 100000)}`; // Generate a random order number
     const products = items; // Get the list of products from the shopping cart
     const newOrder: Order = {
       orderNumber,
