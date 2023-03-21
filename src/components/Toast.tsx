@@ -4,8 +4,8 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
-import * as React from "react";
-import { products } from "../../data/index";
+import React from "react";
+import { CartItem, Product, products } from "../../data/index";
 import { theme } from "../theme";
 
 const toastStyling: SxProps<Theme> = {
@@ -25,51 +25,53 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Toast({ open, onClose }: { open: boolean, onClose: () => void }) {
+function Toast({ open, onClose, lastAddedItem }: { open: boolean; onClose: () => void; lastAddedItem: CartItem }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={onClose}
-        sx={{ display: "flex", justifyContent: "center" }}
-      >
-        <Alert
-          icon={false}
-          sx={toastStyling}
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
           onClose={onClose}
-          severity="success"
+          sx={{ display: "flex", justifyContent: "center" }}
         >
-          {"Product added to bag"}
-          <Box
-            sx={{
-              display: { xs: "none", sm: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "0.5rem",
-              marginTop: "0.5rem",
-            }}
+          <Alert
+            icon={false}
+            sx={toastStyling}
+            onClose={onClose}
+            severity="success"
           >
-            <img
-              style={{
-                width: "5rem",
-                border: "1px solid #00000047",
+            {"Product added to bag"}
+            <Box
+              sx={{
+                display: { xs: "none", sm: "flex" },
+                justifyContent: "center",
+                alignItems: "center",
+                gap: "0.5rem",
+                marginTop: "0.5rem",
               }}
-              src={products[0].image}
-              alt={products[0].title}
-            />
-            <h4>{products[0].title}</h4>
-            <h4>{products[0].price}SEK</h4>
-          </Box>
-          <Button
-            variant="outlined"
-            color="secondary"
-            sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
-          >
-            Go to bag
-          </Button>
-        </Alert>
-      </Snackbar>
+            >
+              <img 
+                src={lastAddedItem.image}
+                alt={lastAddedItem.title}
+                style={{
+                  width: "5rem",
+                  border: "1px solid #00000047",
+                }}
+                
+              />
+              <h4>{lastAddedItem.title}</h4>
+              <h4>{lastAddedItem.price} SEK</h4>
+            </Box>
+            <Button
+              // component={Link} to="/checkout"
+              variant="outlined"
+              color="secondary"
+              sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
+            >
+              Go to bag
+            </Button>
+          </Alert>
+        </Snackbar>
     </Stack>
   );
 }

@@ -32,6 +32,7 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [showToast, setShowToast] = useState<boolean>(false);
+  const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id);
@@ -48,6 +49,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     } else {
       setItems([...items, itemToAdd]); 
     }
+    setLastAddedItem(itemToAdd);
     setShowToast(true);
     
     console.log("adding product");
@@ -92,7 +94,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
-      <Toast open={showToast} onClose={handleClose}/>
+      {lastAddedItem && <Toast open={showToast} onClose={handleClose} lastAddedItem={lastAddedItem}/>}
     </ShoppingCartContext.Provider>
   );
 };
