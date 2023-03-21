@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Stack from "@mui/material/Stack";
 import React from "react";
+import { Link } from "react-router-dom";
 import { CartItem } from "../../data/index";
 import { theme } from "../theme";
 
@@ -29,10 +30,12 @@ function Toast({
   open,
   onClose,
   lastAddedItem,
+  clearLastAddedItem,
 }: {
   open: boolean;
   onClose: () => void;
-  lastAddedItem: CartItem | null;
+  lastAddedItem?: CartItem;
+  clearLastAddedItem: () => void;
 }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
@@ -71,14 +74,17 @@ function Toast({
               <h4>{lastAddedItem?.price} SEK</h4>
             </Box>
           </Box>
-          <Button
-            // component={Link} to="/checkout"
-            variant="outlined"
-            color="secondary"
-            sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
-          >
-            Go to bag
-          </Button>
+          {/* <Link to="/checkout"> */}
+            <Button
+              component={Link} to="/checkout"
+              onClick={clearLastAddedItem}
+              variant="outlined"
+              color="secondary"
+              sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
+            >
+              Go to bag
+            </Button>
+          {/* </Link> */}
         </Alert>
       </Snackbar>
     </Stack>

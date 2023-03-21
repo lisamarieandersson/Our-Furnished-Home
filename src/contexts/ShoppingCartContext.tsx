@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "../../data";
-import Toast from "../components/Toast";
 
 // Define Props interface to enforce the type of the `children` prop
 interface Props {
@@ -14,17 +13,13 @@ type ShoppingCart = {
   clearCart: () => void;
   totalItems: number;
   totalPrice: number;
+  // Toast
+  lastAddedItem?: CartItem;
+  clearLastAddedItem: () => void;
 };
 
 // Create a new context object with an empty shopping cart object as its initial value
-const ShoppingCartContext = createContext<ShoppingCart>({
-  items: [],
-  addItem: () => {},
-  removeItem: () => {},
-  clearCart: () => {},
-  totalItems: 0,
-  totalPrice: 0,
-});
+const ShoppingCartContext = createContext<ShoppingCart>(null as any);
 
 // Create a custom hook to easier use the shopping cart
 export const useShoppingCart = () => useContext(ShoppingCartContext);
@@ -32,7 +27,7 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useState<CartItem[]>([]);
   const [showToast, setShowToast] = useState<boolean>(false);
-  const [lastAddedItem, setLastAddedItem] = useState<CartItem | null>(null);
+  const [lastAddedItem, setLastAddedItem] = useState<CartItem>();
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id);
@@ -50,9 +45,12 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       setItems([...items, itemToAdd]);
     }
     setLastAddedItem(itemToAdd);
-    setShowToast(true);
 
     console.log("adding product");
+  };
+
+  const clearLastAddedItem = () => {
+    setLastAddedItem(undefined);
   };
 
   const removeItem = (id: string) => {
@@ -78,29 +76,13 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     clearCart,
     totalItems,
     totalPrice,
+    lastAddedItem,
+    clearLastAddedItem,
   };
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setShowToast(false);
-  };
-
   // Render the child components wrapped inside the ShoppingCartContext.Provider
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
-      {lastAddedItem && (
-        <Toast
-          open={showToast}
-          onClose={handleClose}
-          lastAddedItem={lastAddedItem}
-        />
-      )}
     </ShoppingCartContext.Provider>
   );
 };

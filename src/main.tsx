@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createRoutesFromElements, Route } from "react-router";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ToastOutlet from "./components/ToastOutlet";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
 import CheckoutPage from "./pages/CheckoutPage";
@@ -14,7 +15,7 @@ import { theme } from "./theme";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route element={<ToastOutlet />}>
       {/* <Route element={<AppLayout />}> */}
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title" element={<ProductPage />} />
@@ -38,27 +39,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </ThemeProvider>
   </React.StrictMode>
 );
-
-// function AppLayout() {
-//   return (
-//     <>
-//       <AppHeader />
-//       <main>
-//         <Outlet />
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
-
-// function CheckoutLayout() {
-//   return (
-//     <>
-//       <CheckoutHeader />
-//       <main>
-//         <Outlet />
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
