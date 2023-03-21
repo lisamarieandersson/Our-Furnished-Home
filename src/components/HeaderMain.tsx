@@ -1,17 +1,53 @@
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Container from "@mui/material/Container";
-import IconButton from "@mui/material/IconButton";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
+import { Theme } from "@emotion/react";
+import {
+  AppBar,
+  Box,
+  Button,
+  Container,
+  IconButton,
+  Menu,
+  MenuItem,
+  styled,
+  SxProps,
+  Toolbar,
+  Typography
+} from "@mui/material";
 import * as React from "react";
+import { Link, LinkProps } from "react-router-dom";
+import HeaderIcons from "./HeaderIcons";
 
-const pages = ["Products", "Brands", "Campaigns"];
+const pages = [
+  {
+    name: "Products",
+    link: "/",
+  },
+  { name: "Brands", 
+    link: "/underconstruction" },
+  {
+    name: "Campaigns",
+    link: "/underconstruction",
+  },
+];
 
-function ResponsiveAppBar() {
+const headerButtonsStyling: SxProps<Theme> = {
+  color: "black",
+  display: "block",
+  fontSize: "1.1rem",
+  textTransform: "none",
+  marginRight: "1.5rem",
+  "&:hover": {
+    textDecoration: "underline",
+    textDecorationThickness: "0.01rem",
+    textUnderlineOffset: "0.5rem",
+  },
+};
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
+
+function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -25,25 +61,37 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar elevation={0} position="static" sx={{ bgcolor: "#F1F0EF" }}>
-      <Container maxWidth="xl" sx={{ borderBottom: "0.01rem solid black" }}>
-        <Toolbar disableGutters>
-          {/* Här är hamburgermenyn */}
+    <AppBar
+      elevation={0}
+      position="static"
+      sx={{
+        background: (theme) => theme.palette.background.default,
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          borderBottom: "0.01rem solid black",
+        }}
+      >
+        <Toolbar
+          disableGutters
+          sx={{ display: "grid", gridTemplateColumns: "1fr auto 1fr" }}
+        >
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "flex", md: "none" },
             }}
           >
             <IconButton
-              aria-label="account of current user"
+              aria-label="show"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{ color: "black" }}
             >
               <Box
-                style={{ fontSize: "2.5rem" }}
+                sx={{ fontSize: { xs: "2.1rem", sm: "2.5rem" } }}
                 className="material-symbols-outlined"
               >
                 menu
@@ -68,83 +116,63 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    padding="0.5rem"
-                    fontFamily="Prata"
-                    textAlign="center"
-                  >
-                    {page}
-                  </Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <StyledLink to={page.link}>
+                    <Typography padding="0.5rem">{page.name}</Typography>
+                  </StyledLink>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
+                component={Link}
+                to={page.link}
                 onClick={handleCloseNavMenu}
-                sx={{
-                  my: 2,
-                  color: "black",
-                  display: "block",
-                  fontFamily: "Prata",
-                  fontSize: "1rem",
-                }}
+                sx={headerButtonsStyling}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
-          <Box sx={{ flexGrow: { xs: 0, md: 0.5 } }}>
-            <Box
-              component="img"
-              src="logo.png"
-              alt="logga"
-              sx={{
-                height: { xs: "6rem", sm: "7rem" },
-                marginTop: "0.5rem",
-                marginBottom: "1rem",
-              }}
-            />
+          <Box
+            sx={{
+              flexGrow: { xs: 0, md: 1 },
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <StyledLink to="/">
+              <Box
+                component="img"
+                src="/logohome.png"
+                alt="logga"
+                sx={{
+                  height: { xs: "6rem", sm: "7rem" },
+                  marginTop: "1rem",
+                  marginBottom: "1rem",
+                }}
+              />
+            </StyledLink>
           </Box>
           <Box
             sx={{
-              flexGrow: 1,
               display: "flex",
               justifyContent: "flex-end",
-              color: "black",
-              gap: { xs: 0, sm: "0.5rem" },
             }}
           >
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              admin_panel_settings
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              favorite
-            </Box>
-            <Box
-              className="material-symbols-outlined"
-              sx={{ fontSize: { xs: "2.5rem", md: "3rem" }, cursor: "pointer" }}
-            >
-              shopping_bag
-            </Box>
+            <HeaderIcons />
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+
+export default HeaderMain;

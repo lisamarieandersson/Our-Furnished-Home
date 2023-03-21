@@ -1,5 +1,4 @@
-import { Box, Divider, Grid, List, ListItem } from "@mui/material";
-import ListItemText from "@mui/material/ListItemText";
+import { Box, Divider, Grid, List, ListItem, ListItemText } from "@mui/material";
 import { Container, useTheme } from "@mui/system";
 
 function Footer() {
@@ -104,7 +103,7 @@ function Footer() {
                         width: '2rem'
                     }
                 }}>
-                    <img src="/public/facebook.png" alt="" />
+                    <img src="/facebook.png" alt="" />
                 </Box>
                 <Box sx={{
                     borderRadius: '100rem',
@@ -119,7 +118,7 @@ function Footer() {
                         width: '2rem'
                     }
                 }}>
-                    <img src="/public/contact.png" alt="" />
+                    <img src="/contact.png" alt="" />
                 </Box>
                 <Box sx={{
                     borderRadius: '100rem',
@@ -134,7 +133,7 @@ function Footer() {
                         width: '2rem'
                     }
                 }}>
-                    <img src="/public/instagram.png" alt="" />
+                    <img src="/instagram.png" alt="" />
                 </Box>
             </Container>
             <Container sx={{
@@ -142,7 +141,7 @@ function Footer() {
                 justifyContent: 'center',
                 fontFamily: 'Josefin Sans'
             }}>
-                <p>© 2023 The Furnished Home</p>
+                <p>© 2023 Our Furnished Home</p>
             </Container>
         </Container>
     );

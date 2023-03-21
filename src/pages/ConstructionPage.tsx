@@ -1,14 +1,12 @@
 import Footer from "../components/Footer";
 import HeaderMain from "../components/HeaderMain";
-import ProductGallery from "../components/ProductGallery";
+import UnderConstruction from "../components/UnderConstruction";
 
-function StartPage() {
+function ConstructionPage() {
   return (
     <div>
       <HeaderMain />
-      <main>
-        <ProductGallery />
-      </main>
+      <UnderConstruction />
       <footer>
         <Footer />
       </footer>
@@ -16,4 +14,4 @@ function StartPage() {
   );
 }
 
-export default StartPage;
+export default ConstructionPage;

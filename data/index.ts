@@ -28,7 +28,7 @@ export const products: Product[] = [
     brand: "Carl Hansen & Søn",
     title: "CH24 Wishbone Chair",
     description:
-      "To celebrate more than 70 years of collaboration between Carl Hansen & Søn and Hans J. Wegner, designer Ilse Crawford reinterprets the CH24 Wishbone Chair in a palette of nine soft yet complex colors.",
+      "To celebrate more than 70 years of collaboration between Carl Hansen & Søn and Hans J. Wegner, designer Ilse Crawford reinterprets the CH24 Wishbone Chair in a palette of nine soft yet complex colors. This one is in a grey tone called 'Clay'.",
     price: 6065,
     id: "d2",
   },
@@ -71,16 +71,16 @@ export const products: Product[] = [
   {
     image: "/assets/alessi-set-of-spoons.png",
     brand: "Alessi",
-    title: "Set of Spoons Il caffè/tè",
+    title: "Set of Spoons",
     description:
-      "An exceptional set of 8 tea spoons, where each piece is designed by a different, brilliant contemporary artist and together they work as a symbolic selection of modern architecture. The set is an ideal treasure both for design enthusiasts, as well as anyone who desires to include a piece of art in their daily rituals.",
+      "Alessi's Il caffè/tè - is an exceptional set of 8 tea and coffee spoons. Each piece is designed by a different, brilliant contemporary artist and together they work as a symbolic selection of modern architecture. The set is an ideal treasure both for design enthusiasts, as well as anyone who desires to include a piece of art in their daily rituals.",
     price: 850,
     id: "b3",
   },
   {
     image: "/assets/menu-scented-candle.png",
     brand: "Menu",
-    title: "Scented Candle, En Passant",
+    title: "Scented Candle",
     description:
       "En Passant” simply means “in passing.” A moment in time, like a stroll through the garden after spring rain. This purifying, floral scent invites you to stop and take in the scents of hyacinth, jasmine petals and geranium. The fragrance concludes with grounding arboreal notes of wild moss and cedarwood. 235 g.",
     price: 699,
