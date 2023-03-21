@@ -40,6 +40,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
           return item;
         })
       );
+    } else if (newQuantity === 0) {
+      removeItem(id);
     }
   };
 
@@ -71,7 +73,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const removeItem = (id: string) => {
-    // TODO: implement removeItem function
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   const clearCart = () => {
