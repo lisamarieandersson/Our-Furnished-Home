@@ -39,7 +39,8 @@ function Toast({
 }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
-      <Snackbar
+      <Snackbar 
+        data-cy="added-to-cart-toast"
         open={open}
         autoHideDuration={6000}
         onClose={onClose}
