@@ -7,9 +7,7 @@ function OrderConfirmation() {
   const { items } = useShoppingCart();
   
   return (
-    <Container
-      maxWidth= {isSmallScreen ? 'sm' : 'md'}
-    >
+    <Container maxWidth= {isSmallScreen ? 'sm' : 'md'}>
       <Box
         sx={{
           display: "flex",

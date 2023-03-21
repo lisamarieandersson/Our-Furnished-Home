@@ -1,4 +1,5 @@
 import { Button, Container, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Link } from 'react-router-dom';
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function PurchaseConfirmation() {
@@ -15,7 +16,7 @@ function PurchaseConfirmation() {
             gap: '1rem',
         }}>
             <Typography variant={isSmallScreen ? 'body1' : 'h6'}>TOTAL: {totalPrice} SEK</Typography>
-            <Button variant="contained">
+            <Button component={Link} to={'/orderconfirmation'} variant="contained">
                 <Typography variant={isSmallScreen ? 'body2' : 'body1'}>Confirm purchase</Typography>
             </Button>
         </Container>
