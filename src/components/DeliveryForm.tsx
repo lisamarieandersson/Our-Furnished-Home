@@ -104,6 +104,7 @@ function DeliveryForm() {
             error={Boolean(formik.touched.email && formik.errors.email)}
             helperText={formik.touched.email && formik.errors.email}
             data-cy="customer-email"
+            FormHelperTextProps={{ "data-cy": "customer-email-error" } as any}
           />
           <TextField
             id="name"
@@ -117,6 +118,7 @@ function DeliveryForm() {
             error={Boolean(formik.touched.name && formik.errors.name)}
             helperText={formik.touched.name && formik.errors.name}
             data-cy="customer-name"
+            FormHelperTextProps={{ "data-cy": "customer-name-error" } as any}
           />
           <TextField
             id="address"
@@ -130,6 +132,7 @@ function DeliveryForm() {
             error={Boolean(formik.touched.address && formik.errors.address)}
             helperText={formik.touched.address && formik.errors.address}
             data-cy="customer-address"
+            FormHelperTextProps={{ "data-cy": "customer-address-error" } as any}
           />
           <Container
             sx={{
@@ -153,6 +156,9 @@ function DeliveryForm() {
               )}
               helperText={formik.touched.postalcode && formik.errors.postalcode}
               data-cy="customer-zipcode"
+              FormHelperTextProps={
+                { "data-cy": "customer-address-error" } as any
+              }
               sx={{ flex: 1 }}
             />
             <TextField
@@ -167,6 +173,9 @@ function DeliveryForm() {
               error={Boolean(formik.touched.city && formik.errors.city)}
               helperText={formik.touched.city && formik.errors.city}
               data-cy="customer-city"
+              FormHelperTextProps={
+                { "data-cy": "customer-address-error" } as any
+              }
               sx={{ flex: 1 }}
             />
           </Container>
@@ -184,6 +193,7 @@ function DeliveryForm() {
             )}
             helperText={formik.touched.phonenumber && formik.errors.phonenumber}
             data-cy="customer-phone"
+            FormHelperTextProps={{ "data-cy": "customer-phone-error" } as any}
           />
           <Divider
             sx={{
