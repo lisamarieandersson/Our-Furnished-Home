@@ -4,18 +4,30 @@ import HeaderContinueShopping from "../components/HeaderContinueShopping";
 import PurchaseConfirmation from "../components/PurchaseConfirmation";
 import ShoppingBagCard from "../components/ShoppingBagCard";
 import ShoppingCartSummary from "../components/ShoppingCartSummary";
+import { useShoppingCart } from "../contexts/ShoppingCartContext";
+import EmptyBagPage from "./EmptyBagPage";
 
 function CheckoutPage() {
-  return (
-    <div>
+  const { totalItems } = useShoppingCart();
+
+  if (totalItems === 0) {
+    return (
+      <div>
+        <EmptyBagPage />
+      </div>
+    )
+  } else {
+    return (
+      <div>
       <HeaderContinueShopping />
       <ShoppingBagCard />
       <ShoppingCartSummary />
       <DeliveryForm />
       <PurchaseConfirmation />
       <Footer />
-    </div>
-  );
+      </div>
+    )
+  }
 }
 
 export default CheckoutPage;
