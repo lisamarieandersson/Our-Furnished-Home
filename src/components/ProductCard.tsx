@@ -70,20 +70,16 @@ const inputQuantityTextfieldStyle: SxProps<Theme> = {
 function ProductCard() {
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-  const { addItem, updateItemQuantity } = useShoppingCart();
+  const { addItem } = useShoppingCart();
   const [quantity, setQuantity] = useState(1);
 
-  const handleAddQuantity = () => {
-    if (product) {
-      setQuantity((prevQuantity) => prevQuantity + 1);
-      updateItemQuantity(product.id, quantity + 1);
-    }
+  const handleIncreaseQuantity = () => {
+    setQuantity(quantity + 1);
   };
 
-  const handleRemoveQuantity = () => {
-    if (product) {
-      setQuantity((prevQuantity) => (prevQuantity > 1 ? prevQuantity - 1 : 1));
-      updateItemQuantity(product.id, Math.max(quantity - 1, 1));
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
     }
   };
 
@@ -146,7 +142,7 @@ function ProductCard() {
                 >
                   <Button
                     variant="text"
-                    onClick={handleRemoveQuantity}
+                    onClick={handleDecreaseQuantity}
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
@@ -160,13 +156,16 @@ function ProductCard() {
                     inputProps={{ min: 1, style: { textAlign: "center" } }}
                     data-cy="product-quantity"
                     type="number"
+                    onChange={(e) =>
+                      setQuantity(Math.max(1, parseInt(e.target.value)))
+                    }
                     value={quantity}
                   >
                     {quantity}
                   </TextField>
                   <Button
                     variant="text"
-                    onClick={handleAddQuantity}
+                    onClick={handleIncreaseQuantity}
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
@@ -176,7 +175,7 @@ function ProductCard() {
                   </Button>
                 </Box>
                 <Button
-                  onClick={() => addItem({ ...product, quantity })}
+                  onClick={() => addItem({ ...product, quantity }, quantity)}
                   variant="contained"
                   data-cy="product-buy-button"
                 >
