@@ -60,7 +60,7 @@ function DeliveryForm() {
       createOrder(deliveryValues);
       navigate("/confirmation");
       // localStorage.clear();
-      clearCart();
+      // clearCart();
     },
   });
 
