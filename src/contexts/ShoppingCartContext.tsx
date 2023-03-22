@@ -84,10 +84,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
 
   const clearCart = () => {
     if (showOrderConfirmation) {
-      return <OrderConfirmationPage />;
-    } else {
-      setItems([]);
-      console.log("cart cleared");
+      return <OrderConfirmationPage /> && setItems([]);
     }
   };
 
