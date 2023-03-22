@@ -21,7 +21,7 @@ function ShoppingCartSummary() {
           justifyContent: "space-between",
           margin: "0 1rem",
         }}>
-        <Typography>Total items: </Typography>
+        <Typography sx={{ marginBottom: "0.5rem" }}>Total items: </Typography>
         <Typography>{totalItems}</Typography>
       </Box>
       <Box

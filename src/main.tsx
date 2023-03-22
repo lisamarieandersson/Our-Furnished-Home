@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createRoutesFromElements, Route } from "react-router";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ToastOutlet from "./components/ToastOutlet";
 import { OrderProvider } from "./contexts/OrderContext";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
@@ -16,11 +17,11 @@ import { theme } from "./theme";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
+    <Route element={<ToastOutlet />}>
       {/* <Route element={<AppLayout />}> */}
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title/:id" element={<ProductPage />} />
-      <Route path="orderconfirmation" element={<OrderConfirmationPage />} />
+      <Route path="confirmation" element={<OrderConfirmationPage />} />
       <Route path="*" element={<h3>404 Not Found</h3>} />
       <Route path="underconstruction" element={<ConstructionPage />} />
       {/* </Route> */}
@@ -43,27 +44,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </ThemeProvider>
   </React.StrictMode>
 );
-
-// function AppLayout() {
-//   return (
-//     <>
-//       <AppHeader />
-//       <main>
-//         <Outlet />
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
-
-// function CheckoutLayout() {
-//   return (
-//     <>
-//       <CheckoutHeader />
-//       <main>
-//         <Outlet />
-//       </main>
-//       <Footer />
-//     </>
-//   )
-// }
