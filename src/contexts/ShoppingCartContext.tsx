@@ -45,7 +45,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     }
   };
 
-  const addItem = (itemToAdd: CartItem, quantity: number = 1) => {
+  const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
     console.log("Adding product:", itemToAdd);
 
@@ -53,7 +53,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       const updatedItems = items.map((item) => {
         if (item.id === existingItem.id) {
           // If the id of the current item matches the id of the existing item, update the quantity
-          return { ...item, quantity: item.quantity + quantity };
+          return { ...item, quantity: item.quantity + itemToAdd.quantity };
         } else {
           return item;
         }
@@ -61,7 +61,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       setItems(updatedItems);
     } else {
       // If the item does not exist in the cart, add it as a new item
-      setItems([...items, { ...itemToAdd, quantity }]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
+      setItems([...items, itemToAdd]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
     }
     setLastAddedItem(itemToAdd);
 
