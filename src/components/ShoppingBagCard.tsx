@@ -6,7 +6,9 @@ import {
   CardMedia,
   Container,
   Divider,
+  SxProps,
   TextField,
+  Theme,
   Typography,
   useMediaQuery,
   useTheme,
@@ -18,6 +20,21 @@ function ShoppingBagCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { items, updateItemQuantity, removeItem } = useShoppingCart();
+
+  const inputQuantityTextfieldStyle: SxProps<Theme> = {
+    width: "2rem",
+    "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+      WebkitAppearance: "none",
+      margin: 0,
+    },
+    '& input[type="number"]': {
+      MozAppearance: "textfield",
+    },
+
+    "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+      display: "none",
+    },
+  };
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -139,22 +156,7 @@ function ShoppingBagCard() {
                   </Button>
                   <TextField
                     variant="standard"
-                    sx={{
-                      width: "2rem",
-                      "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button":
-                        {
-                          WebkitAppearance: "none",
-                          margin: 0,
-                        },
-                      '& input[type="number"]': {
-                        MozAppearance: "textfield",
-                      },
-
-                      "& .MuiInput-underline:before, & .MuiInput-underline:after":
-                        {
-                          display: "none",
-                        },
-                    }}
+                    sx={inputQuantityTextfieldStyle}
                     inputProps={{ min: 1, style: { textAlign: "center" } }}
                     data-cy="product-quantity"
                     type="number"
