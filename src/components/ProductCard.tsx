@@ -5,6 +5,7 @@ import {
   CardMedia,
   Container,
   Paper,
+  TextField,
   Typography,
 } from "@mui/material";
 import { styled, SxProps, Theme } from "@mui/material/styles";
@@ -44,6 +45,21 @@ const cardContentStyle: SxProps<Theme> = {
     width: "100%",
     height: "auto",
     paddingLeft: "2rem",
+  },
+};
+
+const inputQuantityTextfieldStyle: SxProps<Theme> = {
+  width: "2rem",
+  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+    WebkitAppearance: "none",
+    margin: 0,
+  },
+  '& input[type="number"]': {
+    MozAppearance: "textfield",
+  },
+
+  "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+    display: "none",
   },
 };
 
@@ -138,7 +154,16 @@ function ProductCard() {
                   >
                     -
                   </Button>
-                  <Typography variant="subtitle1">{quantity}</Typography>
+                  <TextField
+                    variant="standard"
+                    sx={inputQuantityTextfieldStyle}
+                    inputProps={{ min: 1, style: { textAlign: "center" } }}
+                    data-cy="product-quantity"
+                    type="number"
+                    value={quantity}
+                  >
+                    {quantity}
+                  </TextField>
                   <Button
                     variant="text"
                     onClick={handleAddQuantity}
