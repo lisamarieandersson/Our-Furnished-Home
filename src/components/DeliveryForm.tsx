@@ -59,8 +59,6 @@ function DeliveryForm() {
     onSubmit: (deliveryValues) => {
       createOrder(deliveryValues);
       navigate("/confirmation");
-      // localStorage.clear();
-      // clearCart();
     },
   });
 
