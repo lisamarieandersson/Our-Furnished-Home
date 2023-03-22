@@ -1,6 +1,15 @@
-import { Container, TextField } from "@mui/material";
+import {
+  Button,
+  Container,
+  InputAdornment,
+  TextField,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 const ProductSchema = Yup.object({
@@ -13,11 +22,16 @@ const ProductSchema = Yup.object({
   imageurl: Yup.string().required(
     "Please enter the url for the products image"
   ),
+  id: Yup.string().required("Please enter the product id"),
 });
 
 export type ProductValues = Yup.InferType<typeof ProductSchema>;
 
 function AddProductForm() {
+  const theme = useTheme();
+  const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const formik = useFormik<ProductValues>({
     initialValues: {
       title: "",
@@ -25,6 +39,7 @@ function AddProductForm() {
       description: "",
       brand: "",
       imageurl: "",
+      id: "",
     },
     validationSchema: ProductSchema,
     onSubmit: () => {
@@ -33,43 +48,108 @@ function AddProductForm() {
   });
 
   return (
-    <Container>
-      <Container>
+    <Container maxWidth={isSmallScreen ? "sm" : "md"}>
+      <Typography variant="h5" margin={"1rem"}>
+        Add a new product
+      </Typography>
+      <Container
+        sx={{
+          width: isSmallScreen ? "sm" : "md",
+          margin: "1rem",
+          display: "flex",
+          flexDirection: "column",
+          padding: "0px !important",
+        }}>
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
           data-cy="product-form">
-          <TextField
-            id="title"
-            type="title"
-            name="title"
-            label="Title"
-            value={formik.values.title}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={Boolean(formik.touched.title && formik.errors.title)}
-            helperText={formik.touched.title && formik.errors.title}
-            inputProps={{ "data-cy": "product-title" }}
-            FormHelperTextProps={{ "data-cy": "product-title-error" } as any}
-          />
-          <TextField
-            id="price"
-            type="price"
-            name="price"
-            label="price"
-            value={formik.values.price}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={Boolean(formik.touched.price && formik.errors.price)}
-            helperText={formik.touched.price && formik.errors.price}
-            inputProps={{ "data-cy": "product-price" }}
-            FormHelperTextProps={{ "data-cy": "product-price-error" } as any}
-          />
+          <Container
+            sx={{
+              padding: "0 !important",
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              gap: "1rem",
+            }}>
+            <TextField
+              id="title"
+              type="title"
+              name="title"
+              label="Title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={Boolean(formik.touched.title && formik.errors.title)}
+              helperText={formik.touched.title && formik.errors.title}
+              inputProps={{ "data-cy": "product-title" }}
+              FormHelperTextProps={{ "data-cy": "product-title-error" } as any}
+              sx={{ flex: 1 }}
+            />
+            <TextField
+              id="price"
+              type="price"
+              name="price"
+              label="Price"
+              value={formik.values.price}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={Boolean(formik.touched.price && formik.errors.price)}
+              helperText={formik.touched.price && formik.errors.price}
+              inputProps={{ "data-cy": "product-price" }}
+              FormHelperTextProps={{ "data-cy": "product-price-error" } as any}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="start">SEK</InputAdornment>
+                ),
+              }}
+              sx={{ flex: 1 }}
+            />
+          </Container>
+          <Container
+            sx={{
+              padding: "0 !important",
+              display: "flex",
+              flexDirection: "row",
+              width: "100%",
+              gap: "1rem",
+            }}>
+            <TextField
+              id="brand"
+              type="brand"
+              name="brand"
+              label="Brand"
+              value={formik.values.brand}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={Boolean(formik.touched.brand && formik.errors.brand)}
+              helperText={formik.touched.brand && formik.errors.brand}
+              inputProps={{ "data-cy": "product-brand" }}
+              FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
+              sx={{ flex: 1 }}
+            />
+            <TextField
+              id="imageurl"
+              type="imageurl"
+              name="imageurl"
+              label="Image URL"
+              value={formik.values.imageurl}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              error={Boolean(formik.touched.imageurl && formik.errors.imageurl)}
+              helperText={formik.touched.imageurl && formik.errors.imageurl}
+              inputProps={{ "data-cy": "product-imageurl" }}
+              FormHelperTextProps={
+                { "data-cy": "product-imageurl-error" } as any
+              }
+              sx={{ flex: 1 }}
+            />
+          </Container>
           <TextField
             id="description"
             type="description"
             name="description"
-            label="description"
+            label="Description"
             value={formik.values.description}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -82,32 +162,8 @@ function AddProductForm() {
               { "data-cy": "product-description-error" } as any
             }
           />
-          <TextField
-            id="brand"
-            type="brand"
-            name="brand"
-            label="brand"
-            value={formik.values.brand}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={Boolean(formik.touched.brand && formik.errors.brand)}
-            helperText={formik.touched.brand && formik.errors.brand}
-            inputProps={{ "data-cy": "product-brand" }}
-            FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
-          />
-          <TextField
-            id="imageurl"
-            type="imageurl"
-            name="imageurl"
-            label="imageurl"
-            value={formik.values.imageurl}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            error={Boolean(formik.touched.imageurl && formik.errors.imageurl)}
-            helperText={formik.touched.imageurl && formik.errors.imageurl}
-            inputProps={{ "data-cy": "product-imageurl" }}
-            FormHelperTextProps={{ "data-cy": "product-imageurl-error" } as any}
-          />
+
+          <Button variant="contained">Add product</Button>
         </form>
       </Container>
     </Container>
