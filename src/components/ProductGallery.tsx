@@ -14,7 +14,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { Link } from "react-router-dom";
 import { products } from "../../data/index";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
-import { createSlug } from "./utils";
+import { createSlug } from "./slug/utils";
 
 /*  Styling */
 
