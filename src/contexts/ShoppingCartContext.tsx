@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
+import OrderConfirmationPage from "../pages/OrderConfirmationPage";
 
 // Define Props interface to enforce the type of the `children` prop
 interface Props {
@@ -18,6 +19,8 @@ type ShoppingCart = {
   // Toast
   lastAddedItem?: CartItem;
   clearLastAddedItem: () => void;
+  showOrderConfirmation: boolean;
+  setShowOrderConfirmation: (value: boolean) => void;
 };
 
 // Create a new context object with an empty shopping cart object as its initial value
@@ -29,6 +32,8 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
   const [lastAddedItem, setLastAddedItem] = useState<CartItem>();
+  const [showOrderConfirmation, setShowOrderConfirmation] =
+    useState<boolean>(false);
 
   const updateItemQuantity = (id: string, newQuantity: number) => {
     if (newQuantity >= 1) {
@@ -63,6 +68,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       // If the item does not exist in the cart, add it as a new item
       setItems([...items, { ...itemToAdd, quantity }]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
     }
+    setShowOrderConfirmation(true);
     setLastAddedItem(itemToAdd);
 
     console.log("adding product");
@@ -77,7 +83,9 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const clearCart = () => {
-    // TODO: implement clearCart function
+    if (showOrderConfirmation) {
+      return <OrderConfirmationPage /> && setItems([]);
+    }
   };
 
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
@@ -98,6 +106,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     updateItemQuantity,
     lastAddedItem,
     clearLastAddedItem,
+    showOrderConfirmation,
+    setShowOrderConfirmation,
   };
   // Render the child components wrapped inside the ShoppingCartContext.Provider
   return (
