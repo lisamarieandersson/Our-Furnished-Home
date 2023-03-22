@@ -7,7 +7,8 @@ import { useShoppingCart } from "../contexts/ShoppingCartContext";
 function UserInfoOrder() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { items } = useShoppingCart();
+  const { items, clearCart, clearLastAddedItem, setShowOrderConfirmation } =
+    useShoppingCart();
   const { order } = useOrder();
 
   return (
@@ -51,7 +52,15 @@ function UserInfoOrder() {
         </Typography>
         <Typography>{order?.phonenumber}</Typography>
       </Container>
-      <Button component={Link} to={"/"} variant="contained">
+      <Button
+        component={Link}
+        to={"/"}
+        onClick={() => {
+          clearLastAddedItem();
+          setShowOrderConfirmation(false);
+          clearCart();
+        }}
+        variant="contained">
         Continue to shop
       </Button>
     </Container>
