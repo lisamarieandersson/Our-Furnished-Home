@@ -85,10 +85,10 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   const clearCart = () => {
     if (showOrderConfirmation) {
       return <OrderConfirmationPage />;
+    } else {
+      setItems([]);
+      console.log("cart cleared");
     }
-    // Set the items state to an empty array
-    setItems([]);
-    console.log("cart cleared");
   };
 
   const totalItems = items.reduce((total, item) => total + item.quantity, 0);
