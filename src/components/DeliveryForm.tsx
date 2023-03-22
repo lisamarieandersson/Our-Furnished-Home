@@ -20,10 +20,6 @@ const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/;
 const DeliverySchema = Yup.object({
   email: Yup.string()
     .email("Please enter an valid email address")
-    .matches(
-      /^[^@\s]+@[^\s]+\.[^\s]{2,}$/,
-      "Please enter a valid email address"
-    )
     .required("Please enter an email address"),
   name: Yup.string().required("Please enter a name"),
   address: Yup.string().required("Please enter your address"),
