@@ -43,6 +43,9 @@ function HeaderIcons() {
           to="/checkout"
           data-cy="cart-link"
           className="material-symbols-outlined"
+          onClick={() => {
+            window.scroll(0, 0);
+          }}
           sx={{
             fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" },
             color: (theme) => theme.palette.text.primary,
