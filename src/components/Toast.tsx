@@ -52,7 +52,7 @@ function Toast({
           onClose={onClose}
           severity="success"
         >
-          {"Product added to bag"}
+          {"Product has been added"}
           <Box
             sx={{
               display: { xs: "none", sm: "flex" },
