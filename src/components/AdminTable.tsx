@@ -117,6 +117,9 @@ const rows = [
 function AdminTable() {
   return (
     <Container maxWidth="lg">
+      <Box sx={{ display: "flex", justifyContent: "center", marginTop: "2rem", marginBottom: "1rem" }}>
+        <h2>Admin</h2>
+      </Box>
       <TableContainer component={Box}>
         <Table aria-label="collapsible table">
           <TableHead>
