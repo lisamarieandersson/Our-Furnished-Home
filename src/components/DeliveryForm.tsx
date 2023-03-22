@@ -164,7 +164,7 @@ function DeliveryForm() {
               type="city"
               name="city"
               label="City"
-              autoComplete="home city"
+              autoComplete="city"
               value={formik.values.city}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}

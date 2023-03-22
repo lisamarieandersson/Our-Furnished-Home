@@ -10,10 +10,14 @@ function OrderConfirmationPage() {
   return (
     <div>
       <HeaderMain />
-      <OrderConfirmation />
-      <ShoppingCartSummary />
-      <UserInfoOrder />
-      <Footer />
+      <main>
+        <OrderConfirmation />
+        <ShoppingCartSummary />
+        <UserInfoOrder />
+      </main>
+      <footer>
+        <Footer />
+      </footer>
     </div>
   );
 }
