@@ -29,7 +29,9 @@ function EmptyCart() {
         }}
       >
         <Typography variant={isSmallScreen ? "h6" : "h5"}>OOPS...</Typography>
-        <Typography>Your shopping bag is empty!</Typography>
+        <Typography sx={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
+          Your shopping bag is empty!
+        </Typography>
         <Button
           component={Link}
           to="/"
