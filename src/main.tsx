@@ -7,6 +7,7 @@ import ToastOutlet from "./components/ToastOutlet";
 import { OrderProvider } from "./contexts/OrderContext";
 import { ShoppingCartProvider } from "./contexts/ShoppingCartContext";
 import "./index.css";
+import AdminPage from "./pages/AdminPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ConstructionPage from "./pages/ConstructionPage";
 import EmptyBagPage from "./pages/EmptyBagPage";
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title/:id" element={<ProductPage />} />
       <Route path="confirmation" element={<OrderConfirmationPage />} />
+      <Route path="admin" element={<AdminPage />} />
       <Route path="*" element={<h3>404 Not Found</h3>} />
       <Route path="underconstruction" element={<ConstructionPage />} />
       {/* </Route> */}
