@@ -10,7 +10,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { Product } from "../../data";
+import { Product, products } from "../../data";
 
 type Props = {
   product: Product;
@@ -38,19 +38,17 @@ function AdminProductRows(props: Props) {
         <TableCell align="left">{props.product.price}</TableCell>
       </TableRow>
       <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+        <TableCell sx={{ paddingBottom: 0, paddingTop: 0, }} colSpan={5}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <Typography variant="h6" gutterBottom component="div">
-                History
-              </Typography>
-              <Table size="small" aria-label="purchases">
+              <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Date</TableCell>
-                    <TableCell>Customer</TableCell>
-                    <TableCell align="right">Amount</TableCell>
-                    <TableCell align="right">Total price ($)</TableCell>
+                    <TableCell>Image</TableCell>
+                    <TableCell>Id</TableCell>
+                    <TableCell align="right">Title</TableCell>
+                    <TableCell align="right">Brand</TableCell>
+                    <TableCell align="right">Price</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -58,9 +56,10 @@ function AdminProductRows(props: Props) {
                     <TableCell component="th" scope="row">
                       historydate
                     </TableCell>
-                    <TableCell>id</TableCell>
-                    <TableCell align="right">amount</TableCell>
-                    <TableCell align="right">matte</TableCell>
+                    <TableCell>{props.product.id}</TableCell>
+                    <TableCell align="right">{props.product.title}</TableCell>
+                    <TableCell align="right">{props.product.brand}</TableCell>
+                    <TableCell align="right">{props.product.price} SEK</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
