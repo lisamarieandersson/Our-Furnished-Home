@@ -6,13 +6,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useOrder } from "../contexts/OrderContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function ShoppingCartSummary() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { order } = useOrder();
   const { totalItems, totalPrice } = useShoppingCart();
 
   return (
@@ -22,7 +20,8 @@ function ShoppingCartSummary() {
           display: "flex",
           justifyContent: "space-between",
           margin: "0 1rem",
-        }}>
+        }}
+      >
         <Typography sx={{ marginBottom: "0.5rem" }}>Total items: </Typography>
         <Typography>{totalItems}</Typography>
       </Box>
@@ -31,7 +30,8 @@ function ShoppingCartSummary() {
           display: "flex",
           justifyContent: "space-between",
           margin: "0 1rem",
-        }}>
+        }}
+      >
         <Typography>Total price: </Typography>
         <Typography data-cy="total-price">{totalPrice} SEK</Typography>
       </Box>
@@ -40,7 +40,8 @@ function ShoppingCartSummary() {
           backgroundColor: theme.palette.primary.main,
           marginBottom: "2rem",
           marginTop: "1rem",
-        }}></Divider>
+        }}
+      ></Divider>
     </Container>
   );
 }

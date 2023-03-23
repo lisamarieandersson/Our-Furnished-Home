@@ -1,4 +1,3 @@
-import { useTheme } from "@mui/material/styles";
 import Footer from "../components/Footer";
 import HeaderMain from "../components/HeaderMain";
 import OrderConfirmation from "../components/OrderConfirmation";
@@ -8,13 +7,11 @@ import { useOrder } from "../contexts/OrderContext";
 
 function OrderConfirmationPage() {
   const { order } = useOrder();
-  const theme = useTheme();
 
   if (!order) {
     // visa alt ui eller gå till startsida
-
+    // return <Navigate to="/" />;
     return <p>Ingen order finns</p>;
-    //<Navigate to="/" />;
   }
 
   return (
