@@ -1,5 +1,4 @@
 import { useTheme } from "@mui/material/styles";
-import { Navigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import HeaderMain from "../components/HeaderMain";
 import OrderConfirmation from "../components/OrderConfirmation";
@@ -13,8 +12,9 @@ function OrderConfirmationPage() {
 
   if (!order) {
     // visa alt ui eller gå till startsida
-    return <Navigate to="/" />;
-    //  <p>Ingen order finns</p>;
+
+    return <p>Ingen order finns</p>;
+    //<Navigate to="/" />;
   }
 
   return (
