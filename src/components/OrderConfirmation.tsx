@@ -26,7 +26,8 @@ function OrderConfirmation({ order }: Props) {
           display: "flex",
           justifyContent: "space-between",
           margin: "1rem",
-        }}>
+        }}
+      >
         <Typography variant="h6">Your order</Typography>
         <Typography variant="h6">{order?.orderNumber}</Typography>
       </Box>
@@ -34,7 +35,8 @@ function OrderConfirmation({ order }: Props) {
         sx={{
           backgroundColor: theme.palette.primary.main,
           marginBottom: "1rem",
-        }}></Divider>
+        }}
+      ></Divider>
       {order.products.map((CartItem) => (
         <Card
           key={CartItem.id}
@@ -43,7 +45,8 @@ function OrderConfirmation({ order }: Props) {
             margin: "1rem",
             boxShadow: "none",
             position: "relative",
-          }}>
+          }}
+        >
           <CardMedia
             component="img"
             image={CartItem.image}
@@ -56,12 +59,14 @@ function OrderConfirmation({ order }: Props) {
               padding: "0px !important",
               display: "flex",
               flexDirection: "column",
-            }}>
+            }}
+          >
             <Container
               sx={{
                 padding: "0px !important",
                 marginTop: isSmallScreen ? "0.8rem" : "1rem",
-              }}>
+              }}
+            >
               <CardContent
                 sx={{
                   display: "flex",
@@ -70,12 +75,13 @@ function OrderConfirmation({ order }: Props) {
                   padding: "0px !important",
                   marginLeft: "1rem",
                   marginTop: isSmallScreen ? "0.2rem" : "2rem",
-                }}>
+                }}
+              >
                 <Typography variant={isSmallScreen ? "body1" : "h6"}>
                   {CartItem.title}
                 </Typography>
                 <Typography variant={isSmallScreen ? "body2" : "body1"}>
-                  {CartItem.price} SEK
+                  {CartItem.price * CartItem.quantity} SEK
                 </Typography>
               </CardContent>
             </Container>
@@ -83,7 +89,8 @@ function OrderConfirmation({ order }: Props) {
               sx={{
                 padding: "0px !important",
                 marginLeft: "1rem",
-              }}>
+              }}
+            >
               <Typography fontSize={"0.8rem"}>
                 Quantity: {CartItem.quantity}
               </Typography>
@@ -95,7 +102,8 @@ function OrderConfirmation({ order }: Props) {
         sx={{
           backgroundColor: theme.palette.primary.main,
           marginBottom: "1rem",
-        }}></Divider>
+        }}
+      ></Divider>
     </Container>
   );
 }
