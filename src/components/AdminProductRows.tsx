@@ -77,9 +77,9 @@ function AdminProductRows(props: Props) {
               <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center">Id</TableCell>
-                    <TableCell align="center">Title</TableCell>
-                    <TableCell align="center">Price</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Id</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Title</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Price</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -91,13 +91,13 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ width: "33%" }}>
+                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
-                    <TableCell align="center" sx={{ width: "33%" }}>
+                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
-                    <TableCell align="center">Brand</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Brand</TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell align="center">
