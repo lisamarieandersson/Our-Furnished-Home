@@ -5,7 +5,9 @@ import HeaderContinueShopping from "../components/HeaderContinueShopping";
 function EmptyBagPage() {
   return (
     <div>
-      <HeaderContinueShopping />
+      <header>
+        <HeaderContinueShopping />
+      </header>
       <main>
         <EmptyCart />
       </main>
