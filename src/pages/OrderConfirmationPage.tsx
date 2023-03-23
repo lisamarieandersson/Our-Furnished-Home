@@ -9,7 +9,9 @@ function OrderConfirmationPage() {
   const theme = useTheme();
   return (
     <div>
-      <HeaderMain />
+      <header>
+        <HeaderMain />
+      </header>
       <main>
         <OrderConfirmation />
         <ShoppingCartSummary />
