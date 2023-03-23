@@ -22,7 +22,8 @@ function ShoppingCartSummary() {
           display: "flex",
           justifyContent: "space-between",
           margin: "0 1rem",
-        }}>
+        }}
+      >
         <Typography sx={{ marginBottom: "0.5rem" }}>Total items: </Typography>
         <Typography>{totalItems}</Typography>
       </Box>
@@ -31,7 +32,8 @@ function ShoppingCartSummary() {
           display: "flex",
           justifyContent: "space-between",
           margin: "0 1rem",
-        }}>
+        }}
+      >
         <Typography>Total price: </Typography>
         <Typography data-cy="total-price">{totalPrice} SEK</Typography>
       </Box>
@@ -40,7 +42,8 @@ function ShoppingCartSummary() {
           backgroundColor: theme.palette.primary.main,
           marginBottom: "2rem",
           marginTop: "1rem",
-        }}></Divider>
+        }}
+      ></Divider>
     </Container>
   );
 }
