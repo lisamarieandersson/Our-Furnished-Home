@@ -5,7 +5,9 @@ import ProductCard from "../components/ProductCard";
 function ProductPage() {
   return (
     <div>
-      <HeaderMain />
+      <header>
+        <HeaderMain />
+      </header>
       <main>
         <ProductCard />
       </main>
