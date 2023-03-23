@@ -1,7 +1,7 @@
 import DeliveryForm from "../components/DeliveryForm";
 import Footer from "../components/Footer";
 import HeaderContinueShopping from "../components/HeaderContinueShopping";
-import ShoppingBagCard from "../components/ShoppingBagCard";
+import ShoppingCartCard from "../components/ShoppingCartCard";
 import ShoppingCartSummary from "../components/ShoppingCartSummary";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import EmptyBagPage from "./EmptyBagPage";
@@ -22,7 +22,7 @@ function CheckoutPage() {
           <HeaderContinueShopping />
         </header>
         <main>
-          <ShoppingBagCard />
+          <ShoppingCartCard />
           <ShoppingCartSummary />
           <DeliveryForm />
         </main>
