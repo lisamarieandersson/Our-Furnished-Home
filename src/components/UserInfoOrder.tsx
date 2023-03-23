@@ -1,15 +1,15 @@
 import { Button, Typography, useMediaQuery } from "@mui/material";
 import { Container, useTheme } from "@mui/system";
 import { Link } from "react-router-dom";
-import { useOrder } from "../contexts/OrderContext";
-import { useShoppingCart } from "../contexts/ShoppingCartContext";
+import { Order } from "../contexts/OrderContext";
 
-function UserInfoOrder() {
+interface Props {
+  order: Order;
+}
+
+function UserInfoOrder({ order }: Props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { items, clearCart, clearLastAddedItem, setShowOrderConfirmation } =
-    useShoppingCart();
-  const { order } = useOrder();
 
   return (
     <Container
@@ -52,15 +52,7 @@ function UserInfoOrder() {
         </Typography>
         <Typography>{order?.phonenumber}</Typography>
       </Container>
-      <Button
-        component={Link}
-        to={"/"}
-        onClick={() => {
-          clearLastAddedItem();
-          setShowOrderConfirmation(false);
-          clearCart();
-        }}
-        variant="contained">
+      <Button component={Link} to={"/"} variant="contained">
         Continue to shop
       </Button>
     </Container>

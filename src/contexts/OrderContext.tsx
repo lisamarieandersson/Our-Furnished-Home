@@ -8,7 +8,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-interface Order {
+export interface Order {
   orderNumber: string;
   products: CartItem[];
   email: string;
@@ -17,6 +17,8 @@ interface Order {
   city: string;
   postalcode: string;
   phonenumber: string;
+  totalItems: number;
+  totalPrice: number;
 }
 
 type OrderContextType = {
@@ -37,7 +39,8 @@ export const useOrder = () => useContext(OrderContext);
 // Create a new component that provides the order context to its child components
 export const OrderProvider = ({ children }: Props) => {
   const [order, setOrder] = useState<Order>();
-  const { items, totalPrice } = useShoppingCart();
+  const { items, totalItems, totalPrice, clearCart, clearLastAddedItem } =
+    useShoppingCart();
 
   // Define a function to create the order object based on the current shopping cart state and delivery address
   const createOrder = (deliveryValues: DeliveryValues) => {
@@ -46,10 +49,17 @@ export const OrderProvider = ({ children }: Props) => {
     const newOrder: Order = {
       orderNumber,
       products,
+      totalItems,
+      totalPrice,
       ...deliveryValues,
     }; // Create the order object with the generated order number, products, and delivery address
 
     setOrder(newOrder); // Update the order state with the new order
+    console.log("Order created, clearing cart!!");
+    clearCart();
+    // clearLastAddedItem();
+    // setShowOrderConfirmation(false);
+    // show???
   };
 
   // Create an object with all necessary properties and methods for the OrderContext

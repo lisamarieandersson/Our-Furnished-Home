@@ -6,14 +6,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useOrder } from "../contexts/OrderContext";
-import { useShoppingCart } from "../contexts/ShoppingCartContext";
+import { Order } from "../contexts/OrderContext";
 
-function ShoppingCartSummary() {
+interface Props {
+  order: Order;
+}
+
+function OrderSummary({ order }: Props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { order } = useOrder();
-  const { totalItems, totalPrice } = useShoppingCart();
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -24,7 +25,7 @@ function ShoppingCartSummary() {
           margin: "0 1rem",
         }}>
         <Typography sx={{ marginBottom: "0.5rem" }}>Total items: </Typography>
-        <Typography>{totalItems}</Typography>
+        <Typography>{order.totalItems}</Typography>
       </Box>
       <Box
         sx={{
@@ -33,7 +34,7 @@ function ShoppingCartSummary() {
           margin: "0 1rem",
         }}>
         <Typography>Total price: </Typography>
-        <Typography data-cy="total-price">{totalPrice} SEK</Typography>
+        <Typography data-cy="total-price">{order.totalPrice} SEK</Typography>
       </Box>
       <Divider
         sx={{
@@ -45,4 +46,4 @@ function ShoppingCartSummary() {
   );
 }
 
-export default ShoppingCartSummary;
+export default OrderSummary;
