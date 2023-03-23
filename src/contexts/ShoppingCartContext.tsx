@@ -10,7 +10,7 @@ interface Props {
 
 type ShoppingCart = {
   items: CartItem[];
-  addItem: (item: CartItem) => void;
+  addItem: (item: CartItem, quantity: number) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
   totalItems: number;

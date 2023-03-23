@@ -9,13 +9,10 @@ const iconStyle: SxProps<Theme> = {
   padding: { xs: "0rem", md: "0.3rem" },
 };
 
-// const StyledLink = styled(Link)<LinkProps>(() => ({
-//   textDecoration: "none",
-//   color: "inherit",
-// }));
-
 function HeaderIcons() {
   const { items } = useShoppingCart();
+
+  const totalQuantity = items.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <Box
@@ -32,7 +29,7 @@ function HeaderIcons() {
       </Box>
       <Badge
         data-cy="cart-items-count-badge"
-        badgeContent={items.length}
+        badgeContent={totalQuantity}
         color="primary"
         sx={{
           "& .MuiBadge-badge": {
@@ -46,6 +43,9 @@ function HeaderIcons() {
           to="/checkout"
           data-cy="cart-link"
           className="material-symbols-outlined"
+          onClick={() => {
+            window.scroll(0, 0);
+          }}
           sx={{
             fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" },
             color: (theme) => theme.palette.text.primary,

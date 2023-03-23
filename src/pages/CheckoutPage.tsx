@@ -18,7 +18,9 @@ function CheckoutPage() {
   } else {
     return (
       <div>
-        <HeaderContinueShopping />
+        <header>
+          <HeaderContinueShopping />
+        </header>
         <main>
           <ShoppingBagCard />
           <ShoppingCartSummary />
