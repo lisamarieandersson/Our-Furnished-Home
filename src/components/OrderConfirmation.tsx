@@ -9,14 +9,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useOrder } from "../contexts/OrderContext";
-import { useShoppingCart } from "../contexts/ShoppingCartContext";
+import { Order } from "../contexts/OrderContext";
 
-function OrderConfirmation() {
+interface Props {
+  order: Order;
+}
+
+function OrderConfirmation({ order }: Props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { items } = useShoppingCart();
-  const { order } = useOrder();
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -34,7 +35,7 @@ function OrderConfirmation() {
           backgroundColor: theme.palette.primary.main,
           marginBottom: "1rem",
         }}></Divider>
-      {items.map((CartItem) => (
+      {order.products.map((CartItem) => (
         <Card
           key={CartItem.id}
           sx={{
