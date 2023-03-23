@@ -5,7 +5,9 @@ import UnderConstruction from "../components/UnderConstruction";
 function ConstructionPage() {
   return (
     <div>
-      <HeaderMain />
+      <header>
+        <HeaderMain />
+      </header>
       <main>
         <UnderConstruction />
       </main>
