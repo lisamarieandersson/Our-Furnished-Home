@@ -6,13 +6,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useOrder } from "../contexts/OrderContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
 function ShoppingCartSummary() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const { order } = useOrder();
   const { totalItems, totalPrice } = useShoppingCart();
 
   return (
