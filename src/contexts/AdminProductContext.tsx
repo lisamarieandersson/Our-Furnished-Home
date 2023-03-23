@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { ContextType, createContext, useContext, useState } from "react";
 import { Product } from "../../data";
 
 // Define Props interface to enforce the type of the `children` prop
@@ -16,19 +16,19 @@ interface Item /**Borde kanske ändra, men till vad?? */ {
   //   products: CartItem[];
 }
 
-type ContextType = {
+type ProductContextType = {
   items: Product[];
   addItem: (item: Item) => void;
   removeItem: (id: string) => void;
   editItem: (id: string, newName: string) => void;
 };
 
-const initialContext: ContextType = {
+const ProductContext = createContext<ProductContextType>({
   items: [],
   addItem: () => {},
   removeItem: () => {},
   editItem: () => {},
-};
+});
 
 export const MyContext = createContext<ContextType>(initialContext);
 
