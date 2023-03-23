@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { Product as mockedProducts } from "../../data";
 import { ProductValues } from "../components/AddProductForm";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
@@ -23,7 +23,6 @@ type ProductContextType = {
   addProduct: (product: Product) => void;
   removeProduct: (id: string) => void;
   editProduct: (id: string, newName: string) => void;
-  createProduct: (productValues: ProductValues) => void;
   product?: Product;
 };
 
@@ -32,7 +31,6 @@ const ProductContext = createContext<ProductContextType>({
   addProduct: () => {},
   removeProduct: () => {},
   editProduct: () => {},
-  createProduct: () => {},
 });
 
 // Create a custom hook to easier use the order
@@ -40,10 +38,15 @@ export const useProduct = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }: Props) => {
   const [items, setProducts] = useLocalStorageState<Product[]>([], "product");
-  const [product, setProduct] = useState<Product>();
+  // const [product, setProduct] = useState<Product>();
 
-  const addProduct = (item: Product) => {
-    setProducts([...items, item]);
+  const addProduct = (productValues: ProductValues) => {
+    const products = items;
+    const newProduct: Product = {
+      ...productValues,
+    };
+
+    setProducts([...items, newProduct]);
   };
 
   const removeProduct = (id: string) => {
@@ -56,21 +59,11 @@ export const ProductProvider = ({ children }: Props) => {
     );
   };
 
-  const createProduct = (productValues: ProductValues) => {
-    const products = items;
-    const newProduct: Product = {
-      ...productValues,
-    };
-
-    setProduct(newProduct);
-  };
-
   const productContext: ProductContextType = {
     items,
     addProduct,
     removeProduct,
     editProduct,
-    createProduct,
   };
 
   return (

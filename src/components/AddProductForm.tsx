@@ -30,7 +30,7 @@ function AddProductForm() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { createProduct } = useProduct();
+  const { addProduct } = useProduct();
 
   const formik = useFormik<ProductValues>({
     initialValues: {
@@ -43,7 +43,7 @@ function AddProductForm() {
     },
     validationSchema: ProductSchema,
     onSubmit: (productValues) => {
-      createProduct(productValues);
+      addProduct(productValues);
     },
   });
 
