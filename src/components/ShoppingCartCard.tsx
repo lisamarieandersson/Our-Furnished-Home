@@ -16,7 +16,7 @@ import {
 import { Box } from "@mui/system";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
-function ShoppingBagCard() {
+function ShoppingCartCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { items, updateItemQuantity, removeItem } = useShoppingCart();
@@ -228,4 +228,4 @@ function ShoppingBagCard() {
   );
 }
 
-export default ShoppingBagCard;
+export default ShoppingCartCard;

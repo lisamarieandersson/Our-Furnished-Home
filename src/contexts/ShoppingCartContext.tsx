@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { CartItem } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
-import OrderConfirmationPage from "../pages/OrderConfirmationPage";
+import { useTotal } from "../hooks/useTotal";
 
 // Define Props interface to enforce the type of the `children` prop
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 type ShoppingCart = {
   items: CartItem[];
-  addItem: (item: CartItem, quantity: number) => void;
+  addItem: (item: CartItem) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
   totalItems: number;
@@ -19,8 +19,6 @@ type ShoppingCart = {
   // Toast
   lastAddedItem?: CartItem;
   clearLastAddedItem: () => void;
-  showOrderConfirmation: boolean;
-  setShowOrderConfirmation: (value: boolean) => void;
 };
 
 // Create a new context object with an empty shopping cart object as its initial value
@@ -32,8 +30,7 @@ export const useShoppingCart = () => useContext(ShoppingCartContext);
 export const ShoppingCartProvider = ({ children }: Props) => {
   const [items, setItems] = useLocalStorageState<CartItem[]>([], "cart");
   const [lastAddedItem, setLastAddedItem] = useState<CartItem>();
-  const [showOrderConfirmation, setShowOrderConfirmation] =
-    useState<boolean>(false);
+  const { totalItems, totalPrice } = useTotal(items);
 
   const updateItemQuantity = (id: string, newQuantity: number) => {
     if (newQuantity >= 1) {
@@ -50,7 +47,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     }
   };
 
-  const addItem = (itemToAdd: CartItem, quantity: number = 1) => {
+  const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
     console.log("Adding product:", itemToAdd);
 
@@ -58,7 +55,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       const updatedItems = items.map((item) => {
         if (item.id === existingItem.id) {
           // If the id of the current item matches the id of the existing item, update the quantity
-          return { ...item, quantity: item.quantity + quantity };
+          return { ...item, quantity: item.quantity + itemToAdd.quantity };
         } else {
           return item;
         }
@@ -66,9 +63,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
       setItems(updatedItems);
     } else {
       // If the item does not exist in the cart, add it as a new item
-      setItems([...items, { ...itemToAdd, quantity }]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
+      setItems([...items, itemToAdd]); // Create a new array of items that includes the existing items and the new item, and update the items in the cart with the new array
     }
-    setShowOrderConfirmation(true);
     setLastAddedItem(itemToAdd);
 
     console.log("adding product");
@@ -83,17 +79,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
   };
 
   const clearCart = () => {
-    if (showOrderConfirmation) {
-      return <OrderConfirmationPage /> && setItems([]);
-    }
+    setItems([]);
   };
-
-  const totalItems = items.reduce((total, item) => total + item.quantity, 0);
-  console.log(totalItems);
-  const totalPrice = items.reduce(
-    (total, item) => total + item.price * item.quantity,
-    0
-  );
 
   // Create a shopping cart object with all necessary properties and methods
   const shoppingCart: ShoppingCart = {
@@ -106,8 +93,6 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     updateItemQuantity,
     lastAddedItem,
     clearLastAddedItem,
-    showOrderConfirmation,
-    setShowOrderConfirmation,
   };
   // Render the child components wrapped inside the ShoppingCartContext.Provider
   return (

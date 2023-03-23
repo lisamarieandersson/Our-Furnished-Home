@@ -1,21 +1,31 @@
 import { useTheme } from "@mui/material/styles";
+import { Navigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import HeaderMain from "../components/HeaderMain";
 import OrderConfirmation from "../components/OrderConfirmation";
-import ShoppingCartSummary from "../components/ShoppingCartSummary";
+import OrderSummary from "../components/OrderSummary";
 import UserInfoOrder from "../components/UserInfoOrder";
+import { useOrder } from "../contexts/OrderContext";
 
 function OrderConfirmationPage() {
+  const { order } = useOrder();
   const theme = useTheme();
+
+  if (!order) {
+    // visa alt ui eller gå till startsida
+    return <Navigate to="/" />;
+    //  <p>Ingen order finns</p>;
+  }
+
   return (
     <div>
       <header>
         <HeaderMain />
       </header>
       <main>
-        <OrderConfirmation />
-        <ShoppingCartSummary />
-        <UserInfoOrder />
+        <OrderConfirmation order={order} />
+        <OrderSummary order={order} />
+        <UserInfoOrder order={order} />
       </main>
       <footer>
         <Footer />

@@ -21,8 +21,7 @@ function PurchaseConfirmation() {
         justifyContent: "center",
         alignItems: "center",
         gap: "1rem",
-      }}
-    >
+      }}>
       <Typography variant={isSmallScreen ? "body1" : "h6"}>
         TOTAL: {totalPrice} SEK
       </Typography>
@@ -31,8 +30,7 @@ function PurchaseConfirmation() {
         type="submit"
         onClick={() => {
           window.scroll(0, 0);
-        }}
-      >
+        }}>
         <Typography variant={isSmallScreen ? "body2" : "body1"}>
           Confirm purchase
         </Typography>
