@@ -29,9 +29,15 @@ function AdminTable() {
           <TableHead>
             <TableRow>
               <TableCell />
-              <TableCell>Id</TableCell>
-              <TableCell align="center">Title</TableCell>
-              <TableCell align="left">Price</TableCell>
+              <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
+                Id
+              </TableCell>
+              <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
+                Title
+              </TableCell>
+              <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
+                Price
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
