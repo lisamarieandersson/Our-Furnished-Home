@@ -1,6 +1,7 @@
 import {
   Box,
   Container,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -24,7 +25,7 @@ function AdminTable() {
       >
         <h2>Admin</h2>
       </Box>
-      <TableContainer component={Box}>
+      <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
