@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { useProduct } from "../contexts/AdminProductContext";
 
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
@@ -19,9 +20,7 @@ const ProductSchema = Yup.object({
     "Please enter the description for the product"
   ),
   brand: Yup.string().required("Please enter the brand name for the product"),
-  imageurl: Yup.string().required(
-    "Please enter the url for the products image"
-  ),
+  image: Yup.string().required("Please enter the url for the products image"),
   id: Yup.string().required("Please enter the product id"),
 });
 
@@ -31,6 +30,7 @@ function AddProductForm() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { addProduct } = useProduct();
 
   const formik = useFormik<ProductValues>({
     initialValues: {
@@ -38,12 +38,12 @@ function AddProductForm() {
       price: 0,
       description: "",
       brand: "",
-      imageurl: "",
+      image: "",
       id: "",
     },
     validationSchema: ProductSchema,
-    onSubmit: () => {
-      console.log("New product added");
+    onSubmit: (productValues) => {
+      addProduct(productValues);
     },
   });
 
@@ -129,15 +129,15 @@ function AddProductForm() {
               sx={{ flex: 1 }}
             />
             <TextField
-              id="imageurl"
-              type="imageurl"
-              name="imageurl"
+              id="image"
+              type="image"
+              name="image"
               label="Image URL"
-              value={formik.values.imageurl}
+              value={formik.values.image}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={Boolean(formik.touched.imageurl && formik.errors.imageurl)}
-              helperText={formik.touched.imageurl && formik.errors.imageurl}
+              error={Boolean(formik.touched.image && formik.errors.image)}
+              helperText={formik.touched.image && formik.errors.image}
               inputProps={{ "data-cy": "product-imageurl" }}
               FormHelperTextProps={
                 { "data-cy": "product-imageurl-error" } as any
