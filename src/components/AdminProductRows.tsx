@@ -41,39 +41,6 @@ function AdminProductRows(props: Props) {
         <TableCell sx={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-
-                  // bgcolor: "pink",
-                }}
-              >
-                <IconButton
-                  className="material-symbols-outlined"
-                  sx={{
-                    // bgcolor: "lightblue",
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  // component={Link}
-                  // to="/admin"
-                >
-                  edit
-                </IconButton>
-                <IconButton
-                  className="material-symbols-outlined"
-                  sx={{
-                    // bgcolor: "lightblue",
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  // component={Link}
-                  // to="/admin"
-                >
-                  delete
-                </IconButton>
-              </Box> */}
               <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
@@ -120,7 +87,6 @@ function AdminProductRows(props: Props) {
                   justifyContent: "flex-end",
                   marginTop: "0.5rem",
                   gap: "0.5rem",
-                  // bgcolor: "pink",
                 }}
               >
                 <IconButton
