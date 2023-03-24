@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   Paper,
   Table,
@@ -14,16 +15,20 @@ import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <Box
         sx={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-between",
+          alignItems: "center",
           marginTop: "2rem",
           marginBottom: "1rem",
         }}
       >
         <h2>Admin</h2>
+        <Button variant="contained" sx={{ height: "10%" }}>
+          + Add product
+        </Button>
       </Box>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
