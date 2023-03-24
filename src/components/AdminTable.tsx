@@ -34,6 +34,7 @@ function AdminTable() {
           variant="contained"
           sx={{ height: "10%" }}
           component={Link}
+          data-cy="admin-add-product"
           to="/admin/product/:id/">
           + Add product
         </Button>
