@@ -11,12 +11,7 @@ import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
-import type { Product } from "../../data";
 import { useProduct } from "../contexts/AdminProductContext";
-
-type Props = {
-  product: Product;
-};
 
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
@@ -31,11 +26,11 @@ const ProductSchema = Yup.object({
 
 export type ProductValues = Yup.InferType<typeof ProductSchema>;
 
-function AddProductForm(props: Props) {
+function AddProductForm() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { addProduct, products } = useProduct();
+  const { addProduct, editProduct, products } = useProduct();
 
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
@@ -51,12 +46,16 @@ function AddProductForm(props: Props) {
       brand: isEdit ? product?.brand ?? "" : "",
       image: isEdit ? product?.image ?? "" : "",
       id: isEdit
-        ? product?.id ?? `b${Math.floor(Math.random() * 100000)}`
-        : `b${Math.floor(Math.random() * 100000)}`,
+        ? product?.id ?? `b${Math.floor(Math.random() * 10000)}`
+        : `b${Math.floor(Math.random() * 10000)}`,
     },
     validationSchema: ProductSchema,
-    onSubmit: (productValues) => {
-      addProduct(productValues);
+    onSubmit: (product) => {
+      if (isEdit) {
+        editProduct(product);
+      } else {
+        addProduct(product);
+      }
       navigate("/admin");
     },
   });
@@ -182,7 +181,7 @@ function AddProductForm(props: Props) {
           />
 
           <Button type="submit" variant="contained">
-            {isEdit ? "Update Product" : "Add Product"}
+            {isEdit ? "Edit Product" : "Add Product"}
           </Button>
         </form>
       </Container>
