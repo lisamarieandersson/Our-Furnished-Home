@@ -180,7 +180,7 @@ function AddProductForm() {
             }
           />
 
-          <Button type="submit" variant="contained">
+          <Button type="submit" variant="contained" data-cy="admin-add-product">
             {isEdit ? "Edit Product" : "Add Product"}
           </Button>
         </form>
