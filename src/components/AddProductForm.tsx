@@ -39,11 +39,12 @@ function AddProductForm() {
       description: "",
       brand: "",
       image: "",
-      id: "",
+      id: `b${Math.floor(Math.random() * 100000)}`,
     },
     validationSchema: ProductSchema,
     onSubmit: (productValues) => {
       addProduct(productValues);
+      navigate("/admin");
     },
   });
 
@@ -74,7 +75,7 @@ function AddProductForm() {
             }}>
             <TextField
               id="title"
-              type="title"
+              type="text"
               name="title"
               label="Title"
               value={formik.values.title}
@@ -88,7 +89,7 @@ function AddProductForm() {
             />
             <TextField
               id="price"
-              type="price"
+              type="number"
               name="price"
               label="Price"
               value={formik.values.price}
@@ -116,7 +117,7 @@ function AddProductForm() {
             }}>
             <TextField
               id="brand"
-              type="brand"
+              type="text"
               name="brand"
               label="Brand"
               value={formik.values.brand}
@@ -130,7 +131,7 @@ function AddProductForm() {
             />
             <TextField
               id="image"
-              type="image"
+              type="text"
               name="image"
               label="Image URL"
               value={formik.values.image}
@@ -147,7 +148,7 @@ function AddProductForm() {
           </Container>
           <TextField
             id="description"
-            type="description"
+            type="text"
             name="description"
             label="Description"
             value={formik.values.description}
@@ -163,7 +164,9 @@ function AddProductForm() {
             }
           />
 
-          <Button variant="contained">Add product</Button>
+          <Button type="submit" variant="contained">
+            Add product
+          </Button>
         </form>
       </Container>
     </Container>

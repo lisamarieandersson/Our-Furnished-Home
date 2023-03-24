@@ -11,12 +11,14 @@ import {
   TableRow,
 } from "@mui/material";
 import { useState } from "react";
-import { products } from "../../data";
-import AddProductModal from "./AddProductModal";
+import { Link } from "react-router-dom";
+import { useProduct } from "../contexts/AdminProductContext";
 import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
   const [open, setOpen] = useState(false);
+  const { products } = useProduct();
+
   return (
     <Container maxWidth="md">
       <Box
@@ -31,10 +33,10 @@ function AdminTable() {
         <Button
           variant="contained"
           sx={{ height: "10%" }}
-          onClick={() => setOpen(true)}>
+          component={Link}
+          to="/admin/product/:id/">
           + Add product
         </Button>
-        <AddProductModal open={open} onClose={() => setOpen(false)} />
       </Box>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
@@ -62,5 +64,17 @@ function AdminTable() {
     </Container>
   );
 }
+
+const styleer = {
+  // position: "absolute" as "absolute",
+  // top: "50%",
+  // left: "50%",
+  // transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  border: "2px solid #000",
+  boxShadow: 24,
+  p: 4,
+};
 
 export default AdminTable;
