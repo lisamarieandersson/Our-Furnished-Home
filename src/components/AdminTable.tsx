@@ -35,7 +35,7 @@ function AdminTable() {
           sx={{ height: "10%" }}
           component={Link}
           data-cy="admin-add-product"
-          to="/admin/product/:id/">
+          to="/admin/product/new/">
           + Add product
         </Button>
       </Box>

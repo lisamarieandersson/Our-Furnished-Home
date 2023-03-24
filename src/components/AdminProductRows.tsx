@@ -9,6 +9,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import type { Product } from "../../data";
 import { theme } from "../theme";
 import DeleteProductDialog from "./DeleteProductDialog";
@@ -19,6 +20,7 @@ type Props = {
 
 function AdminProductRows(props: Props) {
   const [open, setOpen] = React.useState(false);
+  // const { products } = useProduct();
   const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
     React.useState(false);
 
@@ -109,9 +111,8 @@ function AdminProductRows(props: Props) {
                     color: "black",
                     fontSize: "2rem",
                   }}
-                  // component={Link}
-                  // to="/admin"
-                >
+                  component={Link}
+                  to={`/admin/product/${props.product.id}`}>
                   edit
                 </IconButton>
                 <IconButton

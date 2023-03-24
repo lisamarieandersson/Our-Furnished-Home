@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
+import { products } from "../../data";
 import { useProduct } from "../contexts/AdminProductContext";
 
 const ProductSchema = Yup.object({
@@ -31,6 +32,12 @@ function AddProductForm() {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { addProduct } = useProduct();
+
+  const { id } = useParams<{ id: string }>();
+  const product = products.find((p) => p.id === id);
+  // const product = undefined;
+
+  const isEdit = Boolean(product);
 
   const formik = useFormik<ProductValues>({
     initialValues: {
