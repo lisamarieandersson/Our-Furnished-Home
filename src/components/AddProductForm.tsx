@@ -11,8 +11,12 @@ import { useFormik } from "formik";
 import { CSSProperties } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
-import { products } from "../../data";
+import type { Product } from "../../data";
 import { useProduct } from "../contexts/AdminProductContext";
+
+type Props = {
+  product: Product;
+};
 
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
@@ -27,11 +31,11 @@ const ProductSchema = Yup.object({
 
 export type ProductValues = Yup.InferType<typeof ProductSchema>;
 
-function AddProductForm() {
+function AddProductForm(props: Props) {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { addProduct } = useProduct();
+  const { addProduct, products } = useProduct();
 
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
@@ -41,12 +45,14 @@ function AddProductForm() {
 
   const formik = useFormik<ProductValues>({
     initialValues: {
-      title: "",
-      price: 0,
-      description: "",
-      brand: "",
-      image: "",
-      id: `b${Math.floor(Math.random() * 100000)}`,
+      title: isEdit ? product?.title ?? "" : "",
+      price: isEdit ? product?.price ?? 0 : 0,
+      description: isEdit ? product?.description ?? "" : "",
+      brand: isEdit ? product?.brand ?? "" : "",
+      image: isEdit ? product?.image ?? "" : "",
+      id: isEdit
+        ? product?.id ?? `b${Math.floor(Math.random() * 100000)}`
+        : `b${Math.floor(Math.random() * 100000)}`,
     },
     validationSchema: ProductSchema,
     onSubmit: (productValues) => {
@@ -58,7 +64,7 @@ function AddProductForm() {
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
       <Typography variant="h5" margin={"1rem"}>
-        Add a new product
+        {isEdit ? "Edit Product" : "Add a new product"}
       </Typography>
       <Container
         sx={{
@@ -67,11 +73,13 @@ function AddProductForm() {
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}>
+        }}
+      >
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form">
+          data-cy="product-form"
+        >
           <Container
             sx={{
               padding: "0 !important",
@@ -79,7 +87,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="title"
               type="text"
@@ -121,7 +130,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="brand"
               type="text"
@@ -172,7 +182,7 @@ function AddProductForm() {
           />
 
           <Button type="submit" variant="contained">
-            Add product
+            {isEdit ? "Update Product" : "Add Product"}
           </Button>
         </form>
       </Container>
