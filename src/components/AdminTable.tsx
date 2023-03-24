@@ -10,10 +10,13 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
+import { useState } from "react";
 import { products } from "../../data";
+import AddProductModal from "./AddProductModal";
 import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
+  const [open, setOpen] = useState(false);
   return (
     <Container maxWidth="md">
       <Box
@@ -23,12 +26,15 @@ function AdminTable() {
           alignItems: "center",
           marginTop: "2rem",
           marginBottom: "1rem",
-        }}
-      >
+        }}>
         <h2>Admin</h2>
-        <Button variant="contained" sx={{ height: "10%" }}>
+        <Button
+          variant="contained"
+          sx={{ height: "10%" }}
+          onClick={() => setOpen(true)}>
           + Add product
         </Button>
+        <AddProductModal open={open} onClose={() => setOpen(false)} />
       </Box>
       <TableContainer component={Paper}>
         <Table aria-label="collapsible table">
