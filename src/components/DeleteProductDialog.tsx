@@ -10,9 +10,14 @@ import {
 type Props = {
   open: boolean;
   handleClose: () => void;
+  removeProduct: () => void;
 };
 
-function DeleteProductDialog({ open, handleClose }: Props) {
+function DeleteProductDialog({ open, handleClose, removeProduct }: Props) {
+  const handleDeleteProduct = () => {
+    removeProduct();
+    handleClose();
+  };
   return (
     <Dialog
       open={open}
@@ -33,7 +38,7 @@ function DeleteProductDialog({ open, handleClose }: Props) {
         <Button
           variant="contained"
           data-cy="confirm-delete-button"
-          onClick={handleClose}
+          onClick={handleDeleteProduct}
           autoFocus
         >
           Yes
