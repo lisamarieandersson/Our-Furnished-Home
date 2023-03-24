@@ -92,15 +92,16 @@ function ProductCard() {
   }
 
   return (
-    <Container maxWidth="xl" sx={rootStyle}>
-      <Box sx={{ width: "90%" }}>
+    <Container maxWidth="lg" sx={rootStyle}>
+      <Box>
         <Grid container rowSpacing={2} columnSpacing={2}>
           <Grid key={product.id} xs={12} sm={12} md={12} data-cy="product">
             <Item
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
-              }}>
+              }}
+            >
               <CardMedia>
                 <img src={product.image} alt={product.title} />
               </CardMedia>
@@ -111,13 +112,15 @@ function ProductCard() {
                 <Typography
                   variant="h5"
                   sx={{ marginBottom: "1rem" }}
-                  data-cy="product-title">
+                  data-cy="product-title"
+                >
                   {product.title}
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   sx={{ marginBottom: "2rem" }}
-                  data-cy="product-price">
+                  data-cy="product-price"
+                >
                   {product.price} SEK
                 </Typography>
                 <Typography
@@ -125,7 +128,8 @@ function ProductCard() {
                   sx={{
                     marginBottom: "2rem",
                   }}
-                  data-cy="product-description">
+                  data-cy="product-description"
+                >
                   {product.description}
                 </Typography>
                 <Typography variant="subtitle1">Quantity</Typography>
@@ -134,14 +138,16 @@ function ProductCard() {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "1rem",
-                  }}>
+                  }}
+                >
                   <Button
                     variant="text"
                     onClick={handleDecreaseQuantity}
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
-                    }}>
+                    }}
+                  >
                     -
                   </Button>
                   <TextField
@@ -153,7 +159,8 @@ function ProductCard() {
                     onChange={(e) =>
                       setQuantity(Math.max(1, parseInt(e.target.value)))
                     }
-                    value={quantity}>
+                    value={quantity}
+                  >
                     {quantity}
                   </TextField>
                   <Button
@@ -162,14 +169,16 @@ function ProductCard() {
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
-                    }}>
+                    }}
+                  >
                     +
                   </Button>
                 </Box>
                 <Button
                   onClick={() => addItem({ ...product, quantity })}
                   variant="contained"
-                  data-cy="product-buy-button">
+                  data-cy="product-buy-button"
+                >
                   ADD TO BAG
                 </Button>
               </CardContent>
