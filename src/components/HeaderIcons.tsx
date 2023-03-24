@@ -27,6 +27,7 @@ function HeaderIcons() {
         sx={iconStyle}
         component={Link}
         to="/admin"
+        data-cy="admin-link"
       >
         admin_panel_settings
       </IconButton>
