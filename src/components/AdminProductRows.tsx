@@ -9,7 +9,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import { Product } from "../../data";
+import type { Product } from "../../data";
 import { theme } from "../theme";
 import DeleteProductDialog from "./DeleteProductDialog";
 
@@ -29,8 +29,7 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -102,14 +101,12 @@ function AdminProductRows(props: Props) {
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
                     <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
@@ -138,8 +135,7 @@ function AdminProductRows(props: Props) {
                   marginTop: "0.5rem",
                   gap: "0.5rem",
                   // bgcolor: "pink",
-                }}
-              >
+                }}>
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
