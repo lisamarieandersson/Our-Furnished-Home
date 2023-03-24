@@ -28,14 +28,16 @@ function AdminTable() {
           alignItems: "center",
           marginTop: "2rem",
           marginBottom: "1rem",
-        }}>
+        }}
+      >
         <h2>Admin</h2>
         <Button
           variant="contained"
           sx={{ height: "10%" }}
           component={Link}
           data-cy="admin-add-product"
-          to="/admin/product/new/">
+          to="/admin/product/new/"
+        >
           + Add product
         </Button>
       </Box>
