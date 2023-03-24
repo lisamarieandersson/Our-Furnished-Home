@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { Product as mockedProducts } from "../../data";
-import { ProductValues } from "../components/AddProductForm";
+import { Product, products as mockedProducts } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 // Define Props interface to enforce the type of the `children` prop
@@ -8,18 +7,8 @@ interface Props {
   children: React.ReactNode;
 }
 
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  brand: string;
-  image: string;
-  description: string;
-  //   products: CartProduct[];
-}
-
 type ProductContextType = {
-  items: mockedProducts[];
+  products: Product[];
   addProduct: (product: Product) => void;
   removeProduct: (id: string) => void;
   editProduct: (id: string, newName: string) => void;
@@ -27,7 +16,7 @@ type ProductContextType = {
 };
 
 const ProductContext = createContext<ProductContextType>({
-  items: [],
+  products: [],
   addProduct: () => {},
   removeProduct: () => {},
   editProduct: () => {},
@@ -37,30 +26,30 @@ const ProductContext = createContext<ProductContextType>({
 export const useProduct = () => useContext(ProductContext);
 
 export const ProductProvider = ({ children }: Props) => {
-  const [items, setProducts] = useLocalStorageState<Product[]>([], "product");
+  const [products, setProducts] = useLocalStorageState<Product[]>(
+    mockedProducts,
+    "products"
+  );
   // const [product, setProduct] = useState<Product>();
 
-  const addProduct = (productValues: ProductValues) => {
-    const products = items;
-    const newProduct: Product = {
-      ...productValues,
-    };
-
-    setProducts([...items, newProduct]);
+  const addProduct = (product: Product) => {
+    setProducts([...products, product]);
   };
 
   const removeProduct = (id: string) => {
-    setProducts(items.filter((item) => item.id !== id));
+    setProducts(products.filter((product) => product.id !== id));
   };
 
   const editProduct = (id: string, newName: string) => {
     setProducts(
-      items.map((item) => (item.id === id ? { ...item, name: newName } : item))
+      products.map((product) =>
+        product.id === id ? { ...product, name: newName } : product
+      )
     );
   };
-
+  console.log(products);
   const productContext: ProductContextType = {
-    items,
+    products,
     addProduct,
     removeProduct,
     editProduct,

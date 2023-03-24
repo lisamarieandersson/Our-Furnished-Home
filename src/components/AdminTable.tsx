@@ -10,10 +10,15 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { products } from "../../data";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { useProduct } from "../contexts/AdminProductContext";
 import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
+  const [open, setOpen] = useState(false);
+  const { products } = useProduct();
+
   return (
     <Container maxWidth="md">
       <Box
@@ -23,10 +28,14 @@ function AdminTable() {
           alignItems: "center",
           marginTop: "2rem",
           marginBottom: "1rem",
-        }}
-      >
+        }}>
         <h2>Admin</h2>
-        <Button variant="contained" sx={{ height: "10%" }}>
+        <Button
+          variant="contained"
+          sx={{ height: "10%" }}
+          component={Link}
+          data-cy="admin-add-product"
+          to="/admin/product/:id/">
           + Add product
         </Button>
       </Box>

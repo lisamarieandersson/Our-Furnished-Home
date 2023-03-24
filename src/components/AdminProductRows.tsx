@@ -9,8 +9,9 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import { Product } from "../../data";
+import type { Product } from "../../data";
 import { theme } from "../theme";
+import DeleteProductDialog from "./DeleteProductDialog";
 
 type Props = {
   product: Product;
@@ -18,6 +19,8 @@ type Props = {
 
 function AdminProductRows(props: Props) {
   const [open, setOpen] = React.useState(false);
+  const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
+    React.useState(false);
 
   return (
     <React.Fragment>
@@ -26,8 +29,7 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -44,9 +46,15 @@ function AdminProductRows(props: Props) {
               <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Id</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Title</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Price</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Id
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Title
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Price
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -58,13 +66,19 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Brand</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Brand
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell align="center">
@@ -87,8 +101,7 @@ function AdminProductRows(props: Props) {
                   justifyContent: "flex-end",
                   marginTop: "0.5rem",
                   gap: "0.5rem",
-                }}
-              >
+                }}>
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
@@ -108,9 +121,7 @@ function AdminProductRows(props: Props) {
                     color: "black",
                     fontSize: "2rem",
                   }}
-                  // component={Link}
-                  // to="/admin"
-                >
+                  onClick={() => setDeleteProductDialogOpen(true)}>
                   delete
                 </IconButton>
               </Box>
@@ -118,6 +129,10 @@ function AdminProductRows(props: Props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      <DeleteProductDialog
+        open={deleteProductDialogOpen}
+        handleClose={() => setDeleteProductDialogOpen(false)}
+      />
     </React.Fragment>
   );
 }
