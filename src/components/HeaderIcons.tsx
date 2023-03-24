@@ -7,6 +7,7 @@ const iconStyle: SxProps<Theme> = {
   fontSize: { xs: "2rem", sm: "2.5rem" },
   cursor: "pointer",
   padding: { xs: "0rem", md: "0.3rem" },
+  color: "black",
 };
 
 function HeaderIcons() {
@@ -21,9 +22,14 @@ function HeaderIcons() {
         alignItems: "center",
       }}
     >
-      <Box className="material-symbols-outlined" sx={iconStyle}>
+      <IconButton
+        className="material-symbols-outlined"
+        sx={iconStyle}
+        component={Link}
+        to="/admin"
+      >
         admin_panel_settings
-      </Box>
+      </IconButton>
       <Box className="material-symbols-outlined" sx={iconStyle}>
         favorite
       </Box>
