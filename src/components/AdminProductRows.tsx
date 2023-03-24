@@ -9,7 +9,7 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import { Product } from "../../data";
+import type { Product } from "../../data";
 import { theme } from "../theme";
 
 type Props = {
@@ -26,8 +26,7 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -77,9 +76,15 @@ function AdminProductRows(props: Props) {
               <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Id</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Title</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Price</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Id
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Title
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Price
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -91,13 +96,19 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Brand</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Brand
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell align="center">
@@ -121,8 +132,7 @@ function AdminProductRows(props: Props) {
                   marginTop: "0.5rem",
                   gap: "0.5rem",
                   // bgcolor: "pink",
-                }}
-              >
+                }}>
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
