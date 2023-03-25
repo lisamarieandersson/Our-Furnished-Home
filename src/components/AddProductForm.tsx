@@ -173,10 +173,26 @@ function AddProductForm() {
               { "data-cy": "product-description-error" } as any
             }
           />
-
-          <Button type="submit" variant="contained" data-cy="admin-add-product">
+          <Button type="submit" variant="contained">
             {isEdit ? "Edit Product" : "Add Product"}
           </Button>
+          {/* {isEdit ? (
+            <Button
+              type="submit"
+              variant="contained"
+              data-cy="admin-edit-product"
+            >
+              Edit Product
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              variant="contained"
+              data-cy="admin-add-product"
+            >
+              Add Product
+            </Button>
+          )} */}
         </form>
       </Container>
     </Container>

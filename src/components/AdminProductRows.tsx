@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "../../data";
+import { useProduct } from "../contexts/AdminProductContext";
 import { theme } from "../theme";
 import DeleteProductDialog from "./DeleteProductDialog";
 
@@ -21,6 +22,7 @@ type Props = {
 function AdminProductRows(props: Props) {
   const [open, setOpen] = React.useState(false);
   // const { products } = useProduct();
+  const { removeProduct } = useProduct();
   const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
     React.useState(false);
 
@@ -140,6 +142,7 @@ function AdminProductRows(props: Props) {
       <DeleteProductDialog
         open={deleteProductDialogOpen}
         handleClose={() => setDeleteProductDialogOpen(false)}
+        removeProduct={() => removeProduct(props.product.id)}
       />
     </React.Fragment>
   );
