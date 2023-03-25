@@ -72,13 +72,11 @@ function AddProductForm() {
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}
-      >
+        }}>
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form"
-        >
+          data-cy="product-form">
           <Container
             sx={{
               padding: "0 !important",
@@ -86,8 +84,7 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}
-          >
+            }}>
             <TextField
               id="title"
               type="text"
@@ -129,8 +126,7 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}
-          >
+            }}>
             <TextField
               id="brand"
               type="text"
@@ -155,10 +151,8 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.image && formik.errors.image)}
               helperText={formik.touched.image && formik.errors.image}
-              inputProps={{ "data-cy": "product-imageurl" }}
-              FormHelperTextProps={
-                { "data-cy": "product-imageurl-error" } as any
-              }
+              inputProps={{ "data-cy": "product-image" }}
+              FormHelperTextProps={{ "data-cy": "product-image-error" } as any}
               sx={{ flex: 1 }}
             />
           </Container>
