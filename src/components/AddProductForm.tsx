@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  IconButton,
   InputAdornment,
   TextField,
   Typography,
@@ -9,7 +10,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useProduct } from "../contexts/AdminProductContext";
 
@@ -62,6 +63,16 @@ function AddProductForm() {
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
+      <IconButton
+        className="material-symbols-outlined"
+        component={Link}
+        to="/admin"
+        sx={{
+          marginTop: "1rem",
+          color: theme.palette.text.primary,
+        }}>
+        arrow_back
+      </IconButton>
       <Typography variant="h5" margin={"1rem"}>
         {isEdit ? "Edit Product" : "Add a new product"}
       </Typography>
@@ -161,6 +172,8 @@ function AddProductForm() {
             type="text"
             name="description"
             label="Description"
+            multiline
+            rows={4}
             value={formik.values.description}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
