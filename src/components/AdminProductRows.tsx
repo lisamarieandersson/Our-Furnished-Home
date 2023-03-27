@@ -114,6 +114,7 @@ function AdminProductRows(props: Props) {
                     fontSize: "2rem",
                   }}
                   component={Link}
+                  data-cy="admin-edit-product"
                   to={`/admin/product/${props.product.id}`}>
                   edit
                 </IconButton>
