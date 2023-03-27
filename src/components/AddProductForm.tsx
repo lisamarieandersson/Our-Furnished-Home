@@ -15,7 +15,10 @@ import { useProduct } from "../contexts/AdminProductContext";
 
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
-  price: Yup.number().required("Please enter the price for the product"),
+  price: Yup.number()
+    .required("Please enter the price for the product")
+    .min(1, "Price must be at least 1")
+    .typeError("Price must be a number"),
   description: Yup.string().required(
     "Please enter the description for the product"
   ),
@@ -25,6 +28,9 @@ const ProductSchema = Yup.object({
 });
 
 export type ProductValues = Yup.InferType<typeof ProductSchema>;
+export type NullableProductValues = Omit<ProductValues, "price"> & {
+  price: ProductValues["price"] | null;
+};
 
 function AddProductForm() {
   const theme = useTheme();
@@ -34,7 +40,6 @@ function AddProductForm() {
 
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-  // const product = undefined;
 
   const isEdit = Boolean(product);
 
@@ -50,11 +55,11 @@ function AddProductForm() {
         : `b${Math.floor(Math.random() * 10000)}`,
     },
     validationSchema: ProductSchema,
-    onSubmit: (product) => {
+    onSubmit: (productValues) => {
       if (isEdit) {
-        editProduct(product);
+        editProduct(productValues);
       } else {
-        addProduct(product);
+        addProduct(productValues);
       }
       navigate("/admin");
     },
@@ -72,11 +77,13 @@ function AddProductForm() {
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}>
+        }}
+      >
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form">
+          data-cy="product-form"
+        >
           <Container
             sx={{
               padding: "0 !important",
@@ -84,7 +91,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="title"
               type="text"
@@ -109,7 +117,7 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.price && formik.errors.price)}
               helperText={formik.touched.price && formik.errors.price}
-              inputProps={{ "data-cy": "product-price" }}
+              inputProps={{ "data-cy": "product-price", min: 1, step: 1 }}
               FormHelperTextProps={{ "data-cy": "product-price-error" } as any}
               InputProps={{
                 endAdornment: (
@@ -126,7 +134,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="brand"
               type="text"
