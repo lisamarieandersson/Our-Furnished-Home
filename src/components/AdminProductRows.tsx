@@ -68,7 +68,6 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
                   <TableRow>
                     <TableCell align="center">{props.product.id}</TableCell>
                     <TableCell align="center">{props.product.title}</TableCell>
@@ -106,7 +105,6 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                     <TableCell align="center"> {props.product.brand}</TableCell>
                   </TableRow>
-                </TableBody>
               </Table>
               <Box
                 sx={{
@@ -118,6 +116,7 @@ function AdminProductRows(props: Props) {
               >
                 <IconButton
                   className="material-symbols-outlined"
+                  data-cy="admin-edit-product"
                   sx={{
                     bgcolor: theme.palette.primary.main,
                     color: "black",
