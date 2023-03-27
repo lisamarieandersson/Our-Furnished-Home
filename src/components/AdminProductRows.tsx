@@ -33,7 +33,8 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}>
+            onClick={() => setOpen(!open)}
+          >
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -45,7 +46,7 @@ function AdminProductRows(props: Props) {
       </TableRow>
       <TableRow>
         <TableCell sx={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={!open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Table size="medium" aria-label="purchases">
                 <TableHead>
@@ -63,7 +64,9 @@ function AdminProductRows(props: Props) {
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell align="center">{props.product.id}</TableCell>
+                    <TableCell align="center" data-cy="product">
+                      {props.product.id}
+                    </TableCell>
                     <TableCell align="center">{props.product.title}</TableCell>
                     <TableCell align="center">
                       {props.product.price} SEK
@@ -72,12 +75,14 @@ function AdminProductRows(props: Props) {
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}>
+                      sx={{ width: "33%", fontSize: "1.1rem" }}
+                    >
                       Image
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}>
+                      sx={{ width: "33%", fontSize: "1.1rem" }}
+                    >
                       Description
                     </TableCell>
                     <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
@@ -105,7 +110,8 @@ function AdminProductRows(props: Props) {
                   justifyContent: "flex-end",
                   marginTop: "0.5rem",
                   gap: "0.5rem",
-                }}>
+                }}
+              >
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
@@ -115,7 +121,8 @@ function AdminProductRows(props: Props) {
                   }}
                   component={Link}
                   data-cy="admin-edit-product"
-                  to={`/admin/product/${props.product.id}`}>
+                  to={`/admin/product/${props.product.id}`}
+                >
                   edit
                 </IconButton>
                 <IconButton
@@ -126,7 +133,8 @@ function AdminProductRows(props: Props) {
                     fontSize: "2rem",
                   }}
                   data-cy="admin-remove-product"
-                  onClick={() => setDeleteProductDialogOpen(true)}>
+                  onClick={() => setDeleteProductDialogOpen(true)}
+                >
                   delete
                 </IconButton>
               </Box>
