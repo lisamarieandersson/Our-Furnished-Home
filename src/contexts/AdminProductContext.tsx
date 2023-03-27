@@ -10,7 +10,7 @@ interface Props {
 type ProductContextType = {
   products: Product[];
   addProduct: (product: Product) => void;
-  removeProduct: (id: string) => void;
+  removeProduct: (product: Product) => void;
   editProduct: (editedProduct: Product) => void;
   product?: Product;
 };
@@ -35,8 +35,8 @@ export const ProductProvider = ({ children }: Props) => {
     setProducts([...products, product]);
   };
 
-  const removeProduct = (id: string) => {
-    setProducts(products.filter((product) => product.id !== id));
+  const removeProduct = (product: Product) => {
+    setProducts(products.filter((p) => p.id !== product.id));
   };
 
   // const editProduct = (id: string, newName: string) => {

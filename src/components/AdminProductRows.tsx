@@ -33,8 +33,7 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
@@ -73,14 +72,12 @@ function AdminProductRows(props: Props) {
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
                     <TableCell
                       align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
                     <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
@@ -108,8 +105,7 @@ function AdminProductRows(props: Props) {
                   justifyContent: "flex-end",
                   marginTop: "0.5rem",
                   gap: "0.5rem",
-                }}
-              >
+                }}>
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
@@ -118,8 +114,7 @@ function AdminProductRows(props: Props) {
                     fontSize: "2rem",
                   }}
                   component={Link}
-                  to={`/admin/product/${props.product.id}`}
-                >
+                  to={`/admin/product/${props.product.id}`}>
                   edit
                 </IconButton>
                 <IconButton
@@ -130,8 +125,7 @@ function AdminProductRows(props: Props) {
                     fontSize: "2rem",
                   }}
                   data-cy="admin-remove-product"
-                  onClick={() => setDeleteProductDialogOpen(true)}
-                >
+                  onClick={() => setDeleteProductDialogOpen(true)}>
                   delete
                 </IconButton>
               </Box>
@@ -142,7 +136,7 @@ function AdminProductRows(props: Props) {
       <DeleteProductDialog
         open={deleteProductDialogOpen}
         handleClose={() => setDeleteProductDialogOpen(false)}
-        removeProduct={() => removeProduct(props.product.id)}
+        removeProduct={() => removeProduct(props.product)}
       />
     </React.Fragment>
   );
