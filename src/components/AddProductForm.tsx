@@ -22,8 +22,13 @@ const ProductSchema = Yup.object({
   description: Yup.string().required(
     "Please enter the description for the product"
   ),
-  brand: Yup.string().required("Please enter the brand name for the product"),
-  image: Yup.string().required("Please enter the url for the products image"),
+  brand: Yup.string(),
+  image: Yup.string()
+    .required("Please enter the url for the products image")
+    .matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Enter correct url!"
+    ),
   id: Yup.string().required("Please enter the product id"),
 });
 
@@ -55,11 +60,11 @@ function AddProductForm() {
         : `b${Math.floor(Math.random() * 10000)}`,
     },
     validationSchema: ProductSchema,
-    onSubmit: (productValues) => {
+    onSubmit: (product) => {
       if (isEdit) {
-        editProduct(productValues);
+        editProduct(product);
       } else {
-        addProduct(productValues);
+        addProduct(product);
       }
       navigate("/admin");
     },
@@ -112,7 +117,7 @@ function AddProductForm() {
               type="number"
               name="price"
               label="Price"
-              value={formik.values.price}
+              value={formik.values.price === 0 ? "" : formik.values.price}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.price && formik.errors.price)}
@@ -146,8 +151,8 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.brand && formik.errors.brand)}
               helperText={formik.touched.brand && formik.errors.brand}
-              inputProps={{ "data-cy": "product-brand" }}
-              FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
+              // inputProps={{ "data-cy": "product-brand" }}
+              // FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
               sx={{ flex: 1 }}
             />
             <TextField
