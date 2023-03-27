@@ -59,7 +59,11 @@ function AdminTable() {
           </TableHead>
           <TableBody>
             {products.map((product) => (
-              <AdminProductRows key={product.id} product={product} />
+              <AdminProductRows
+                data-cy="product"
+                key={product.id}
+                product={product}
+              />
             ))}
           </TableBody>
         </Table>
