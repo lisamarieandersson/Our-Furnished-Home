@@ -27,7 +27,7 @@ const ProductSchema = Yup.object({
     .required("Please enter the url for the products image")
     .matches(
       /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      "Enter correct url!"
+      "Please enter a correct url!"
     ),
   id: Yup.string().required("Please enter the product id"),
 });
