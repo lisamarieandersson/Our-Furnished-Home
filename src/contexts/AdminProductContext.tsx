@@ -10,8 +10,8 @@ interface Props {
 type ProductContextType = {
   products: Product[];
   addProduct: (product: Product) => void;
-  removeProduct: (id: string) => void;
-  editProduct: (id: string, newName: string) => void;
+  removeProduct: (product: Product) => void;
+  editProduct: (editedProduct: Product) => void;
   product?: Product;
 };
 
@@ -30,20 +30,26 @@ export const ProductProvider = ({ children }: Props) => {
     mockedProducts,
     "products"
   );
-  // const [product, setProduct] = useState<Product>();
 
   const addProduct = (product: Product) => {
     setProducts([...products, product]);
   };
 
-  const removeProduct = (id: string) => {
-    setProducts(products.filter((product) => product.id !== id));
+  const removeProduct = (product: Product) => {
+    setProducts(products.filter((p) => p.id !== product.id));
   };
 
-  const editProduct = (id: string, newName: string) => {
+  // const editProduct = (id: string, newName: string) => {
+  //   setProducts(
+  //     products.map((product) =>
+  //       product.id === id ? { ...product, name: newName } : product
+  //     )
+  //   );
+  // };
+  const editProduct = (editedProduct: Product) => {
     setProducts(
       products.map((product) =>
-        product.id === id ? { ...product, name: newName } : product
+        product.id === editedProduct.id ? editedProduct : product
       )
     );
   };
