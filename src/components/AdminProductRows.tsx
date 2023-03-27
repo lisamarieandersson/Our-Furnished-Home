@@ -4,7 +4,6 @@ import Box from "@mui/material/Box";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
@@ -38,21 +37,21 @@ function AdminProductRows(props: Props) {
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" align="center" data-cy="product">
+        <TableCell component="th" scope="row" align="center">
           {props.product.id}
         </TableCell>
         <TableCell align="center">{props.product.title}</TableCell>
         <TableCell align="center">{props.product.price} SEK</TableCell>
       </TableRow>
-      <TableRow>
+      <TableRow data-cy="product">
         <TableCell sx={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+          <Collapse in={!open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Table
                 size="medium"
                 aria-label="purchases"
                 sx={{
-                  minWidth: "40rem",
+                  // minWidth: "2rem",
                 }}
               >
                 <TableHead>
@@ -68,43 +67,47 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                 </TableHead>
-                  <TableRow>
-                    <TableCell align="center">{props.product.id}</TableCell>
-                    <TableCell align="center">{props.product.title}</TableCell>
-                    <TableCell align="center">
-                      {props.product.price} SEK
-                    </TableCell>
-                  </TableRow>
-                  <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell
-                      align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
-                      Image
-                    </TableCell>
-                    <TableCell
-                      align="center"
-                      sx={{ width: "33%", fontSize: "1.1rem" }}
-                    >
-                      Description
-                    </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
-                      Brand
-                    </TableCell>
-                  </TableRow>
-                  <TableRow>
-                    <TableCell align="center">
-                      <img
-                        src={props.product.image}
-                        alt={props.product.title}
-                        style={{ width: "10rem" }}
-                      />
-                    </TableCell>
-                    <TableCell align="center">
-                      {props.product.description}
-                    </TableCell>
-                    <TableCell align="center"> {props.product.brand}</TableCell>
-                  </TableRow>
+                <TableRow>
+                  <TableCell align="center" data-cy="product-id">
+                    {props.product.id}
+                  </TableCell>
+                  <TableCell align="center" data-cy="product-title">
+                    {props.product.title}
+                  </TableCell>
+                  <TableCell align="center" data-cy="product-price">
+                    {props.product.price} SEK
+                  </TableCell>
+                </TableRow>
+                <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
+                  <TableCell
+                    align="center"
+                    sx={{ width: "33%", fontSize: "1.1rem" }}
+                  >
+                    Image
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    sx={{ width: "33%", fontSize: "1.1rem" }}
+                  >
+                    Description
+                  </TableCell>
+                  <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                    Brand
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell align="center">
+                    <img
+                      src={props.product.image}
+                      alt={props.product.title}
+                      style={{ width: "8rem" }}
+                    />
+                  </TableCell>
+                  <TableCell align="center">
+                    {props.product.description}
+                  </TableCell>
+                  <TableCell align="center"> {props.product.brand}</TableCell>
+                </TableRow>
               </Table>
               <Box
                 sx={{
