@@ -39,13 +39,6 @@ export const ProductProvider = ({ children }: Props) => {
     setProducts(products.filter((p) => p.id !== product.id));
   };
 
-  // const editProduct = (id: string, newName: string) => {
-  //   setProducts(
-  //     products.map((product) =>
-  //       product.id === id ? { ...product, name: newName } : product
-  //     )
-  //   );
-  // };
   const editProduct = (editedProduct: Product) => {
     setProducts(
       products.map((product) =>
@@ -54,6 +47,7 @@ export const ProductProvider = ({ children }: Props) => {
     );
   };
   console.log(products);
+
   const productContext: ProductContextType = {
     products,
     addProduct,
