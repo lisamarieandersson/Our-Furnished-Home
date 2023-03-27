@@ -1,6 +1,5 @@
 import React, { createContext, useContext } from "react";
-import { Product as mockedProducts } from "../../data";
-import { ProductValues } from "../components/AddProductForm";
+import { Product, products as mockedProducts } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
 // Define Props interface to enforce the type of the `children` prop
@@ -8,26 +7,16 @@ interface Props {
   children: React.ReactNode;
 }
 
-interface Product {
-  id: string;
-  title: string;
-  price: number;
-  brand: string;
-  image: string;
-  description: string;
-  //   products: CartProduct[];
-}
-
 type ProductContextType = {
-  items: mockedProducts[];
+  products: Product[];
   addProduct: (product: Product) => void;
-  removeProduct: (id: string) => void;
-  editProduct: (id: string, newName: string) => void;
+  removeProduct: (product: Product) => void;
+  editProduct: (editedProduct: Product) => void;
   product?: Product;
 };
 
 const AdminProductContext = createContext<ProductContextType>({
-  items: [],
+  products: [],
   addProduct: () => {},
   removeProduct: () => {},
   editProduct: () => {},
@@ -37,30 +26,36 @@ const AdminProductContext = createContext<ProductContextType>({
 export const useProduct = () => useContext(AdminProductContext);
 
 export const ProductProvider = ({ children }: Props) => {
-  const [items, setProducts] = useLocalStorageState<Product[]>([], "product");
-  // const [product, setProduct] = useState<Product>();
+  const [products, setProducts] = useLocalStorageState<Product[]>(
+    mockedProducts,
+    "products"
+  );
 
-  const addProduct = (productValues: ProductValues) => {
-    const products = items;
-    const newProduct: Product = {
-      ...productValues,
-    };
-
-    setProducts([...items, newProduct]);
+  const addProduct = (product: Product) => {
+    setProducts([...products, product]);
   };
 
-  const removeProduct = (id: string) => {
-    setProducts(items.filter((item) => item.id !== id));
+  const removeProduct = (product: Product) => {
+    setProducts(products.filter((p) => p.id !== product.id));
   };
 
-  const editProduct = (id: string, newName: string) => {
+  // const editProduct = (id: string, newName: string) => {
+  //   setProducts(
+  //     products.map((product) =>
+  //       product.id === id ? { ...product, name: newName } : product
+  //     )
+  //   );
+  // };
+  const editProduct = (editedProduct: Product) => {
     setProducts(
-      items.map((item) => (item.id === id ? { ...item, name: newName } : item))
+      products.map((product) =>
+        product.id === editedProduct.id ? editedProduct : product
+      )
     );
   };
-
+  console.log(products);
   const productContext: ProductContextType = {
-    items,
+    products,
     addProduct,
     removeProduct,
     editProduct,

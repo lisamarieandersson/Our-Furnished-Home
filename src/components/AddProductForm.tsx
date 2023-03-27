@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useProduct } from "../contexts/AdminProductContext";
 
@@ -30,27 +30,40 @@ function AddProductForm() {
   const theme = useTheme();
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { addProduct } = useProduct();
+  const { addProduct, editProduct, products } = useProduct();
+
+  const { id } = useParams<{ id: string }>();
+  const product = products.find((p) => p.id === id);
+  // const product = undefined;
+
+  const isEdit = Boolean(product);
 
   const formik = useFormik<ProductValues>({
     initialValues: {
-      title: "",
-      price: 0,
-      description: "",
-      brand: "",
-      image: "",
-      id: "",
+      title: isEdit ? product?.title ?? "" : "",
+      price: isEdit ? product?.price ?? 0 : 0,
+      description: isEdit ? product?.description ?? "" : "",
+      brand: isEdit ? product?.brand ?? "" : "",
+      image: isEdit ? product?.image ?? "" : "",
+      id: isEdit
+        ? product?.id ?? `b${Math.floor(Math.random() * 10000)}`
+        : `b${Math.floor(Math.random() * 10000)}`,
     },
     validationSchema: ProductSchema,
-    onSubmit: (productValues) => {
-      addProduct(productValues);
+    onSubmit: (product) => {
+      if (isEdit) {
+        editProduct(product);
+      } else {
+        addProduct(product);
+      }
+      navigate("/admin");
     },
   });
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
       <Typography variant="h5" margin={"1rem"}>
-        Add a new product
+        {isEdit ? "Edit Product" : "Add a new product"}
       </Typography>
       <Container
         sx={{
@@ -74,7 +87,7 @@ function AddProductForm() {
             }}>
             <TextField
               id="title"
-              type="title"
+              type="text"
               name="title"
               label="Title"
               value={formik.values.title}
@@ -88,7 +101,7 @@ function AddProductForm() {
             />
             <TextField
               id="price"
-              type="price"
+              type="number"
               name="price"
               label="Price"
               value={formik.values.price}
@@ -116,7 +129,7 @@ function AddProductForm() {
             }}>
             <TextField
               id="brand"
-              type="brand"
+              type="text"
               name="brand"
               label="Brand"
               value={formik.values.brand}
@@ -130,7 +143,7 @@ function AddProductForm() {
             />
             <TextField
               id="image"
-              type="image"
+              type="text"
               name="image"
               label="Image URL"
               value={formik.values.image}
@@ -138,16 +151,14 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.image && formik.errors.image)}
               helperText={formik.touched.image && formik.errors.image}
-              inputProps={{ "data-cy": "product-imageurl" }}
-              FormHelperTextProps={
-                { "data-cy": "product-imageurl-error" } as any
-              }
+              inputProps={{ "data-cy": "product-image" }}
+              FormHelperTextProps={{ "data-cy": "product-image-error" } as any}
               sx={{ flex: 1 }}
             />
           </Container>
           <TextField
             id="description"
-            type="description"
+            type="text"
             name="description"
             label="Description"
             value={formik.values.description}
@@ -162,8 +173,26 @@ function AddProductForm() {
               { "data-cy": "product-description-error" } as any
             }
           />
-
-          <Button variant="contained">Add product</Button>
+          <Button type="submit" variant="contained">
+            {isEdit ? "Edit Product" : "Add Product"}
+          </Button>
+          {/* {isEdit ? (
+            <Button
+              type="submit"
+              variant="contained"
+              data-cy="admin-edit-product"
+            >
+              Edit Product
+            </Button>
+          ) : (
+            <Button
+              type="submit"
+              variant="contained"
+              data-cy="admin-add-product"
+            >
+              Add Product
+            </Button>
+          )} */}
         </form>
       </Container>
     </Container>

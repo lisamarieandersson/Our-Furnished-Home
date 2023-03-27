@@ -9,8 +9,11 @@ import TableCell from "@mui/material/TableCell";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
-import { Product } from "../../data";
+import { Link } from "react-router-dom";
+import type { Product } from "../../data";
+import { useProduct } from "../contexts/AdminProductContext";
 import { theme } from "../theme";
+import DeleteProductDialog from "./DeleteProductDialog";
 
 type Props = {
   product: Product;
@@ -18,6 +21,10 @@ type Props = {
 
 function AdminProductRows(props: Props) {
   const [open, setOpen] = React.useState(false);
+  // const { products } = useProduct();
+  const { removeProduct } = useProduct();
+  const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
+    React.useState(false);
 
   return (
     <React.Fragment>
@@ -26,12 +33,11 @@ function AdminProductRows(props: Props) {
           <IconButton
             aria-label="expand row"
             size="small"
-            onClick={() => setOpen(!open)}
-          >
+            onClick={() => setOpen(!open)}>
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell component="th" scope="row" align="center">
+        <TableCell component="th" scope="row" align="center" data-cy="product">
           {props.product.id}
         </TableCell>
         <TableCell align="center">{props.product.title}</TableCell>
@@ -41,45 +47,18 @@ function AdminProductRows(props: Props) {
         <TableCell sx={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              {/* <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-
-                  // bgcolor: "pink",
-                }}
-              >
-                <IconButton
-                  className="material-symbols-outlined"
-                  sx={{
-                    // bgcolor: "lightblue",
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  // component={Link}
-                  // to="/admin"
-                >
-                  edit
-                </IconButton>
-                <IconButton
-                  className="material-symbols-outlined"
-                  sx={{
-                    // bgcolor: "lightblue",
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  // component={Link}
-                  // to="/admin"
-                >
-                  delete
-                </IconButton>
-              </Box> */}
               <Table size="medium" aria-label="purchases">
                 <TableHead>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Id</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Title</TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Price</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Id
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Title
+                    </TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Price
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -91,13 +70,19 @@ function AdminProductRows(props: Props) {
                     </TableCell>
                   </TableRow>
                   <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Image
                     </TableCell>
-                    <TableCell align="center" sx={{ width: "33%", fontSize: "1.1rem" }}>
+                    <TableCell
+                      align="center"
+                      sx={{ width: "33%", fontSize: "1.1rem" }}>
                       Description
                     </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>Brand</TableCell>
+                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
+                      Brand
+                    </TableCell>
                   </TableRow>
                   <TableRow>
                     <TableCell align="center">
@@ -120,9 +105,7 @@ function AdminProductRows(props: Props) {
                   justifyContent: "flex-end",
                   marginTop: "0.5rem",
                   gap: "0.5rem",
-                  // bgcolor: "pink",
-                }}
-              >
+                }}>
                 <IconButton
                   className="material-symbols-outlined"
                   sx={{
@@ -130,9 +113,8 @@ function AdminProductRows(props: Props) {
                     color: "black",
                     fontSize: "2rem",
                   }}
-                  // component={Link}
-                  // to="/admin"
-                >
+                  component={Link}
+                  to={`/admin/product/${props.product.id}`}>
                   edit
                 </IconButton>
                 <IconButton
@@ -142,9 +124,8 @@ function AdminProductRows(props: Props) {
                     color: "black",
                     fontSize: "2rem",
                   }}
-                  // component={Link}
-                  // to="/admin"
-                >
+                  data-cy="admin-remove-product"
+                  onClick={() => setDeleteProductDialogOpen(true)}>
                   delete
                 </IconButton>
               </Box>
@@ -152,6 +133,11 @@ function AdminProductRows(props: Props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      <DeleteProductDialog
+        open={deleteProductDialogOpen}
+        handleClose={() => setDeleteProductDialogOpen(false)}
+        removeProduct={() => removeProduct(props.product)}
+      />
     </React.Fragment>
   );
 }
