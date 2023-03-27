@@ -10,13 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProduct } from "../contexts/AdminProductContext";
 import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
-  const [open, setOpen] = useState(false);
   const { products } = useProduct();
 
   return (
