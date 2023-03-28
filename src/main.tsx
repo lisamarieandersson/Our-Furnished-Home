@@ -35,6 +35,7 @@ const router = createBrowserRouter(
 );
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+  // <ErrorBoundary onGoBack={() => window.history.back()}>
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <ProductProvider>
@@ -46,4 +47,5 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </ProductProvider>
     </ThemeProvider>
   </React.StrictMode>
+  // </ErrorBoundary>
 );
