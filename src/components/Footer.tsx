@@ -2,6 +2,7 @@ import {
   Box,
   Divider,
   Grid,
+  IconButton,
   List,
   ListItem,
   ListItemText,
@@ -11,7 +12,7 @@ import {
 import { Container, useTheme } from "@mui/system";
 
 const hoverEffectStyling: SxProps<Theme> = {
-    textAlign: "center",
+  textAlign: "center",
   "&:hover": {
     textDecoration: "underline",
     textDecorationThickness: "0.01rem",
@@ -62,7 +63,9 @@ function Footer() {
               <ListItemText sx={hoverEffectStyling}>Our Story</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={hoverEffectStyling}>Sustainability</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>
+                Sustainability
+              </ListItemText>
             </ListItem>
             <ListItem disablePadding>
               <ListItemText sx={hoverEffectStyling}>Work with us</ListItemText>
@@ -90,9 +93,7 @@ function Footer() {
               </ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={hoverEffectStyling}>
-                Delivery info
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Delivery info</ListItemText>
             </ListItem>
             <ListItem disablePadding>
               <ListItemText sx={hoverEffectStyling}>
@@ -130,19 +131,13 @@ function Footer() {
               <ListItemText sx={{ textAlign: "center" }}>CONTACT</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={hoverEffectStyling}>
-                Contact us
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Contact us</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={hoverEffectStyling}>
-                Our stores
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Our stores</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={hoverEffectStyling}>
-                Affiliates
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Affiliates</ListItemText>
             </ListItem>
           </List>
         </Grid>
@@ -154,7 +149,7 @@ function Footer() {
           marginTop: "2rem",
         }}
       >
-        <Box
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -169,9 +164,9 @@ function Footer() {
             },
           }}
         >
-          <img src="/facebook.png" alt="" />
-        </Box>
-        <Box
+          <img src="/facebook.png" alt="facebook" />
+        </IconButton>
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -186,9 +181,9 @@ function Footer() {
             },
           }}
         >
-          <img src="/contact.png" alt="" />
-        </Box>
-        <Box
+          <img src="/contact.png" alt="contact" />
+        </IconButton>
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -203,8 +198,8 @@ function Footer() {
             },
           }}
         >
-          <img src="/instagram.png" alt="" />
-        </Box>
+          <img src="/instagram.png" alt="instagram" />
+        </IconButton>
       </Container>
       <Container
         sx={{
