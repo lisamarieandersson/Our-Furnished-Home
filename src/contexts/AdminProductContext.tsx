@@ -18,8 +18,8 @@ type ProductContextType = {
 const AdminProductContext = createContext<ProductContextType>({
   products: [],
   addProduct: () => {},
-  removeProduct: () => {},
   editProduct: () => {},
+  removeProduct: () => {},
 });
 
 // Create a custom hook to easier use the order
@@ -35,17 +35,6 @@ export const ProductProvider = ({ children }: Props) => {
     setProducts([...products, product]);
   };
 
-  const removeProduct = (product: Product) => {
-    setProducts(products.filter((p) => p.id !== product.id));
-  };
-
-  // const editProduct = (id: string, newName: string) => {
-  //   setProducts(
-  //     products.map((product) =>
-  //       product.id === id ? { ...product, name: newName } : product
-  //     )
-  //   );
-  // };
   const editProduct = (editedProduct: Product) => {
     setProducts(
       products.map((product) =>
@@ -54,11 +43,16 @@ export const ProductProvider = ({ children }: Props) => {
     );
   };
   console.log(products);
+
+  const removeProduct = (product: Product) => {
+    setProducts(products.filter((p) => p.id !== product.id));
+  };
+
   const productContext: ProductContextType = {
     products,
     addProduct,
-    removeProduct,
     editProduct,
+    removeProduct,
   };
 
   return (
