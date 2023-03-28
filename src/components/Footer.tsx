@@ -16,7 +16,7 @@ const hoverEffectStyling: SxProps<Theme> = {
   "&:hover": {
     textDecoration: "underline",
     textDecorationThickness: "0.01rem",
-    textUnderlineOffset: "0.5rem",
+    textUnderlineOffset: "0.4rem",
   },
 };
 
