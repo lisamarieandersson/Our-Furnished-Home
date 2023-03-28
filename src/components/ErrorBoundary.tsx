@@ -17,11 +17,15 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError() {
+    console.log("error was caught");
     return { hasError: true };
   }
 
   render() {
-    return <PageNotFound />;
+    if (this.state.hasError) {
+      return <PageNotFound />;
+    }
+    return this.props.children;
   }
 }
 
