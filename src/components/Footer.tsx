@@ -17,6 +17,7 @@ const hoverEffectStyling: SxProps<Theme> = {
     textDecoration: "underline",
     textDecorationThickness: "0.01rem",
     textUnderlineOffset: "0.4rem",
+    cursor: "pointer",
   },
 };
 
