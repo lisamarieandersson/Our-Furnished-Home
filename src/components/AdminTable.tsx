@@ -10,13 +10,11 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useProduct } from "../contexts/AdminProductContext";
 import AdminProductRows from "./AdminProductRows";
 
 function AdminTable() {
-  const [open, setOpen] = useState(false);
   const { products } = useProduct();
 
   return (
@@ -42,10 +40,13 @@ function AdminTable() {
         </Button>
       </Box>
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table>
           <TableHead>
             <TableRow>
-              <TableCell />
+              <TableCell/>
+              <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
+                Image
+              </TableCell>
               <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
                 Id
               </TableCell>
@@ -55,6 +56,7 @@ function AdminTable() {
               <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
                 Price
               </TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>

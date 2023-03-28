@@ -31,9 +31,14 @@ function HeaderIcons() {
       >
         admin_panel_settings
       </IconButton>
-      <Box className="material-symbols-outlined" sx={iconStyle}>
+      <IconButton
+        className="material-symbols-outlined"
+        sx={iconStyle}
+        component={Link}
+        to="/underconstruction"
+      >
         favorite
-      </Box>
+      </IconButton>
       <Badge
         data-cy="cart-items-count-badge"
         badgeContent={totalQuantity}
@@ -56,7 +61,7 @@ function HeaderIcons() {
           sx={{
             fontSize: { xs: "2rem", sm: "2.5rem", cursor: "pointer" },
             color: (theme) => theme.palette.text.primary,
-            padding: "0",
+            padding: 0,
           }}
         >
           shopping_bag

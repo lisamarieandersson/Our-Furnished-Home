@@ -2,11 +2,24 @@ import {
   Box,
   Divider,
   Grid,
+  IconButton,
   List,
   ListItem,
   ListItemText,
+  SxProps,
+  Theme,
 } from "@mui/material";
 import { Container, useTheme } from "@mui/system";
+
+const hoverEffectStyling: SxProps<Theme> = {
+  textAlign: "center",
+  "&:hover": {
+    textDecoration: "underline",
+    textDecorationThickness: "0.01rem",
+    textUnderlineOffset: "0.4rem",
+    cursor: "pointer",
+  },
+};
 
 function Footer() {
   const theme = useTheme();
@@ -16,19 +29,22 @@ function Footer() {
       sx={{
         height: "auto",
         marginTop: "6rem",
-      }}>
+      }}
+    >
       <Divider
         sx={{
           marginBottom: "1.5rem",
           backgroundColor: theme.palette.text.primary,
-        }}></Divider>
+        }}
+      ></Divider>
       <Grid
         container
         spacing={2}
         justifyContent="center"
         sx={{
           justifyContent: "center",
-        }}>
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -38,22 +54,25 @@ function Footer() {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
-          }}>
+          }}
+        >
           <List sx={{ "& span": { textAlign: "center" } }}>
             <ListItem disablePadding>
               <ListItemText>ABOUT US</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText>Our Story</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Our Story</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText>Sustainability</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>
+                Sustainability
+              </ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText>Work with us</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Work with us</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText>Press</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Press</ListItemText>
             </ListItem>
           </List>
         </Grid>
@@ -66,7 +85,8 @@ function Footer() {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
-          }}>
+          }}
+        >
           <List>
             <ListItem disablePadding>
               <ListItemText sx={{ textAlign: "center" }}>
@@ -74,25 +94,23 @@ function Footer() {
               </ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
-                Delivery info
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Delivery info</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
+              <ListItemText sx={hoverEffectStyling}>
                 Returns & Refunds
               </ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
+              <ListItemText sx={hoverEffectStyling}>
                 Terms & Conditions
               </ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>FAQs</ListItemText>
+              <ListItemText sx={hoverEffectStyling}>FAQs</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
+              <ListItemText sx={hoverEffectStyling}>
                 Cookie Settings
               </ListItemText>
             </ListItem>
@@ -107,25 +125,20 @@ function Footer() {
             display: "flex",
             alignItems: "center",
             flexDirection: "column",
-          }}>
+          }}
+        >
           <List>
             <ListItem disablePadding>
               <ListItemText sx={{ textAlign: "center" }}>CONTACT</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
-                Contact us
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Contact us</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
-                Our stores
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Our stores</ListItemText>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemText sx={{ textAlign: "center" }}>
-                Affiliates
-              </ListItemText>
+              <ListItemText sx={hoverEffectStyling}>Affiliates</ListItemText>
             </ListItem>
           </List>
         </Grid>
@@ -135,8 +148,9 @@ function Footer() {
           display: "flex",
           justifyContent: "center",
           marginTop: "2rem",
-        }}>
-        <Box
+        }}
+      >
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -149,10 +163,11 @@ function Footer() {
             "& img": {
               width: "2rem",
             },
-          }}>
-          <img src="/facebook.png" alt="" />
-        </Box>
-        <Box
+          }}
+        >
+          <img src="/facebook.png" alt="facebook" />
+        </IconButton>
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -165,10 +180,11 @@ function Footer() {
             "& img": {
               width: "2rem",
             },
-          }}>
-          <img src="/contact.png" alt="" />
-        </Box>
-        <Box
+          }}
+        >
+          <img src="/contact.png" alt="contact" />
+        </IconButton>
+        <IconButton
           sx={{
             borderRadius: "100rem",
             width: "4rem",
@@ -181,16 +197,18 @@ function Footer() {
             "& img": {
               width: "2rem",
             },
-          }}>
-          <img src="/instagram.png" alt="" />
-        </Box>
+          }}
+        >
+          <img src="/instagram.png" alt="instagram" />
+        </IconButton>
       </Container>
       <Container
         sx={{
           display: "flex",
           justifyContent: "center",
           fontFamily: "Josefin Sans",
-        }}>
+        }}
+      >
         <p>© 2023 Our Furnished Home</p>
       </Container>
     </Container>
