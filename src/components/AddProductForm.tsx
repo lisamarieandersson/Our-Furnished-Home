@@ -80,7 +80,8 @@ function AddProductForm() {
         sx={{
           marginTop: "1rem",
           color: theme.palette.text.primary,
-        }}>
+        }}
+      >
         arrow_back
       </IconButton>
       <Typography variant="h5" margin={"1rem"}>
@@ -186,8 +187,6 @@ function AddProductForm() {
             type="text"
             name="description"
             label="Description"
-            multiline
-            rows={4}
             value={formik.values.description}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
