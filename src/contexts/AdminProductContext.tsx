@@ -15,7 +15,7 @@ type ProductContextType = {
   product?: Product;
 };
 
-const ProductContext = createContext<ProductContextType>({
+const AdminProductContext = createContext<ProductContextType>({
   products: [],
   addProduct: () => {},
   removeProduct: () => {},
@@ -23,7 +23,7 @@ const ProductContext = createContext<ProductContextType>({
 });
 
 // Create a custom hook to easier use the order
-export const useProduct = () => useContext(ProductContext);
+export const useProduct = () => useContext(AdminProductContext);
 
 export const ProductProvider = ({ children }: Props) => {
   const [products, setProducts] = useLocalStorageState<Product[]>(
@@ -62,8 +62,8 @@ export const ProductProvider = ({ children }: Props) => {
   };
 
   return (
-    <ProductContext.Provider value={productContext}>
+    <AdminProductContext.Provider value={productContext}>
       {children}
-    </ProductContext.Provider>
+    </AdminProductContext.Provider>
   );
 };
