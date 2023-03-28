@@ -3,6 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createRoutesFromElements, Route } from "react-router";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ErrorBoundary from "./components/ErrorBoundary";
+import PageNotFound from "./components/PageNotFound";
 import ToastOutlet from "./components/ToastOutlet";
 import { ProductProvider } from "./contexts/AdminProductContext";
 import { OrderProvider } from "./contexts/OrderContext";
@@ -20,7 +22,13 @@ import { theme } from "./theme";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route element={<ToastOutlet />}>
+    <Route
+      element={<ToastOutlet />}
+      errorElement={
+        <ErrorBoundary>
+          <PageNotFound />
+        </ErrorBoundary>
+      }>
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title/:id" element={<ProductPage />} />
       <Route path="confirmation" element={<OrderConfirmationPage />} />
@@ -36,14 +44,16 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <ProductProvider>
-        <ShoppingCartProvider>
-          <OrderProvider>
-            <RouterProvider router={router} />
-          </OrderProvider>
-        </ShoppingCartProvider>
-      </ProductProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <ProductProvider>
+          <ShoppingCartProvider>
+            <OrderProvider>
+              <RouterProvider router={router} />
+            </OrderProvider>
+          </ShoppingCartProvider>
+        </ProductProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   </React.StrictMode>
 );

@@ -14,6 +14,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useProduct } from "../contexts/AdminProductContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
+import PageNotFound from "./PageNotFound";
 
 /*  Styling */
 
@@ -87,7 +88,7 @@ function ProductCard() {
   if (!product) {
     return (
       <div>
-        <Typography>We're sorry! The product was not found.</Typography>
+        <PageNotFound />
       </div>
     );
   }
@@ -101,7 +102,8 @@ function ProductCard() {
               sx={{
                 display: "flex",
                 flexDirection: { xs: "column", md: "row" },
-              }}>
+              }}
+            >
               <CardMedia>
                 <img src={product.image} alt={product.title} />
               </CardMedia>
@@ -112,13 +114,15 @@ function ProductCard() {
                 <Typography
                   variant="h5"
                   sx={{ marginBottom: "1rem" }}
-                  data-cy="product-title">
+                  data-cy="product-title"
+                >
                   {product.title}
                 </Typography>
                 <Typography
                   variant="subtitle1"
                   sx={{ marginBottom: "2rem" }}
-                  data-cy="product-price">
+                  data-cy="product-price"
+                >
                   {product.price} SEK
                 </Typography>
                 <Typography
@@ -126,7 +130,8 @@ function ProductCard() {
                   sx={{
                     marginBottom: "2rem",
                   }}
-                  data-cy="product-description">
+                  data-cy="product-description"
+                >
                   {product.description}
                 </Typography>
                 <Typography variant="subtitle1">Quantity</Typography>
@@ -135,14 +140,16 @@ function ProductCard() {
                     display: "flex",
                     alignItems: "center",
                     marginBottom: "1rem",
-                  }}>
+                  }}
+                >
                   <Button
                     variant="text"
                     onClick={handleDecreaseQuantity}
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
-                    }}>
+                    }}
+                  >
                     -
                   </Button>
                   <TextField
@@ -154,7 +161,8 @@ function ProductCard() {
                     onChange={(e) =>
                       setQuantity(Math.max(1, parseInt(e.target.value)))
                     }
-                    value={quantity}>
+                    value={quantity}
+                  >
                     {quantity}
                   </TextField>
                   <Button
@@ -163,14 +171,16 @@ function ProductCard() {
                     sx={{
                       fontSize: "1.3rem",
                       color: (theme) => theme.palette.text.primary,
-                    }}>
+                    }}
+                  >
                     +
                   </Button>
                 </Box>
                 <Button
                   onClick={() => addItem({ ...product, quantity })}
                   variant="contained"
-                  data-cy="product-buy-button">
+                  data-cy="product-buy-button"
+                >
                   ADD TO BAG
                 </Button>
               </CardContent>

@@ -33,6 +33,7 @@ function AdminProductRows(props: Props) {
         <TableCell align="center" data-cy="product-id">
           {props.product.id}
         </TableCell>
+
         <TableCell align="center" data-cy="product-title">
           {props.product.title}
         </TableCell>

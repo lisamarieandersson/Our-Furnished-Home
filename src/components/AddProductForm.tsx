@@ -1,6 +1,7 @@
 import {
   Button,
   Container,
+  IconButton,
   InputAdornment,
   TextField,
   Typography,
@@ -9,22 +10,33 @@ import {
 } from "@mui/material";
 import { useFormik } from "formik";
 import { CSSProperties } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useProduct } from "../contexts/AdminProductContext";
 
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
-  price: Yup.number().required("Please enter the price for the product"),
+  price: Yup.number()
+    .required("Please enter the price for the product")
+    .min(1, "Price must be at least 1")
+    .typeError("Price must be a number"),
   description: Yup.string().required(
     "Please enter the description for the product"
   ),
-  brand: Yup.string().required("Please enter the brand name for the product"),
-  image: Yup.string().required("Please enter the url for the products image"),
+  brand: Yup.string(),
+  image: Yup.string()
+    .required("Please enter the url for the products image")
+    .matches(
+      /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+      "Please enter a correct url!"
+    ),
   id: Yup.string().required("Please enter the product id"),
 });
 
 export type ProductValues = Yup.InferType<typeof ProductSchema>;
+export type NullableProductValues = Omit<ProductValues, "price"> & {
+  price: ProductValues["price"] | null;
+};
 
 function AddProductForm() {
   const theme = useTheme();
@@ -34,7 +46,6 @@ function AddProductForm() {
 
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
-  // const product = undefined;
 
   const isEdit = Boolean(product);
 
@@ -62,6 +73,16 @@ function AddProductForm() {
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
+      <IconButton
+        className="material-symbols-outlined"
+        component={Link}
+        to="/admin"
+        sx={{
+          marginTop: "1rem",
+          color: theme.palette.text.primary,
+        }}>
+        arrow_back
+      </IconButton>
       <Typography variant="h5" margin={"1rem"}>
         {isEdit ? "Edit Product" : "Add a new product"}
       </Typography>
@@ -72,11 +93,13 @@ function AddProductForm() {
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}>
+        }}
+      >
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form">
+          data-cy="product-form"
+        >
           <Container
             sx={{
               padding: "0 !important",
@@ -84,7 +107,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="title"
               type="text"
@@ -104,12 +128,12 @@ function AddProductForm() {
               type="number"
               name="price"
               label="Price"
-              value={formik.values.price}
+              value={formik.values.price === 0 ? "" : formik.values.price}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.price && formik.errors.price)}
               helperText={formik.touched.price && formik.errors.price}
-              inputProps={{ "data-cy": "product-price" }}
+              inputProps={{ "data-cy": "product-price", min: 1, step: 1 }}
               FormHelperTextProps={{ "data-cy": "product-price-error" } as any}
               InputProps={{
                 endAdornment: (
@@ -126,7 +150,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="brand"
               type="text"
@@ -137,8 +162,8 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.brand && formik.errors.brand)}
               helperText={formik.touched.brand && formik.errors.brand}
-              inputProps={{ "data-cy": "product-brand" }}
-              FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
+              // inputProps={{ "data-cy": "product-brand" }}
+              // FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
               sx={{ flex: 1 }}
             />
             <TextField
@@ -161,6 +186,8 @@ function AddProductForm() {
             type="text"
             name="description"
             label="Description"
+            multiline
+            rows={4}
             value={formik.values.description}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
