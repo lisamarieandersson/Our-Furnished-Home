@@ -1,6 +1,7 @@
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
+import { Box } from "@mui/system";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "../../data";
@@ -13,8 +14,6 @@ type Props = {
 };
 
 function AdminProductRows(props: Props) {
-  const [open, setOpen] = React.useState(false);
-  // const { products } = useProduct();
   const { removeProduct } = useProduct();
   const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
     React.useState(false);
@@ -24,11 +23,12 @@ function AdminProductRows(props: Props) {
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }} data-cy="product">
         <TableCell sx={{ padding: 0 }} />
         <TableCell component="th" scope="row" align="center">
-          <img
+          <Box
+            component="img"
             src={props.product.image}
             alt={props.product.title}
-            style={{ width: "4rem" }}
-          />
+            sx={{ width: { xs: "4rem", sm: "10rem" } }}
+          ></Box>
         </TableCell>
         <TableCell align="center" data-cy="product-id">
           {props.product.id}
