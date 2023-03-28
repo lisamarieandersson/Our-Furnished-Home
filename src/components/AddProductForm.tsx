@@ -80,36 +80,32 @@ function AddProductForm() {
         sx={{
           marginTop: "1rem",
           color: theme.palette.text.primary,
-        }}
-      >
+        }}>
         arrow_back
       </IconButton>
-      <Typography variant="h5" margin={"1rem"}>
+      <Typography variant="h5" marginBottom={"1rem"} marginTop={"1rem"}>
         {isEdit ? "Edit Product" : "Add a new product"}
       </Typography>
       <Container
         sx={{
           width: isSmallScreen ? "sm" : "md",
-          margin: "1rem",
+          // margin: "1rem",
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}
-      >
+        }}>
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form"
-        >
+          data-cy="product-form">
           <Container
             sx={{
-              padding: "0 !important",
+              padding: "0px !important",
               display: "flex",
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}
-          >
+            }}>
             <TextField
               id="title"
               type="text"
@@ -151,8 +147,7 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}
-          >
+            }}>
             <TextField
               id="brand"
               type="text"
