@@ -40,10 +40,13 @@ function AdminTable() {
         </Button>
       </Box>
       <TableContainer component={Paper}>
-        <Table aria-label="collapsible table">
+        <Table>
           <TableHead>
             <TableRow>
-              <TableCell />
+              <TableCell/>
+              <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
+                Image
+              </TableCell>
               <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
                 Id
               </TableCell>
@@ -53,6 +56,7 @@ function AdminTable() {
               <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
                 Price
               </TableCell>
+              <TableCell />
             </TableRow>
           </TableHead>
           <TableBody>

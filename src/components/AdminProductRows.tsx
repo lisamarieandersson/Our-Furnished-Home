@@ -1,11 +1,5 @@
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Box from "@mui/material/Box";
-import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
-import Table from "@mui/material/Table";
 import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import * as React from "react";
 import { Link } from "react-router-dom";
@@ -27,124 +21,51 @@ function AdminProductRows(props: Props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }} data-cy="product">
+        <TableCell sx={{ padding: 0 }} />
         <TableCell component="th" scope="row" align="center">
+          <img
+            src={props.product.image}
+            alt={props.product.title}
+            style={{ width: "4rem" }}
+          />
+        </TableCell>
+        <TableCell align="center" data-cy="product-id">
           {props.product.id}
         </TableCell>
-        <TableCell align="center">{props.product.title}</TableCell>
-        <TableCell align="center">{props.product.price} SEK</TableCell>
-      </TableRow>
-      <TableRow data-cy="product">
-        <TableCell sx={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-          <Collapse in={!open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>
-              <Table
-                size="medium"
-                aria-label="purchases"
-                sx={{
-                  // minWidth: "2rem",
-                }}
-              >
-                <TableHead>
-                  <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
-                      Id
-                    </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
-                      Title
-                    </TableCell>
-                    <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
-                      Price
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableRow>
-                  <TableCell align="center" data-cy="product-id">
-                    {props.product.id}
-                  </TableCell>
-                  <TableCell align="center" data-cy="product-title">
-                    {props.product.title}
-                  </TableCell>
-                  <TableCell align="center" data-cy="product-price">
-                    {props.product.price} SEK
-                  </TableCell>
-                </TableRow>
-                <TableRow sx={{ bgcolor: theme.palette.primary.main }}>
-                  <TableCell
-                    align="center"
-                    sx={{ width: "33%", fontSize: "1.1rem" }}
-                  >
-                    Image
-                  </TableCell>
-                  <TableCell
-                    align="center"
-                    sx={{ width: "33%", fontSize: "1.1rem" }}
-                  >
-                    Description
-                  </TableCell>
-                  <TableCell align="center" sx={{ fontSize: "1.1rem" }}>
-                    Brand
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell align="center">
-                    <img
-                      src={props.product.image}
-                      alt={props.product.title}
-                      style={{ width: "8rem" }}
-                    />
-                  </TableCell>
-                  <TableCell align="center">
-                    {props.product.description}
-                  </TableCell>
-                  <TableCell align="center"> {props.product.brand}</TableCell>
-                </TableRow>
-              </Table>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  marginTop: "0.5rem",
-                  gap: "0.5rem",
-                }}
-              >
-                <IconButton
-                  className="material-symbols-outlined"
-                  data-cy="admin-edit-product"
-                  sx={{
-                    bgcolor: theme.palette.primary.main,
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  component={Link}
-                  to={`/admin/product/${props.product.id}`}
-                >
-                  edit
-                </IconButton>
-                <IconButton
-                  className="material-symbols-outlined"
-                  sx={{
-                    bgcolor: theme.palette.primary.main,
-                    color: "black",
-                    fontSize: "2rem",
-                  }}
-                  data-cy="admin-remove-product"
-                  onClick={() => setDeleteProductDialogOpen(true)}
-                >
-                  delete
-                </IconButton>
-              </Box>
-            </Box>
-          </Collapse>
+        <TableCell align="center" data-cy="product-title">
+          {props.product.title}
+        </TableCell>
+        <TableCell align="center" data-cy="product-price">
+          {props.product.price} SEK
+        </TableCell>
+        <TableCell align="center">
+          <IconButton
+            className="material-symbols-outlined"
+            data-cy="admin-edit-product"
+            sx={{
+              bgcolor: theme.palette.primary.main,
+              color: "black",
+              fontSize: "1.8rem",
+              margin: "0.5rem",
+            }}
+            component={Link}
+            to={`/admin/product/${props.product.id}`}
+          >
+            edit
+          </IconButton>
+          <IconButton
+            className="material-symbols-outlined"
+            sx={{
+              bgcolor: theme.palette.primary.main,
+              color: "black",
+              fontSize: "1.8rem",
+            }}
+            data-cy="admin-remove-product"
+            onClick={() => setDeleteProductDialogOpen(true)}
+          >
+            delete
+          </IconButton>
         </TableCell>
       </TableRow>
       <DeleteProductDialog
