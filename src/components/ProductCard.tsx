@@ -5,7 +5,6 @@ import {
   CardMedia,
   Container,
   Paper,
-  TextField,
   Typography,
 } from "@mui/material";
 import { styled, SxProps, Theme } from "@mui/material/styles";
@@ -16,56 +15,7 @@ import { useProduct } from "../contexts/AdminProductContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import PageNotFound from "./PageNotFound";
 
-/*  Styling */
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.subtitle2,
-  textAlign: "left",
-  color: theme.palette.text.primary,
-  boxShadow: "none",
-  "& img": {
-    width: "100%",
-    height: "auto",
-    objectFit: "cover", // Ensures that the image fills the available space while preserving its aspect ratio
-  },
-}));
-
-const rootStyle: SxProps<Theme> = {
-  display: "flex",
-  justifyContent: "center",
-  marginTop: "1.5rem",
-};
-
-const cardContentStyle: SxProps<Theme> = {
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "flex-start",
-  textAlign: "left",
-  "@media (min-width: 960px)": {
-    // Media query for desktop view
-    width: "100%",
-    height: "auto",
-    paddingLeft: "2rem",
-  },
-};
-
-const inputQuantityTextfieldStyle: SxProps<Theme> = {
-  width: "2rem",
-  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
-    WebkitAppearance: "none",
-    margin: 0,
-  },
-  '& input[type="number"]': {
-    MozAppearance: "textfield",
-  },
-
-  "& .MuiInput-underline:before, & .MuiInput-underline:after": {
-    display: "none",
-  },
-};
-
 /**
- *
  * Returns a product card with image, brand, title, price, description and add to bag button
  */
 function ProductCard() {
@@ -152,19 +102,7 @@ function ProductCard() {
                   >
                     -
                   </Button>
-                  <TextField
-                    variant="standard"
-                    sx={inputQuantityTextfieldStyle}
-                    inputProps={{ min: 1, style: { textAlign: "center" } }}
-                    data-cy="product-quantity"
-                    type="number"
-                    onChange={(e) =>
-                      setQuantity(Math.max(1, parseInt(e.target.value)))
-                    }
-                    value={quantity}
-                  >
-                    {quantity}
-                  </TextField>
+                  <Typography data-cy="product-quantity">{quantity}</Typography>
                   <Button
                     variant="text"
                     onClick={handleIncreaseQuantity}
@@ -191,5 +129,53 @@ function ProductCard() {
     </Container>
   );
 }
+
+/*  Styling */
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.subtitle2,
+  textAlign: "left",
+  color: theme.palette.text.primary,
+  boxShadow: "none",
+  "& img": {
+    width: "100%",
+    height: "auto",
+    objectFit: "cover", // Ensures that the image fills the available space while preserving its aspect ratio
+  },
+}));
+
+const rootStyle: SxProps<Theme> = {
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "1.5rem",
+};
+
+const cardContentStyle: SxProps<Theme> = {
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  textAlign: "left",
+  "@media (min-width: 960px)": {
+    // Media query for desktop view
+    width: "100%",
+    height: "auto",
+    paddingLeft: "2rem",
+  },
+};
+
+// const inputQuantityTextfieldStyle: SxProps<Theme> = {
+//   width: "2rem",
+//   "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+//     WebkitAppearance: "none",
+//     margin: 0,
+//   },
+//   '& input[type="number"]': {
+//     MozAppearance: "textfield",
+//   },
+
+//   "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+//     display: "none",
+//   },
+// };
 
 export default ProductCard;

@@ -15,6 +15,9 @@ interface Props {
   order: Order;
 }
 
+/**
+ * Renders the cards for the products in the order
+ */
 function OrderConfirmation({ order }: Props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));

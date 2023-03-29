@@ -7,6 +7,9 @@ interface Props {
   order: Order;
 }
 
+/**
+ * Renders the information that the user puts into the DeliveryForm
+ */
 function UserInfoOrder({ order }: Props) {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -18,7 +21,8 @@ function UserInfoOrder({ order }: Props) {
         display: "flex",
         alignItems: "center",
         flexDirection: "column",
-      }}>
+      }}
+    >
       <Typography variant={isSmallScreen ? "h6" : "h5"}>
         Thank you for your order!
       </Typography>
@@ -28,7 +32,8 @@ function UserInfoOrder({ order }: Props) {
           flexDirection: "column",
           alignItems: "center",
           marginTop: "1rem",
-        }}>
+        }}
+      >
         <Typography textAlign={"center"}>
           An order confirmation has been sent to:
         </Typography>
@@ -44,7 +49,8 @@ function UserInfoOrder({ order }: Props) {
           alignItems: "center",
           marginTop: isSmallScreen ? "0.2rem" : "1rem",
           marginBottom: isSmallScreen ? "1rem" : "3rem",
-        }}>
+        }}
+      >
         <Typography>{order?.name}</Typography>
         <Typography>{order?.address}</Typography>
         <Typography>

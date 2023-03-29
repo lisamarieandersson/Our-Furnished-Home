@@ -3,7 +3,6 @@ import PageNotFound from "./PageNotFound";
 
 interface Props {
   children: ReactNode;
-  //   onGoBack: () => void;
 }
 
 interface State {

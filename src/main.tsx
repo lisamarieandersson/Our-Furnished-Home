@@ -18,7 +18,7 @@ import EmptyBagPage from "./pages/EmptyBagPage";
 import OrderConfirmationPage from "./pages/OrderConfirmationPage";
 import ProductPage from "./pages/ProductPage";
 import StartPage from "./pages/StartPage";
-import { theme } from "./theme";
+import { theme } from "./theme/theme";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +28,8 @@ const router = createBrowserRouter(
         <ErrorBoundary>
           <PageNotFound />
         </ErrorBoundary>
-      }>
+      }
+    >
       <Route index element={<StartPage />} />
       <Route path="/product/:id/:title/:id" element={<ProductPage />} />
       <Route path="confirmation" element={<OrderConfirmationPage />} />

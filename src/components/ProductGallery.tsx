@@ -16,6 +16,78 @@ import { useProduct } from "../contexts/AdminProductContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import { createSlug } from "../slug/utils";
 
+/**
+ * Returns a product gallery consisting of cards for all the products
+ * with image, brand, title, price and add to shopping bag button
+ */
+function ProductGallery() {
+  const { addItem } = useShoppingCart();
+  const { products } = useProduct();
+
+  return (
+    // Maps over the products and returns TSX for each product item
+    <Container maxWidth="xl" sx={rootStyle}>
+      <Box sx={{ width: "100%" }}>
+        <Grid container rowSpacing={2} columnSpacing={2}>
+          {products.map((product) => {
+            const slug = createSlug(product.title);
+            // Renders the overall structure of the ProductGallery component
+            return (
+              <Grid key={product.id} xs={12} sm={6} md={4} data-cy="product">
+                <StyledLink
+                  to={`/product/${product.id}/${slug}/${product.id}`}
+                  onClick={() => {
+                    window.scroll(0, 0);
+                  }}
+                >
+                  <Item>
+                    <img src={product.image} alt={product.title} />
+                    <CardContent sx={cardContentStyle}>
+                      <Box>
+                        <Typography variant="overline">
+                          {product.brand}
+                        </Typography>
+                        <Typography variant="subtitle2" data-cy="product-title">
+                          {product.title}
+                        </Typography>
+                        <Typography
+                          variant="subtitle2"
+                          sx={{ marginTop: "1rem" }}
+                          data-cy="product-price"
+                        >
+                          {product.price} SEK
+                        </Typography>
+                      </Box>
+                      <Box>
+                        <IconButton
+                          onClick={(event) => {
+                            event.stopPropagation(); // prevents the click event from propagating to the parent link element
+                            addItem({ ...product, quantity: 1 });
+                            event.preventDefault();
+                          }}
+                          className="material-symbols-outlined"
+                          sx={{
+                            fontSize: "2.4rem",
+                            cursor: "pointer",
+                            color: (theme) => theme.palette.text.primary,
+                          }}
+                          data-cy="product-buy-button"
+                        >
+                          shopping_bag
+                        </IconButton>
+                      </Box>
+                    </CardContent>
+                  </Item>
+                </StyledLink>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Box>
+    </Container>
+  );
+}
+
 /*  Styling */
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -53,75 +125,5 @@ const cardContentStyle: SxProps<Theme> = {
   alignItems: "center",
   paddingTop: "0.4rem",
 };
-
-/**
- *
- * Returns a product gallery consisting of cards for all the products with image, brand, title, price and shopping bag button
- */
-function ProductGallery() {
-  const { addItem } = useShoppingCart();
-  const { products } = useProduct();
-  // const { products } = useProducts();
-
-  return (
-    // Maps over the products and returs TSX for each product item
-    <Container maxWidth="xl" sx={rootStyle}>
-      <Box sx={{ width: "100%" }}>
-        <Grid container rowSpacing={2} columnSpacing={2}>
-          {products.map((product) => {
-            const slug = createSlug(product.title);
-            // Renders the overall structure of the ProductGallery component
-            return (
-              <Grid key={product.id} xs={12} sm={6} md={4} data-cy="product">
-                <StyledLink
-                  to={`/product/${product.id}/${slug}/${product.id}`}
-                  onClick={() => {
-                    window.scroll(0, 0);
-                  }}>
-                  <Item>
-                    <img src={product.image} alt={product.title} />
-                    <CardContent sx={cardContentStyle}>
-                      <Box>
-                        <Typography variant="overline">
-                          {product.brand}
-                        </Typography>
-                        <Typography variant="subtitle2" data-cy="product-title">
-                          {product.title}
-                        </Typography>
-                        <Typography
-                          variant="subtitle2"
-                          sx={{ marginTop: "1rem" }}
-                          data-cy="product-price">
-                          {product.price} SEK
-                        </Typography>
-                      </Box>
-                      <Box>
-                        <IconButton
-                          onClick={(event) => {
-                            event.stopPropagation(); // prevents the click event from propagating to the parent link element
-                            addItem({ ...product, quantity: 1 });
-                            event.preventDefault();
-                          }}
-                          className="material-symbols-outlined"
-                          sx={{
-                            fontSize: "2.4rem",
-                            cursor: "pointer",
-                            color: (theme) => theme.palette.text.primary,
-                          }}
-                          data-cy="product-buy-button">
-                          shopping_bag
-                        </IconButton>
-                      </Box>
-                    </CardContent>
-                  </Item>
-                </StyledLink>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Box>
-    </Container>
-  );
-}
 
 export default ProductGallery;

@@ -1,15 +1,11 @@
 import { Badge, Box, IconButton, SxProps, Theme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
-import { theme } from "../theme";
+import { theme } from "../theme/theme";
 
-const iconStyle: SxProps<Theme> = {
-  fontSize: { xs: "2rem", sm: "2.5rem" },
-  cursor: "pointer",
-  padding: { xs: "0rem", md: "0.3rem" },
-  color: "black",
-};
-
+/**
+ * Renders icons to the right, inside the HeaderMain component
+ */
 function HeaderIcons() {
   const { items } = useShoppingCart();
 
@@ -70,5 +66,14 @@ function HeaderIcons() {
     </Box>
   );
 }
+
+/* Styling */
+
+const iconStyle: SxProps<Theme> = {
+  fontSize: { xs: "2rem", sm: "2.5rem" },
+  cursor: "pointer",
+  padding: { xs: "0rem", md: "0.3rem" },
+  color: "black",
+};
 
 export default HeaderIcons;

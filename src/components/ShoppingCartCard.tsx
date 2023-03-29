@@ -16,25 +16,13 @@ import {
 import { Box } from "@mui/system";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
+/**
+ * Renders the card for the product(s) in the shoppingbag
+ */
 function ShoppingCartCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { items, updateItemQuantity, removeItem } = useShoppingCart();
-
-  const inputQuantityTextfieldStyle: SxProps<Theme> = {
-    width: "2rem",
-    "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
-      WebkitAppearance: "none",
-      margin: 0,
-    },
-    '& input[type="number"]': {
-      MozAppearance: "textfield",
-    },
-
-    "& .MuiInput-underline:before, & .MuiInput-underline:after": {
-      display: "none",
-    },
-  };
 
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
@@ -228,4 +216,20 @@ function ShoppingCartCard() {
   );
 }
 
+/* Styling */
+
+const inputQuantityTextfieldStyle: SxProps<Theme> = {
+  width: "2rem",
+  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+    WebkitAppearance: "none",
+    margin: 0,
+  },
+  '& input[type="number"]': {
+    MozAppearance: "textfield",
+  },
+
+  "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+    display: "none",
+  },
+};
 export default ShoppingCartCard;

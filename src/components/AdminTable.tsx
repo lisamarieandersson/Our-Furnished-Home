@@ -14,6 +14,9 @@ import { Link } from "react-router-dom";
 import { useProduct } from "../contexts/AdminProductContext";
 import AdminProductRows from "./AdminProductRows";
 
+/**
+ * The AdminTable where all the AdminProductRows are
+ */
 function AdminTable() {
   const { products } = useProduct();
 
@@ -43,7 +46,7 @@ function AdminTable() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell/>
+              <TableCell />
               <TableCell align="center" sx={{ fontSize: "1.2rem" }}>
                 Image
               </TableCell>

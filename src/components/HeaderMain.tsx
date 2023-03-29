@@ -10,7 +10,7 @@ import {
   styled,
   SxProps,
   Toolbar,
-  Typography
+  Typography,
 } from "@mui/material";
 import * as React from "react";
 import { Link, LinkProps } from "react-router-dom";
@@ -21,32 +21,17 @@ const pages = [
     name: "Products",
     link: "/",
   },
-  { name: "Brands", 
-    link: "/underconstruction" },
+  { name: "Brands", link: "/underconstruction" },
   {
     name: "Campaigns",
     link: "/underconstruction",
   },
 ];
 
-const headerButtonsStyling: SxProps<Theme> = {
-  color: "black",
-  display: "block",
-  fontSize: "1.1rem",
-  textTransform: "none",
-  marginRight: "1.5rem",
-  "&:hover": {
-    textDecoration: "underline",
-    textDecorationThickness: "0.01rem",
-    textUnderlineOffset: "0.5rem",
-  },
-};
-
-const StyledLink = styled(Link)<LinkProps>(() => ({
-  textDecoration: "none",
-  color: "inherit",
-}));
-
+/**
+ * Renders the main header.
+ * On tablet the links to the left becomes a hamburger menu
+ */
 function HeaderMain() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
@@ -174,5 +159,25 @@ function HeaderMain() {
     </AppBar>
   );
 }
+
+/* Styling */
+
+const headerButtonsStyling: SxProps<Theme> = {
+  color: "black",
+  display: "block",
+  fontSize: "1.1rem",
+  textTransform: "none",
+  marginRight: "1.5rem",
+  "&:hover": {
+    textDecoration: "underline",
+    textDecorationThickness: "0.01rem",
+    textUnderlineOffset: "0.5rem",
+  },
+};
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
 
 export default HeaderMain;

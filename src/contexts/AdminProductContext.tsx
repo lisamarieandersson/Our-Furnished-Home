@@ -2,7 +2,6 @@ import React, { createContext, useContext } from "react";
 import { Product, products as mockedProducts } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
-// Define Props interface to enforce the type of the `children` prop
 interface Props {
   children: React.ReactNode;
 }
@@ -15,6 +14,8 @@ type ProductContextType = {
   product?: Product;
 };
 
+// Creates a context object for managing products in the admin interface,
+// providing default values for the product list and CRUD operations.
 const AdminProductContext = createContext<ProductContextType>({
   products: [],
   addProduct: () => {},
@@ -22,7 +23,7 @@ const AdminProductContext = createContext<ProductContextType>({
   removeProduct: () => {},
 });
 
-// Create a custom hook to easier use the order
+// Custom hook to easier use the order
 export const useProduct = () => useContext(AdminProductContext);
 
 export const ProductProvider = ({ children }: Props) => {
@@ -42,7 +43,6 @@ export const ProductProvider = ({ children }: Props) => {
       )
     );
   };
-  console.log(products);
 
   const removeProduct = (product: Product) => {
     setProducts(products.filter((p) => p.id !== product.id));
@@ -55,6 +55,7 @@ export const ProductProvider = ({ children }: Props) => {
     removeProduct,
   };
 
+  // Renders the child components wrapped inside the AdminProductContext.Provider
   return (
     <AdminProductContext.Provider value={productContext}>
       {children}

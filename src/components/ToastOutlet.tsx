@@ -2,6 +2,11 @@ import { Outlet } from "react-router-dom";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import Toast from "./Toast";
 
+/**
+ * Displays a toast message for the recently added item to the shopping cart
+ * This component uses the useShoppingCart context for handling toast visibility and state.
+ * Without this outlet the "go to bag"-button doesn't work.
+ */
 function ToastOutlet() {
   const { lastAddedItem, clearLastAddedItem } = useShoppingCart();
 
