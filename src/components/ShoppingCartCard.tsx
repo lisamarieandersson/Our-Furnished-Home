@@ -21,21 +21,6 @@ function ShoppingCartCard() {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
   const { items, updateItemQuantity, removeItem } = useShoppingCart();
 
-  const inputQuantityTextfieldStyle: SxProps<Theme> = {
-    width: "2rem",
-    "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
-      WebkitAppearance: "none",
-      margin: 0,
-    },
-    '& input[type="number"]': {
-      MozAppearance: "textfield",
-    },
-
-    "& .MuiInput-underline:before, & .MuiInput-underline:after": {
-      display: "none",
-    },
-  };
-
   return (
     <Container maxWidth={isSmallScreen ? "sm" : "md"}>
       <Container
@@ -227,5 +212,22 @@ function ShoppingCartCard() {
     </Container>
   );
 }
+
+/* Styling */
+
+const inputQuantityTextfieldStyle: SxProps<Theme> = {
+  width: "2rem",
+  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+    WebkitAppearance: "none",
+    margin: 0,
+  },
+  '& input[type="number"]': {
+    MozAppearance: "textfield",
+  },
+
+  "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+    display: "none",
+  },
+};
 
 export default ShoppingCartCard;
