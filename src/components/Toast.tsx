@@ -38,12 +38,14 @@ function Toast({
         open={open}
         autoHideDuration={5000}
         onClose={onClose}
-        sx={{ display: "flex", justifyContent: "center" }}>
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Alert
           icon={false}
           sx={toastStyling}
           onClose={onClose}
-          severity="success">
+          severity="success"
+        >
           {"Product has been added"}
           <Box
             sx={{
@@ -52,7 +54,8 @@ function Toast({
               alignItems: "center",
               gap: "0.5rem",
               marginTop: "0.5rem",
-            }}>
+            }}
+          >
             <img
               src={lastAddedItem?.image}
               alt={lastAddedItem?.title}
@@ -79,7 +82,6 @@ function Toast({
             color="secondary"
             sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
           >
-
             Go to bag
           </Button>
         </Alert>
