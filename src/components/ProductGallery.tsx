@@ -61,7 +61,6 @@ const cardContentStyle: SxProps<Theme> = {
 function ProductGallery() {
   const { addItem } = useShoppingCart();
   const { products } = useProduct();
-  // const { products } = useProducts();
 
   return (
     // Maps over the products and returs TSX for each product item
@@ -77,7 +76,8 @@ function ProductGallery() {
                   to={`/product/${product.id}/${slug}/${product.id}`}
                   onClick={() => {
                     window.scroll(0, 0);
-                  }}>
+                  }}
+                >
                   <Item>
                     <img src={product.image} alt={product.title} />
                     <CardContent sx={cardContentStyle}>
@@ -91,7 +91,8 @@ function ProductGallery() {
                         <Typography
                           variant="subtitle2"
                           sx={{ marginTop: "1rem" }}
-                          data-cy="product-price">
+                          data-cy="product-price"
+                        >
                           {product.price} SEK
                         </Typography>
                       </Box>
@@ -108,7 +109,8 @@ function ProductGallery() {
                             cursor: "pointer",
                             color: (theme) => theme.palette.text.primary,
                           }}
-                          data-cy="product-buy-button">
+                          data-cy="product-buy-button"
+                        >
                           shopping_bag
                         </IconButton>
                       </Box>
