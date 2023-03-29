@@ -17,10 +17,10 @@ type ProductContextType = {
 // Creates a context object for managing products in the admin interface,
 // providing default values for the product list and CRUD operations.
 const AdminProductContext = createContext<ProductContextType>({
-  products: [], // Read
-  addProduct: () => {}, // Create
-  editProduct: () => {}, // Update
-  removeProduct: () => {}, // Delete
+  products: [],
+  addProduct: () => {},
+  editProduct: () => {},
+  removeProduct: () => {},
 });
 
 // Custom hook to easier use the order
