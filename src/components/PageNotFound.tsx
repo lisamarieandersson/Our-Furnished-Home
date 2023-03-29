@@ -7,6 +7,9 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ * Renders the UI for when the page is not found
+ */
 function PageNotFound() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
