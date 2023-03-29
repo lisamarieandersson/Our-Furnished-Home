@@ -3,7 +3,6 @@ import { CartItem } from "../../data";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { useTotal } from "../hooks/useTotal";
 
-// Define Props interface to enforce the type of the `children` prop
 interface Props {
   children: React.ReactNode;
 }
@@ -21,10 +20,10 @@ type ShoppingCart = {
   clearLastAddedItem: () => void;
 };
 
-// Create a new context object with an empty shopping cart object as its initial value
+// Context object with an empty shopping cart object as its initial value
 const ShoppingCartContext = createContext<ShoppingCart>(null as any);
 
-// Create a custom hook to easier use the shopping cart
+// Custom hook to easier use the shopping cart
 export const useShoppingCart = () => useContext(ShoppingCartContext);
 
 export const ShoppingCartProvider = ({ children }: Props) => {
@@ -49,7 +48,6 @@ export const ShoppingCartProvider = ({ children }: Props) => {
 
   const addItem = (itemToAdd: CartItem) => {
     const existingItem = items.find((item) => item.id === itemToAdd.id); // Check if the item to be added already exists in the cart by finding an item with the same id
-    console.log("Adding product:", itemToAdd);
 
     if (existingItem) {
       const updatedItems = items.map((item) => {
@@ -82,7 +80,7 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     setItems([]);
   };
 
-  // Create a shopping cart object with all necessary properties and methods
+  // Shopping cart object with all necessary properties and methods
   const shoppingCart: ShoppingCart = {
     items,
     addItem,
@@ -94,7 +92,8 @@ export const ShoppingCartProvider = ({ children }: Props) => {
     lastAddedItem,
     clearLastAddedItem,
   };
-  // Render the child components wrapped inside the ShoppingCartContext.Provider
+
+  // Renders the child components wrapped inside the ShoppingCartContext.Provider
   return (
     <ShoppingCartContext.Provider value={shoppingCart}>
       {children}
