@@ -14,10 +14,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import * as Yup from "yup";
 import { useProduct } from "../contexts/AdminProductContext";
 
-/**
- * Productform for adding and editing products
- */
-
 const ProductSchema = Yup.object({
   title: Yup.string().required("Please enter the title for the product"),
   price: Yup.number()
@@ -42,6 +38,9 @@ export type NullableProductValues = Omit<ProductValues, "price"> & {
   price: ProductValues["price"] | null;
 };
 
+/**
+ * Productform for adding and editing products
+ */
 function AddProductForm() {
   const theme = useTheme();
   const navigate = useNavigate();
