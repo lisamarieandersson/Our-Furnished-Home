@@ -38,8 +38,7 @@ export const useOrder = () => useContext(OrderContext);
 // Component that provides the order context to its child components
 export const OrderProvider = ({ children }: Props) => {
   const [order, setOrder] = useState<Order>();
-  const { items, totalItems, totalPrice, clearCart, clearLastAddedItem } =
-    useShoppingCart();
+  const { items, totalItems, totalPrice, clearCart } = useShoppingCart();
 
   // Creates the order object based on the current shopping cart state and delivery address
   const createOrder = (deliveryValues: DeliveryValues) => {
@@ -55,8 +54,6 @@ export const OrderProvider = ({ children }: Props) => {
 
     setOrder(newOrder); // Updates the order state with the new order
     clearCart();
-    // clearLastAddedItem();
-    // setShowOrderConfirmation(false);
   };
 
   // Create an object with all necessary properties and methods for the OrderContext
