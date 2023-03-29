@@ -12,7 +12,11 @@ type Props = {
   handleClose: () => void;
   removeProduct: () => void;
 };
-
+/**
+ * Renders a confirmation dialog to delete a product.
+ * Closes the dialog when the user has chosen and clicked on an answer - 'Yes' or 'No'.
+ * 'Yes' confirms the deletion of the product.
+ */
 function DeleteProductDialog({ open, handleClose, removeProduct }: Props) {
   const handleDeleteProduct = () => {
     removeProduct();
