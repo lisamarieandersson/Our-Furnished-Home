@@ -6,13 +6,16 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import type { Product } from "../../data";
 import { useProduct } from "../contexts/AdminProductContext";
-import { theme } from "../theme";
+import { theme } from "../theme/theme";
 import DeleteProductDialog from "./DeleteProductDialog";
 
 type Props = {
   product: Product;
 };
 
+/**
+ * All the rows inside AdminTable
+ */
 function AdminProductRows(props: Props) {
   const { removeProduct } = useProduct();
   const [deleteProductDialogOpen, setDeleteProductDialogOpen] =
