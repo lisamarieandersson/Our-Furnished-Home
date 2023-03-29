@@ -43,7 +43,6 @@ function AddProductForm() {
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
   const { addProduct, editProduct, products } = useProduct();
-
   const { id } = useParams<{ id: string }>();
   const product = products.find((p) => p.id === id);
 
@@ -80,7 +79,8 @@ function AddProductForm() {
         sx={{
           marginTop: "1rem",
           color: theme.palette.text.primary,
-        }}>
+        }}
+      >
         arrow_back
       </IconButton>
       <Typography variant="h5" marginBottom={"1rem"} marginTop={"1rem"}>
@@ -89,15 +89,16 @@ function AddProductForm() {
       <Container
         sx={{
           width: isSmallScreen ? "sm" : "md",
-          // margin: "1rem",
           display: "flex",
           flexDirection: "column",
           padding: "0px !important",
-        }}>
+        }}
+      >
         <form
           onSubmit={formik.handleSubmit}
           style={rootStyle}
-          data-cy="product-form">
+          data-cy="product-form"
+        >
           <Container
             sx={{
               padding: "0px !important",
@@ -105,7 +106,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="title"
               type="text"
@@ -147,7 +149,8 @@ function AddProductForm() {
               flexDirection: "row",
               width: "100%",
               gap: "1rem",
-            }}>
+            }}
+          >
             <TextField
               id="brand"
               type="text"
@@ -158,8 +161,6 @@ function AddProductForm() {
               onBlur={formik.handleBlur}
               error={Boolean(formik.touched.brand && formik.errors.brand)}
               helperText={formik.touched.brand && formik.errors.brand}
-              // inputProps={{ "data-cy": "product-brand" }}
-              // FormHelperTextProps={{ "data-cy": "product-brand-error" } as any}
               sx={{ flex: 1 }}
             />
             <TextField
@@ -197,23 +198,6 @@ function AddProductForm() {
           <Button type="submit" variant="contained">
             {isEdit ? "Edit Product" : "Add Product"}
           </Button>
-          {/* {isEdit ? (
-            <Button
-              type="submit"
-              variant="contained"
-              data-cy="admin-edit-product"
-            >
-              Edit Product
-            </Button>
-          ) : (
-            <Button
-              type="submit"
-              variant="contained"
-              data-cy="admin-add-product"
-            >
-              Add Product
-            </Button>
-          )} */}
         </form>
       </Container>
     </Container>
