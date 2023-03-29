@@ -39,19 +39,17 @@ function Toast({
 }) {
   return (
     <Stack spacing={2} sx={{ width: "20%" }}>
-      <Snackbar 
+      <Snackbar
         data-cy="added-to-cart-toast"
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={5000}
         onClose={onClose}
-        sx={{ display: "flex", justifyContent: "center" }}
-      >
+        sx={{ display: "flex", justifyContent: "center" }}>
         <Alert
           icon={false}
           sx={toastStyling}
           onClose={onClose}
-          severity="success"
-        >
+          severity="success">
           {"Product has been added"}
           <Box
             sx={{
@@ -60,8 +58,7 @@ function Toast({
               alignItems: "center",
               gap: "0.5rem",
               marginTop: "0.5rem",
-            }}
-          >
+            }}>
             <img
               src={lastAddedItem?.image}
               alt={lastAddedItem?.title}
@@ -72,18 +69,23 @@ function Toast({
             />
             <Box>
               <h4>{lastAddedItem?.title}</h4>
-              <h4>{lastAddedItem?.price} SEK</h4>
+              <h4>
+                {lastAddedItem?.price && lastAddedItem?.quantity
+                  ? lastAddedItem.price * lastAddedItem.quantity
+                  : ""}{" "}
+                SEK
+              </h4>
             </Box>
           </Box>
-            <Button
-              component={Link} to="/checkout"
-              onClick={clearLastAddedItem}
-              variant="outlined"
-              color="secondary"
-              sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}
-            >
-              Go to bag
-            </Button>
+          <Button
+            component={Link}
+            to="/checkout"
+            onClick={clearLastAddedItem}
+            variant="outlined"
+            color="secondary"
+            sx={{ marginTop: "0.7rem", width: "80%", fontSize: "0.8rem" }}>
+            Go to bag
+          </Button>
         </Alert>
       </Snackbar>
     </Stack>
