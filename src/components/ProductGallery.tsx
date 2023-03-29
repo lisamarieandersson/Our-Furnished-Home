@@ -25,7 +25,7 @@ function ProductGallery() {
   const { products } = useProduct();
 
   return (
-    // Maps over the products and returs TSX for each product item
+    // Maps over the products and returns TSX for each product item
     <Container maxWidth="xl" sx={rootStyle}>
       <Box sx={{ width: "100%" }}>
         <Grid container rowSpacing={2} columnSpacing={2}>

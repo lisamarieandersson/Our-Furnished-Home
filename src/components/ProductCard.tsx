@@ -5,7 +5,6 @@ import {
   CardMedia,
   Container,
   Paper,
-  TextField,
   Typography,
 } from "@mui/material";
 import { styled, SxProps, Theme } from "@mui/material/styles";
@@ -103,19 +102,7 @@ function ProductCard() {
                   >
                     -
                   </Button>
-                  <TextField
-                    variant="standard"
-                    sx={inputQuantityTextfieldStyle}
-                    inputProps={{ min: 1, style: { textAlign: "center" } }}
-                    data-cy="product-quantity"
-                    type="number"
-                    onChange={(e) =>
-                      setQuantity(Math.max(1, parseInt(e.target.value)))
-                    }
-                    value={quantity}
-                  >
-                    {quantity}
-                  </TextField>
+                  <Typography data-cy="product-quantity">{quantity}</Typography>
                   <Button
                     variant="text"
                     onClick={handleIncreaseQuantity}
@@ -176,19 +163,19 @@ const cardContentStyle: SxProps<Theme> = {
   },
 };
 
-const inputQuantityTextfieldStyle: SxProps<Theme> = {
-  width: "2rem",
-  "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
-    WebkitAppearance: "none",
-    margin: 0,
-  },
-  '& input[type="number"]': {
-    MozAppearance: "textfield",
-  },
+// const inputQuantityTextfieldStyle: SxProps<Theme> = {
+//   width: "2rem",
+//   "& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+//     WebkitAppearance: "none",
+//     margin: 0,
+//   },
+//   '& input[type="number"]': {
+//     MozAppearance: "textfield",
+//   },
 
-  "& .MuiInput-underline:before, & .MuiInput-underline:after": {
-    display: "none",
-  },
-};
+//   "& .MuiInput-underline:before, & .MuiInput-underline:after": {
+//     display: "none",
+//   },
+// };
 
 export default ProductCard;
