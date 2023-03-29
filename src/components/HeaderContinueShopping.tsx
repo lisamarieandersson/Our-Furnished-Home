@@ -12,6 +12,9 @@ const StyledLink = (props: any) => (
   <Link component={RouterLink} underline="none" color="inherit" {...props} />
 );
 
+/**
+ * Renders a header for when the user is in the shopping bag and on the checkout page
+ */
 function HeaderContinueShopping() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));

@@ -1,8 +1,11 @@
 import { Badge, Box, IconButton, SxProps, Theme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
-import { theme } from "../theme";
+import { theme } from "../theme/theme";
 
+/**
+ * Renders icons to the right, inside the HeaderMain component
+ */
 function HeaderIcons() {
   const { items } = useShoppingCart();
 
