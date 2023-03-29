@@ -16,47 +16,9 @@ import { useProduct } from "../contexts/AdminProductContext";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 import { createSlug } from "../slug/utils";
 
-/*  Styling */
-
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.subtitle2,
-  textAlign: "left",
-  color: theme.palette.text.primary,
-  cursor: "pointer",
-  boxShadow: "none",
-  transition: "box-shadow 0.3s ease-in-out",
-  "&:hover": {
-    boxShadow: "0 .125rem .625rem rgba(0, 0, 0, 0.2)",
-    backgroundColor: "#FFFFFF",
-  },
-  "& img": {
-    width: "100%",
-    height: "auto",
-    objectFit: "cover",
-  },
-}));
-
-const rootStyle: SxProps<Theme> = {
-  display: "flex",
-  justifyContent: "center",
-  marginTop: "1.5rem",
-};
-
-const StyledLink = styled(Link)<LinkProps>(() => ({
-  textDecoration: "none",
-  color: "inherit",
-}));
-
-const cardContentStyle: SxProps<Theme> = {
-  display: "flex",
-  justifyContent: "space-between",
-  alignItems: "center",
-  paddingTop: "0.4rem",
-};
-
 /**
- *
- * Returns a product gallery consisting of cards for all the products with image, brand, title, price and shopping bag button
+ * Returns a product gallery consisting of cards for all the products
+ * with image, brand, title, price and add to shopping bag button
  */
 function ProductGallery() {
   const { addItem } = useShoppingCart();
@@ -125,5 +87,43 @@ function ProductGallery() {
     </Container>
   );
 }
+
+/*  Styling */
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.subtitle2,
+  textAlign: "left",
+  color: theme.palette.text.primary,
+  cursor: "pointer",
+  boxShadow: "none",
+  transition: "box-shadow 0.3s ease-in-out",
+  "&:hover": {
+    boxShadow: "0 .125rem .625rem rgba(0, 0, 0, 0.2)",
+    backgroundColor: "#FFFFFF",
+  },
+  "& img": {
+    width: "100%",
+    height: "auto",
+    objectFit: "cover",
+  },
+}));
+
+const rootStyle: SxProps<Theme> = {
+  display: "flex",
+  justifyContent: "center",
+  marginTop: "1.5rem",
+};
+
+const StyledLink = styled(Link)<LinkProps>(() => ({
+  textDecoration: "none",
+  color: "inherit",
+}));
+
+const cardContentStyle: SxProps<Theme> = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  paddingTop: "0.4rem",
+};
 
 export default ProductGallery;
