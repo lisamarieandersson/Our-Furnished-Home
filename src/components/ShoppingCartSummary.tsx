@@ -8,6 +8,9 @@ import {
 } from "@mui/material";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
+/**
+ * Renders a summary of total items and total price (below the ShoppingCartCard component)
+ */
 function ShoppingCartSummary() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));

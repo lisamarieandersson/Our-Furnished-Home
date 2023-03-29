@@ -16,6 +16,9 @@ import {
 import { Box } from "@mui/system";
 import { useShoppingCart } from "../contexts/ShoppingCartContext";
 
+/**
+ * Renders the card for the product(s) in the shoppingbag
+ */
 function ShoppingCartCard() {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -229,5 +232,4 @@ const inputQuantityTextfieldStyle: SxProps<Theme> = {
     display: "none",
   },
 };
-
 export default ShoppingCartCard;
