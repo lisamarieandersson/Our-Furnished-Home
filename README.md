@@ -1,3 +1,5 @@
+# <img src="./public/logohome.png" width="100rem"/>
+
 # Our Furnished Home
 
 ## Webshop built with React, Typescript and MUI
