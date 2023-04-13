@@ -18,7 +18,7 @@ We have built a webshop with home decoration and furnishing products. We've crea
 
 ### How to build the project:
 
-Run:
+Run these commands in the terminal:
 
 - `npm install`
 
