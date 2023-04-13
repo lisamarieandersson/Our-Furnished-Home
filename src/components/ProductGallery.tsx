@@ -35,7 +35,7 @@ function ProductGallery() {
             return (
               <Grid key={product.id} xs={12} sm={6} md={4} data-cy="product">
                 <StyledLink
-                  to={`/product/${product.id}/${slug}/${product.id}`}
+                  to={`/product/${product.id}/${slug}`}
                   onClick={() => {
                     window.scroll(0, 0);
                   }}
