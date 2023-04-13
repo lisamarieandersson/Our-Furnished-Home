@@ -5,7 +5,13 @@
 ## Webshop built with React, Typescript and MUI
 
 We have built a webshop with home decoration and furnishing products. We've created our own theme with MUI Theme Creator and used components from MUI.
+<br>
+<br>
 
+### Demo link to our shop:
+
+[Our Furnished Home](https://ourfurnishedhome.netlify.app/)
+<br>
 <br>
 
 ### Contributors:
